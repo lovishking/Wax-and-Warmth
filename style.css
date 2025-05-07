@@ -83,7 +83,7 @@ body{
     padding: 20px 80px;
     background-color: rgb(213, 246, 246);
     box-shadow: 0 5px 15px rgb(0, 0, 0,0.6);
-    position: sticky;
+    position: relative;
     top: 0;
     left: 0;
 }
@@ -107,14 +107,14 @@ body{
 #navbar li a:hover,
 #navbar li a.active{
     color:rgb(0, 0, 0);
-}x
+}
 #navbar li a.active::after,
 #navbar li a:hover::after{
     content: "";
     width: 50%;
     height: 2px;
-    position: absolute;
-    background: #465b52;
+    position :relative;
+    background: #070908;
     bottom: -4px;
     left: 20px;
 }
@@ -228,6 +228,14 @@ background-color:#f9e7e7;
     border-radius: 25px;
 }
 
+#pro1 .p {
+    transition: transform 0.3s ease;
+  }
+
+#pro1 .p:hover {
+    transform: scale(1.04); 
+
+  }
 #pro1 .procont{
     display: flex;
     align-items: center;
@@ -405,5 +413,5 @@ background-color:#f9e7e7;
 }
 .about-text{
   padding: 40px 100px;
-
 }
+

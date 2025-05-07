@@ -101,3 +101,12 @@ function checkout() {
     cart = [];
     loadCart();
 }
+function openProduct(imgSrc) {
+    // encode URI components to safely pass them in the URL
+    const encodedImg = encodeURIComponent(imgSrc);
+    window.location.href = `sproduct.html?img=${encodedImg}`;
+}
+function addToCart(name, price, image) {
+    alert(`Added "${name}" to cart for Rs ${price}`);
+  }
+  

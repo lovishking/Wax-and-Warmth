@@ -326,6 +326,9 @@ background-color:#f9e7e7;
     flex-wrap: wrap;
     justify-content:space-between
 }
+.l9{
+    color: #ffffff;
+}
 
 #footer .col{
     display: flex;

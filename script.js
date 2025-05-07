@@ -1,35 +1,103 @@
-// Cart functionality
-let cart = [];
+// Initialize cart from localStorage or as empty array
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-// Add item to cart
-function addToCart(productId) {
-    // You can modify the productId to dynamically get more details of the product
-    const product = {
-        id: productId,
-        name: document.querySelector(`#product-${productId} .name`).innerText,
-        price: document.querySelector(`#product-${productId} .price`).innerText
-    };
+// Function to add a product to the cart
+function addToCart(name, price, image) {
+    const product = { name, price, image, quantity: 1 };
 
-    // Add the product to the cart array
-    cart.push(product);
-    updateCartIcon();
-}
-
-// Update cart icon with cart count
-function updateCartIcon() {
-    const cartCount = cart.length;
-    document.querySelector(".fa-cart-shopping").innerText = `(${cartCount})`;  // update cart count icon
-}
-
-// Handle navigation between pages and cart details
-document.querySelector("#navbar a[href='cart.html']").addEventListener("click", function () {
-    localStorage.setItem("cart", JSON.stringify(cart)); // Store cart in local storage for persistence
-});
-
-window.onload = () => {
-    const cartData = JSON.parse(localStorage.getItem("cart"));
-    if (cartData) {
-        cart = cartData;  // Load cart from local storage
-        updateCartIcon();
+    // Check if product already exists in cart
+    const existingProduct = cart.find(item => item.name === name);
+    if (existingProduct) {
+        existingProduct.quantity += 1;
+    } else {
+        cart.push(product);
     }
-};
+
+    // Save cart back to localStorage
+    localStorage.setItem("cart", JSON.stringify(cart));
+
+    // Optionally alert or toast message
+    alert(`${name} added to cart`);
+}
+
+// Load cart items into the cart page
+function loadCart() {
+    const cartBody = document.getElementById("cart-body");
+    if (!cartBody) return;
+
+    cartBody.innerHTML = "";
+    let total = 0;
+
+    cart.forEach((item, index) => {
+        const subtotal = item.price * item.quantity;
+        total += subtotal;
+        document.getElementById("total-amount").textContent = `Total: ₹${total}`;
+
+
+        cartBody.innerHTML += `
+        <tr>
+            <td><button onclick="removeFromCart(${index})">X</button></td>
+            <td><img src="${item.image}" width="50"></td>
+            <td>${item.name}</td>
+            <td>${item.price}</td>
+            <td><input type="number" value="${item.quantity}" min="1" onchange="updateQuantity(${index}, this.value)"></td>
+            <td>${subtotal}</td>
+        </tr>
+        `;
+    });
+
+    if (cartBody.innerHTML === "") {
+        cartBody.innerHTML = `<tr><td colspan="6">Your cart is empty</td></tr>`;
+    }
+    document.getElementById("total-amount").textContent = `Total: ₹${total}`;
+}
+
+// Remove item from cart
+function removeFromCart(index) {
+    cart.splice(index, 1);
+    localStorage.setItem("cart", JSON.stringify(cart));
+    loadCart();
+}
+
+// Update quantity in cart
+function updateQuantity(index, newQuantity) {
+    cart[index].quantity = parseInt(newQuantity);
+    localStorage.setItem("cart", JSON.stringify(cart));
+    loadCart();
+}
+
+// Run this on cart.html to load cart
+window.onload = loadCart;
+
+function checkout() {
+    if (cart.length === 0) {
+        alert("Your cart is empty.");
+        return;
+    }
+
+    let message = "Hello! I'd like to place an order:\n\n";
+    let totalAmount = 0;
+
+    cart.forEach(item => {
+        const subtotal = item.price * item.quantity;
+        totalAmount += subtotal;
+        message += `• ${item.name} x ${item.quantity} = ₹${subtotal}\n`;
+    });
+
+    message += `\nTotal: ₹${totalAmount}\nThank you!`;
+
+    // Encode message for URL
+    const encodedMessage = encodeURIComponent(message);
+
+    // Set WhatsApp link
+    const whatsappNumber = "918969570204";
+    const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
+
+    // Redirect to WhatsApp
+    window.open(whatsappURL, '_blank');
+
+    // Optionally clear cart after redirect
+    localStorage.removeItem("cart");
+    cart = [];
+    loadCart();
+}

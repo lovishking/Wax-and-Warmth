@@ -1,26 +1,22 @@
 // Initialize cart from localStorage or as empty array
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-// Function to add a product to the cart
-function addToCart(name, price, image) {
-    const product = { name, price, image, quantity: 1 };
-
-    // Check if product already exists in cart
+// Add to Cart function (with quantity)
+function addToCart(name, price, image, quantity = 1) {
     const existingProduct = cart.find(item => item.name === name);
+
     if (existingProduct) {
-        existingProduct.quantity += 1;
+        existingProduct.quantity += quantity;
     } else {
+        const product = { name, price, image, quantity };
         cart.push(product);
     }
 
-    // Save cart back to localStorage
     localStorage.setItem("cart", JSON.stringify(cart));
-
-    // Optionally alert or toast message
-    alert(`${name} added to cart`);
+    alert(`${quantity} ${name} added to cart`);
 }
 
-// Load cart items into the cart page
+// Load Cart items into cart page
 function loadCart() {
     const cartBody = document.getElementById("cart-body");
     if (!cartBody) return;
@@ -31,8 +27,6 @@ function loadCart() {
     cart.forEach((item, index) => {
         const subtotal = item.price * item.quantity;
         total += subtotal;
-        document.getElementById("total-amount").textContent = `Total: ₹${total}`;
-
 
         cartBody.innerHTML += `
         <tr>
@@ -46,9 +40,10 @@ function loadCart() {
         `;
     });
 
-    if (cartBody.innerHTML === "") {
+    if (cart.length === 0) {
         cartBody.innerHTML = `<tr><td colspan="6">Your cart is empty</td></tr>`;
     }
+
     document.getElementById("total-amount").textContent = `Total: ₹${total}`;
 }
 
@@ -66,9 +61,7 @@ function updateQuantity(index, newQuantity) {
     loadCart();
 }
 
-// Run this on cart.html to load cart
-window.onload = loadCart;
-
+// WhatsApp Checkout
 function checkout() {
     if (cart.length === 0) {
         alert("Your cart is empty.");
@@ -86,27 +79,24 @@ function checkout() {
 
     message += `\nTotal: ₹${totalAmount}\nThank you!`;
 
-    // Encode message for URL
     const encodedMessage = encodeURIComponent(message);
-
-    // Set WhatsApp link
     const whatsappNumber = "918969570204";
     const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
 
-    // Redirect to WhatsApp
     window.open(whatsappURL, '_blank');
 
-    // Optionally clear cart after redirect
     localStorage.removeItem("cart");
     cart = [];
     loadCart();
 }
-function openProduct(imgSrc) {
-    // encode URI components to safely pass them in the URL
+
+// Load Cart items on cart page load
+window.onload = loadCart;
+
+// Open Product Detail Page
+function openProduct(imgSrc, name, price) {
     const encodedImg = encodeURIComponent(imgSrc);
-    window.location.href = `sproduct.html?img=${encodedImg}`;
+    const encodedName = encodeURIComponent(name);
+    const encodedPrice = encodeURIComponent(price);
+    window.location.href = `sproduct.html?img=${encodedImg}&name=${encodedName}&price=${encodedPrice}`;
 }
-function addToCart(name, price, image) {
-    alert(`Added "${name}" to cart for Rs ${price}`);
-  }
-  

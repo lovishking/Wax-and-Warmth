@@ -9,30 +9,31 @@
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 </head>
 <body>
-    <section id="header">
-        <a href="#"><img src="images/logo.jpg" height="80" class="logo" alt="Company Logo" /></a>
-        <div>
-          <ul id="navbar">
-            <li><a class="active" href="#">Home</a></li>
-            <li><a href="shop.html">Shop</a></li>
-            <li><a href="#">Blog</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="contact.html">Contact</a></li>
-            <li><a href="cart.html"><i class="fa-solid fa-cart-shopping"></i></a></li>
-          </ul>
-        </div>
-      </section>
+
+<section id="header">
+  <a href="#"><img src="images/logo.jpg" height="80" class="logo" alt="Company Logo" /></a>
+  <div>
+    <ul id="navbar">
+      <li><a class="active" href="#">Home</a></li>
+      <li><a href="shop.html">Shop</a></li>
+      <li><a href="#">Blog</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="cart.html"><i class="fa-solid fa-cart-shopping"></i></a></li>
+    </ul>
+  </div>
+</section>
 
 <section id="prodetail" class="section-p1">
   <div class="all">
     <div class="singleproimage">
-      <img src="images/default.jpg" alt="" width="100%" id="mainimg">
+      <img src="images/default.jpg" alt="" width="50%" id="mainimg">
     </div>
     <div class="smallimggrp">
-      <div class="smallimgcol"><img src="images/default.jpg" class="smallimg" width="100%"></div>
-      <div class="smallimgcol"><img src="images/default.jpg" class="smallimg" width="100%"></div>
-      <div class="smallimgcol"><img src="images/default.jpg" class="smallimg" width="100%"></div>
-      <div class="smallimgcol"><img src="images/default.jpg" class="smallimg" width="100%"></div>
+      <div class="smallimgcol"><img src="images/default.jpg" class="smallimg" width="50%"></div>
+      <div class="smallimgcol"><img src="images/default.jpg" class="smallimg" width="50%"></div>
+      <div class="smallimgcol"><img src="images/default.jpg" class="smallimg" width="50%"></div>
+      <div class="smallimgcol"><img src="images/default.jpg" class="smallimg" width="50%"></div>
     </div>
   </div>
 
@@ -40,7 +41,7 @@
     <h2>Candles</h2>
     <h4 id="productName">Product Name</h4>
     <h1 id="productPrice">Rs 0/-</h1>
-    <input type="number" value="1">
+    <input type="number" value="1" min="1">
     <button class="normal" id="addToCartBtn">Add to Cart</button>
     <h4>Product details</h4>
     <span>This is a beautifully handcrafted candle.</span>
@@ -49,18 +50,15 @@
 
 <script src="script.js"></script>
 <script>
-  // Get query parameters
   function getQueryParam(param) {
     const urlParams = new URLSearchParams(window.location.search);
     return urlParams.get(param);
   }
 
-  // Fetch values
   const productImg = getQueryParam('img') || 'images/default.jpg';
   const productName = getQueryParam('name') || 'Product Name';
   const productPrice = getQueryParam('price') || '0';
 
-  // Set image and details
   document.getElementById('mainimg').src = productImg;
   const thumbnails = document.querySelectorAll('.smallimg');
   thumbnails.forEach(img => img.src = productImg);
@@ -68,9 +66,13 @@
   document.getElementById('productName').textContent = productName;
   document.getElementById('productPrice').textContent = 'Rs ' + productPrice + '/-';
 
-  // Set Add to Cart button action
   document.getElementById('addToCartBtn').onclick = function() {
-    addToCart(productName, productPrice, productImg);
+    const quantity = parseInt(document.querySelector('input[type="number"]').value);
+    if (quantity <= 0 || isNaN(quantity)) {
+      alert("Please enter a valid quantity.");
+      return;
+    }
+    addToCart(productName, parseInt(productPrice), productImg, quantity);
   };
 </script>
 

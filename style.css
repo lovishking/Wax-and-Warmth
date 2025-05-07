@@ -251,6 +251,13 @@ background-color:#f9e7e7;
     font-size: 12px;
     
 }
+.p img {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
 
 #pro1 .prod{
     display: flex ;

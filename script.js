@@ -1,102 +1,147 @@
-// Initialize cart from localStorage or as empty array
-let cart = JSON.parse(localStorage.getItem("cart")) || [];
-
 // Add to Cart function (with quantity)
 function addToCart(name, price, image, quantity = 1) {
+    const cart = JSON.parse(localStorage.getItem("cart")) || [];
     const existingProduct = cart.find(item => item.name === name);
-
+  
     if (existingProduct) {
-        existingProduct.quantity += quantity;
+      existingProduct.quantity += quantity;
     } else {
-        const product = { name, price, image, quantity };
-        cart.push(product);
+      const product = { name, price, image, quantity };
+      cart.push(product);
     }
-
+  
     localStorage.setItem("cart", JSON.stringify(cart));
     alert(`${quantity} ${name} added to cart`);
-}
-
-// Load Cart items into cart page
-function loadCart() {
+  }
+  
+  // Add to Cart from product card element
+  function addToCartFromElement(cartIcon) {
+    const productCard = cartIcon.closest(".p");
+    const imgElement = productCard.querySelector("img");
+  
+    const name = imgElement.getAttribute("data-name");
+    const price = parseFloat(imgElement.getAttribute("data-price"));
+    const image = imgElement.getAttribute("data-image");
+  
+    addToCart(name, price, image);
+  }
+  
+  // Display cart items in cart table
+  function displayCartTable() {
     const cartBody = document.getElementById("cart-body");
+    const totalAmountDiv = document.getElementById("total-amount");
+  
     if (!cartBody) return;
-
+  
+    const cart = JSON.parse(localStorage.getItem("cart")) || [];
     cartBody.innerHTML = "";
     let total = 0;
-
+  
     cart.forEach((item, index) => {
-        const subtotal = item.price * item.quantity;
-        total += subtotal;
-
-        cartBody.innerHTML += `
-        <tr>
-            <td><button onclick="removeFromCart(${index})">X</button></td>
-            <td><img src="${item.image}" width="50"></td>
-            <td>${item.name}</td>
-            <td>${item.price}</td>
-            <td><input type="number" value="${item.quantity}" min="1" onchange="updateQuantity(${index}, this.value)"></td>
-            <td>${subtotal}</td>
-        </tr>
-        `;
+      const subtotal = item.price * item.quantity;
+      total += subtotal;
+  
+      const row = document.createElement("tr");
+      row.innerHTML = `
+        <td><i class="fa-solid fa-trash" style="cursor:pointer;" onclick="removeItem(${index})"></i></td>
+        <td><img src="${item.image}" alt="${item.name}" width="80"></td>
+        <td>${item.name}</td>
+        <td>₹${item.price}</td>
+        <td>
+          <input type="number" min="1" value="${item.quantity}" style="width:50px;" onchange="updateQuantity(${index}, this.value)">
+        </td>
+        <td>₹${subtotal}</td>
+      `;
+      cartBody.appendChild(row);
     });
-
+  
     if (cart.length === 0) {
-        cartBody.innerHTML = `<tr><td colspan="6">Your cart is empty</td></tr>`;
+      cartBody.innerHTML = `<tr><td colspan="6">Your cart is empty</td></tr>`;
     }
-
-    document.getElementById("total-amount").textContent = `Total: ₹${total}`;
-}
-
-// Remove item from cart
-function removeFromCart(index) {
+  
+    if (totalAmountDiv) {
+      totalAmountDiv.textContent = `Total: ₹${total}`;
+    }
+  }
+  
+  // Remove item from cart
+  function removeItem(index) {
+    const cart = JSON.parse(localStorage.getItem("cart")) || [];
     cart.splice(index, 1);
     localStorage.setItem("cart", JSON.stringify(cart));
-    loadCart();
-}
-
-// Update quantity in cart
-function updateQuantity(index, newQuantity) {
+    displayCartTable();
+  }
+  
+  // Update quantity of a product
+  function updateQuantity(index, newQuantity) {
+    const cart = JSON.parse(localStorage.getItem("cart")) || [];
     cart[index].quantity = parseInt(newQuantity);
     localStorage.setItem("cart", JSON.stringify(cart));
-    loadCart();
-}
-
-// WhatsApp Checkout
-function checkout() {
+    displayCartTable();
+  }
+  
+  // Checkout via WhatsApp
+  function checkout() {
+    const cart = JSON.parse(localStorage.getItem("cart")) || [];
+  
     if (cart.length === 0) {
-        alert("Your cart is empty.");
-        return;
+      alert("Your cart is empty!");
+      return;
     }
-
-    let message = "Hello! I'd like to place an order:\n\n";
-    let totalAmount = 0;
-
+  
+    let message = "Hello! I'd like to order:\n\n";
+    let total = 0;
+  
     cart.forEach(item => {
-        const subtotal = item.price * item.quantity;
-        totalAmount += subtotal;
-        message += `• ${item.name} x ${item.quantity} = ₹${subtotal}\n`;
+      message += `${item.name} - ₹${item.price} x ${item.quantity}\n`;
+      total += item.price * item.quantity;
     });
-
-    message += `\nTotal: ₹${totalAmount}\nThank you!`;
-
-    const encodedMessage = encodeURIComponent(message);
-    const whatsappNumber = "918969570204";
-    const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
-
-    window.open(whatsappURL, '_blank');
-
+  
+    message += `\nTotal: ₹${total}\n\nThank you!`;
+  
+    const whatsappURL = `https://wa.me/918969570204?text=${encodeURIComponent(message)}`;
+    window.open(whatsappURL, "_blank");
+  
     localStorage.removeItem("cart");
-    cart = [];
-    loadCart();
-}
-
-// Load Cart items on cart page load
-window.onload = loadCart;
-
-// Open Product Detail Page
-function openProduct(imgSrc, name, price) {
+    displayCartTable();
+  }
+  
+  // Open single product page with query params
+  function openProduct(imgSrc, name, price) {
     const encodedImg = encodeURIComponent(imgSrc);
     const encodedName = encodeURIComponent(name);
     const encodedPrice = encodeURIComponent(price);
     window.location.href = `sproduct.html?img=${encodedImg}&name=${encodedName}&price=${encodedPrice}`;
-}
+  }
+  
+  // When product image clicked — open product detail page
+  function handleProductClick(imgElement) {
+    const name = imgElement.getAttribute("data-name");
+    const price = parseFloat(imgElement.getAttribute("data-price"));
+    const image = imgElement.getAttribute("data-image");
+  
+    openProduct(image, name, price);
+  }
+  
+  // On single product page: load product details from query string
+  function loadProductDetails() {
+    const params = new URLSearchParams(window.location.search);
+    const imgSrc = decodeURIComponent(params.get("img"));
+    const name = decodeURIComponent(params.get("name"));
+    const price = decodeURIComponent(params.get("price"));
+  
+    const imgElement = document.getElementById("product-img");
+    const nameElement = document.getElementById("product-name");
+    const priceElement = document.getElementById("product-price");
+  
+    if (imgElement) imgElement.src = imgSrc;
+    if (nameElement) nameElement.textContent = name;
+    if (priceElement) priceElement.textContent = `₹${price}`;
+  }
+  
+  // Load cart items if on cart page
+  window.addEventListener("DOMContentLoaded", () => {
+    displayCartTable();
+    loadProductDetails();
+  });
+  

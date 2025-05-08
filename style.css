@@ -375,8 +375,7 @@ background-color:#f9e7e7;
 }
 
 #prodetail .singleproimage{
-    width: 80%;
-    margin-right: 50px;
+    width: 100vh;
 
 }
 .smallimggrp{
@@ -390,10 +389,10 @@ background-color:#f9e7e7;
     cursor: pointer;
 }
 #prodetail .singleprodetails{
-    font-style: italic;
+    font-style:oblique;
 }
 #prodetail .singleprodetails h4{
-    padding: 40px 0px 20px 0px;
+    padding: 40px 0px 0px;
 
 }
 #prodetail .singleprodetails h1{
@@ -411,6 +410,7 @@ background-color:#f9e7e7;
 }
 #prodetail .singleprodetails span{
     line-height: 25px;
+    max-width: 50%;
 }
 #hero.about {
     background: url('hero.jpg') center/cover no-repeat;

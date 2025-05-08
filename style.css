@@ -313,7 +313,7 @@ background-color:#f9e7e7;
     height: 3.125rem;
     padding: 0 1.25em;
     font-size: 14px;
-    width: 100%;
+    width:max-content;
     border: 1px solid transparent;
     border-radius: 4px;
 
@@ -606,3 +606,114 @@ background-color:#f9e7e7;
     }
   }
   
+#mobile{
+    display: none;
+    align-items: center;
+}
+
+#close{
+    display: none;
+}
+@media(max-width: 799px)
+{
+    .section-p1{
+        padding: 40px 40px;
+    }
+#navbar{
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: flex-start;
+            position: fixed;
+            top: 0;
+            right: -300px;
+            height: 100vh;
+            width: 300px;
+            background-color: #f1edfe;
+            box-shadow: 0px 40px 60px rgba(0, 0, 0, 0.2)  ;
+            padding: 80px 0px 0px 10px;
+            transition: 0.3s;
+}
+#navbar.active{
+    right: 0px;
+}
+#navbar li{
+    margin-bottom: 25px;
+}
+#mobile{
+     display: flex;
+     align-items: center;
+}
+#mobile i{
+    color: #070908;
+    font-size: 24px;
+    padding-left: 20px;
+}
+#close{
+    display: initial;
+    position: absolute;
+    top: 30px;
+    left: 30px;
+    color: #000000;
+    font-size: 24px;
+
+}
+#hero {
+    height: 30vh;
+    background-position: top 20 right 30;
+    padding: 0 88px;  
+}
+#feature{
+    justify-content: center;
+}
+#feature .f-box {
+   
+    margin: 15px 15px ;
+    
+}
+#pro1 .procont {
+    
+    justify-content: center;
+    
+}
+#pro1 .pc {
+    
+    margin: 15px ;
+
+}
+}
+@media(max-width:477px){
+    #section-p1{
+        padding: 20px;
+    }
+    #header{
+    
+    padding: 10px 30px;
+    }
+    h2{
+        font-size: 32px;
+    }
+    h1{
+        font-size: 38px
+    }
+    #hero {
+        padding: 0 20px;
+        height: 40vh;
+        background-position: 55%;
+    }
+    #feature .f-box {
+        width: 155px;
+        margin:0 0 15px 0 ;
+        
+    }
+    #pro1 .pc {
+        width: 100%;
+    }
+    #news {
+        
+        padding: 40px 20px;
+    }
+    #news input {
+        width: 100%;
+    }
+}

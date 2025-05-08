@@ -144,4 +144,44 @@ function addToCart(name, price, image, quantity = 1) {
     displayCartTable();
     loadProductDetails();
   });
-  
+
+  let selectedProduct = {};
+function addToCartFromElement(el) {
+  const productCard = el.closest(".p");
+  selectedProduct = {
+    name: productCard.querySelector("img").getAttribute("data-name"),
+    price: productCard.querySelector("img").getAttribute("data-price"),
+    image: productCard.querySelector("img").getAttribute("data-image")
+  };
+
+  document.getElementById("dialogProductName").innerText = selectedProduct.name;
+  document.getElementById("quantity").value = 1;
+  document.getElementById("cartDialog").style.display = "flex";
+}
+
+function confirmAddToCart() {
+  const quantity = parseInt(document.getElementById("quantity").value);
+  const product = { ...selectedProduct, quantity };
+
+  // Retrieve existing cart from localStorage
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+  // Check if product already exists in cart
+  const existingProduct = cart.find(item => item.name === product.name);
+  if (existingProduct) {
+    existingProduct.quantity += quantity;
+  } else {
+    cart.push(product);
+  }
+
+  // Save updated cart to localStorage
+  localStorage.setItem("cart", JSON.stringify(cart));
+
+  alert(`${quantity} x ${product.name} added to cart.`);
+  closeDialog();
+}
+
+
+function closeDialog() {
+  document.getElementById("cartDialog").style.display = "none";
+}

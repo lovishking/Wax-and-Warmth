@@ -115,7 +115,61 @@
     </div>
 </footer>
 
-<script src="script.js"></script>
+
+<script src="script.js">
+    function loadCart() {
+  const cart = JSON.parse(localStorage.getItem("cart")) || [];
+  const cartBody = document.getElementById("cart-body");
+  const totalAmount = document.getElementById("total-amount");
+  cartBody.innerHTML = "";
+
+  let total = 0;
+
+  cart.forEach((item, index) => {
+    const subtotal = item.price * item.quantity;
+    total += subtotal;
+
+    const row = `
+      <tr>
+        <td><button onclick="removeFromCart(${index})">Remove</button></td>
+        <td><img src="${item.image}" width="60"></td>
+        <td>${item.name}</td>
+        <td>₹${item.price}</td>
+        <td>${item.quantity}</td>
+        <td>₹${subtotal}</td>
+      </tr>
+    `;
+
+    cartBody.innerHTML += row;
+  });
+
+  totalAmount.innerText = `Total: ₹${total}`;
+}
+
+function removeFromCart(index) {
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+  cart.splice(index, 1);
+  localStorage.setItem("cart", JSON.stringify(cart));
+  loadCart();
+}
+
+function checkout() {
+  const cart = JSON.parse(localStorage.getItem("cart")) || [];
+  if (cart.length === 0) {
+    alert("Your cart is empty!");
+    return;
+  }
+  let message = "Hello, I would like to order:\n";
+  cart.forEach(item => {
+    message += `${item.quantity} x ${item.name} (₹${item.price})\n`;
+  });
+  window.open(`https://wa.me/918969570204?text=${encodeURIComponent(message)}`, "_blank");
+}
+
+// Load cart on page load
+window.onload = loadCart;
+
+</script>
 
 </body>
 </html>

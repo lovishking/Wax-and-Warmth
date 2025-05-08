@@ -337,11 +337,11 @@
             </div>
             <div class="col">
                 <h4>About</h4>
-                <a href="#">About us</a>
+                <a href="about.html">About us</a>
                 <a href="#">Delivery Information</a>
                 <a href="#">Privacy policy</a>
                 <a href="#">Terms and conditions</a>
-                <a href="#">Contact us</a>
+                <a href="contact.html">Contact us</a>
             </div>
             <div class="col">
                 <h4>My account</h4>
@@ -352,6 +352,20 @@
                 <a href="#">Help</a>
             </div>
         </footer>
+
+        <div id="cartDialog" class="dialog-overlay" style="display: none;">
+          <div class="dialog-box">
+            <h3>Add to Cart</h3>
+            <p id="dialogProductName"></p>
+            <label for="quantity">Quantity:</label>
+            <input type="number" id="quantity" min="1" value="1">
+            <div class="dialog-buttons">
+              <button onclick="confirmAddToCart()">Yes</button>
+              <button onclick="closeDialog()">No</button>
+            </div>
+          </div>
+        </div>
+
         <script src="script.js"></script>
     </body>
 </html>

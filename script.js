@@ -1,3 +1,21 @@
+const bar = document.getElementById('bar');
+const close = document.getElementById('close');
+const nav = document.getElementById('navbar');
+
+if (bar){
+  bar.addEventListener('click', () =>{
+    nav.classList.add('active');
+  })
+}
+
+if (close){
+  close.addEventListener('click', () =>{
+    nav.classList.remove('active');
+  })
+}
+
+
+
 // Add to Cart function (with quantity)
 function addToCart(name, price, image, quantity = 1) {
     const cart = JSON.parse(localStorage.getItem("cart")) || [];

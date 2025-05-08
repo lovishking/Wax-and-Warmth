@@ -1,386 +1,439 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Wax and Warmth</title>
-  <link rel="stylesheet" href="style.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
-</head>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Wax and Warmth</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
+  </head>
 
-<body>
+  <body>
 
-  <!-- Header -->
-  <section id="header">
-    <a href="#"><img src="images/logo.jpg" height="80" class="logo" alt="Company Logo" /></a>
-    <div>
-      <ul id="navbar">
-        <li><a class="active" href="#">Home</a></li>
-        <li><a href="shop.html">Shop</a></li>
-        <li><a href="#">Blog</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="contact.html">Contact</a></li>
-        <li><a href="cart.html"><i class="fa-solid fa-cart-shopping"></i></a></li>
-      </ul>
+    <!-- Header -->
+    <section id="header">
+      <a href="shop.html"><img src="images/logo.jpg" height="80" class="logo"
+          alt="Company Logo" /></a>
+      <div>
+        <ul id="navbar">
+          <li><a class="active" href="index.html">Home</a></li>
+          <li><a href="shop.html">Shop</a></li>
+          <li><a href="#">Blog</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="cart.html"><i
+                class="fa-solid fa-cart-shopping"></i></a></li>
+                <a href="#" id="close"><i class="fa-solid fa-xmark"></i></a>
+
+        </ul>
+        <div id="mobile">
+          <a href="cart.html"><i
+            class="fa-solid fa-cart-shopping"></i></a>
+          <i id="bar" class="fas fa-outdent"></i>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Hero Banner -->
+    <section id="hero">
+      <h4>NEW ARRIVAL!!</h4>
+      <h2>Super value deals</h2>
+      <h1>On all CANDLES</h1>
+      <h4>Up to 50% off !!</h4>
+      <button><a href="shop.html" class="l9">Shop now</a></button>
+    </section>
+
+    <!-- Features -->
+    <section id="feature" class="section-p1">
+      <div class="f-box"><img src="images/f1.png" alt><h6>Available Pan
+          India</h6></div>
+      <div class="f-box"><img src="images/f2.png" alt><h6>Order
+          online</h6></div>
+      <div class="f-box"><img src="images/f3.png" alt><h6>Get
+          discounts!</h6></div>
+      <div class="f-box"><img src="images/f4.png" alt><h6>Gift wraps
+          available</h6></div>
+      <div class="f-box"><img src="images/f5.png" alt><h6>Gift your loved
+          ones!</h6></div>
+      <div class="f-box"><img src="images/f6.png" alt><h6>24/7
+          Support</h6></div>
+    </section>
+
+    <!-- Products -->
+    <section id="pro1" class="section-p1">
+      <h1>DELIGHTFUL SCENTED CANDLES</h1>
+      <div class="procont">
+
+        <!-- Product 1 -->
+        <div class="pc">
+          <div class="p">
+            <img src="products/Tea candle.jpg" alt="Tea candle"
+              data-name="Tea candle" data-price="99"
+              data-image="products/Tea candle.jpg"
+              onclick="handleProductClick(this)" style="cursor: pointer;">
+            <div class="prod">
+              <div class="des">
+                <span>Tea candle</span>
+                <h5>99/-</h5>
+              </div>
+              <a href="#"><i class="fa-solid fa-cart-shopping cart"
+                  onclick="addToCartFromElement(this)"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="pc">
+          <div class="p">
+            <img src="products/white rose.jpg" alt="white rose"
+              data-name="white rose" data-price="150"
+              data-image="products/white rose.jpg"
+              onclick="handleProductClick(this)" style="cursor: pointer;">
+            <div class="prod">
+              <div class="des">
+                <span>White Rose</span>
+                <h5>₹150/-</h5>
+              </div>
+              <a href="#"><i class="fa-solid fa-cart-shopping cart"
+                  onclick="addToCartFromElement(this)"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="pc">
+          <div class="p">
+            <img src="products/chocolate box.jpg" alt="chocolate box"
+              data-name="Large bubble" data-price="100"
+              data-image="products/chocolate box.jpg"
+              onclick="handleProductClick(this)" style="cursor: pointer;">
+            <div class="prod">
+              <div class="des">
+                <span>Large bubble</span>
+                <h5>₹100/-</h5>
+              </div>
+              <a href="#"><i class="fa-solid fa-cart-shopping cart"
+                  onclick="addToCartFromElement(this)"></i></a>
+            </div>
+          </div>
+        </div>
+        <div class="pc">
+          <div class="p">
+            <img src="products/Small bubble.jpg" alt="Small bubble"
+              data-name="Small bubble" data-price="100" data-image="products/Small bubble.jpg"
+              onclick="handleProductClick(this)" style="cursor: pointer;">
+            <div class="prod">
+              <div class="des">
+                <span>Small bubble</span>
+                <h5>₹50/-</h5>
+              </div>
+              <a href="#"><i class="fa-solid fa-cart-shopping cart" onclick="addToCartFromElement(this)"></i></a>
+            </div>
+          </div>
+        </div>
+        <div class="pc">
+          <div class="p">
+            <img src="products/Coconut spiced candle.jpg"
+              alt="Coconut spiced candle"
+              data-name="Coconut spiced candle" data-price="199"
+              data-image="products/Coconut spiced candle.jpg"
+              onclick="handleProductClick(this)" style="cursor: pointer;">
+            <div class="prod">
+              <div class="des">
+                <span>Coconut spiced candle</span>
+                <h5>₹199/-</h5>
+              </div>
+              <a href="#"><i class="fa-solid fa-cart-shopping cart"
+                  onclick="addToCartFromElement(this)"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="pc">
+          <div class="p">
+            <img src="products/Flower in bowl.jpg" alt="Flower in bowl"
+              data-name="Flower in bowl" data-price="499"
+              data-image="products/Flower in bowl.jpg"
+              onclick="handleProductClick(this)" style="cursor: pointer;">
+            <div class="prod">
+              <div class="des">
+                <span>Flower in bowl</span>
+                <h5>₹499/-</h5>
+              </div>
+              <a href="#"><i class="fa-solid fa-cart-shopping cart"
+                  onclick="addToCartFromElement(this)"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="pc">
+          <div class="p">
+            <img src="products/Garden in a boat.jpg" alt="Garden in a boat"
+              data-name="Garden in a boat" data-price="150"
+              data-image="products/Garden in a boat.jpg"
+              onclick="handleProductClick(this)" style="cursor: pointer;">
+            <div class="prod">
+              <div class="des">
+                <span>Garden in a boat</span>
+                <h5>₹150/-</h5>
+              </div>
+              <a href="#"><i class="fa-solid fa-cart-shopping cart"
+                  onclick="addToCartFromElement(this)"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="pc">
+          <div class="p">
+            <img src="products/Heart candle.jpg" alt="Heart candle"
+              data-name="Heart candle" data-price="199"
+              data-image="products/Heart candle.jpg"
+              onclick="handleProductClick(this)" style="cursor: pointer;">
+            <div class="prod">
+              <div class="des">
+                <span>Heart candle</span>
+                <h5>₹199/-</h5>
+              </div>
+              <a href="#"><i class="fa-solid fa-cart-shopping cart"
+                  onclick="addToCartFromElement(this)"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="pc">
+          <div class="p">
+            <img src="products/Iced coffee latte.jpg" alt="Iced coffee latte"
+              data-name="Iced coffee latte" data-price="220"
+              data-image="products/Iced coffee latte.jpg"
+              onclick="handleProductClick(this)" style="cursor: pointer;">
+            <div class="prod">
+              <div class="des">
+                <span>Iced coffee latte</span>
+                <h5>₹220/-</h5>
+              </div>
+              <a href="#"><i class="fa-solid fa-cart-shopping cart"
+                  onclick="addToCartFromElement(this)"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="pc">
+          <div class="p">
+            <img src="products/Iced lavander.jpg" alt="Iced lavander"
+              data-name="Iced lavander" data-price="220"
+              data-image="products/Iced lavander.jpg"
+              onclick="handleProductClick(this)" style="cursor: pointer;">
+            <div class="prod">
+              <div class="des">
+                <span>Iced lavander</span>
+                <h5>₹220/-</h5>
+              </div>
+              <a href="#"><i class="fa-solid fa-cart-shopping cart"
+                  onclick="addToCartFromElement(this)"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="pc">
+          <div class="p">
+            <img src="products/Iced Strawberry latte.jpg"
+              alt="Iced Strawberry latte"
+              data-name="Iced Strawberry latte" data-price="220"
+              data-image="products/Iced Strawberry latte.jpg"
+              onclick="handleProductClick(this)" style="cursor: pointer;">
+            <div class="prod">
+              <div class="des">
+                <span>Iced Strawberry latte</span>
+                <h5>₹220/-</h5>
+              </div>
+              <a href="#"><i class="fa-solid fa-cart-shopping cart"
+                  onclick="addToCartFromElement(this)"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="pc">
+          <div class="p">
+            <img src="products/Ocean in a boat .jpg" alt="Ocean in a boat"
+              data-name="Ocean in a boat" data-price="499"
+              data-image="products/Ocean in a boat .jpg"
+              onclick="handleProductClick(this)" style="cursor: pointer;">
+            <div class="prod">
+              <div class="des">
+                <span>Ocean in a boat</span>
+                <h5>₹499/-</h5>
+              </div>
+              <a href="#"><i class="fa-solid fa-cart-shopping cart"
+                  onclick="addToCartFromElement(this)"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="pc">
+          <div class="p">
+            <img src="products/Ocean jar candle.jpg" alt="Ocean jar candle"
+              data-name="Ocean jar candle" data-price="220"
+              data-image="products/Ocean jar candle.jpg"
+              onclick="handleProductClick(this)" style="cursor: pointer;">
+            <div class="prod">
+              <div class="des">
+                <span>Ocean jar candle</span>
+                <h5>₹220/-</h5>
+              </div>
+              <a href="#"><i class="fa-solid fa-cart-shopping cart"
+                  onclick="addToCartFromElement(this)"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="pc">
+          <div class="p">
+            <img src="products/Peony candle.jpg" alt="Peony candle"
+              data-name="Peony candle" data-price="99"
+              data-image="products/Peony candle.jpg"
+              onclick="handleProductClick(this)" style="cursor: pointer;">
+            <div class="prod">
+              <div class="des">
+                <span>Peony candle</span>
+                <h5>₹99/-</h5>
+              </div>
+              <a href="#"><i class="fa-solid fa-cart-shopping cart"
+                  onclick="addToCartFromElement(this)"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="pc">
+          <div class="p">
+            <img src="products/pink heart.jpg" alt="pink heart"
+              data-name="pink heart" data-price="199"
+              data-image="products/pink heart.jpg"
+              onclick="handleProductClick(this)" style="cursor: pointer;">
+            <div class="prod">
+              <div class="des">
+                <span>pink heart</span>
+                <h5>₹199/-</h5>
+              </div>
+              <a href="#"><i class="fa-solid fa-cart-shopping cart"
+                  onclick="addToCartFromElement(this)"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="pc">
+          <div class="p">
+            <img src="products/red heart.jpg" alt="red heart"
+              data-name="red heart" data-price="199"
+              data-image="products/red heart.jpg"
+              onclick="handleProductClick(this)" style="cursor: pointer;">
+            <div class="prod">
+              <div class="des">
+                <span>red heart</span>
+                <h5>₹199/-</h5>
+              </div>
+              <a href="#"><i class="fa-solid fa-cart-shopping cart"
+                  onclick="addToCartFromElement(this)"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="pc">
+          <div class="p">
+            <img src="products/Spiral candle.jpg" alt="Spiral candle"
+              data-name="Spiral candle" data-price="199"
+              data-image="products/Spiral candle.jpg"
+              onclick="handleProductClick(this)" style="cursor: pointer;">
+            <div class="prod">
+              <div class="des">
+                <span>Spiral candle</span>
+                <h5>₹199/-</h5>
+              </div>
+              <a href="#"><i class="fa-solid fa-cart-shopping cart"
+                  onclick="addToCartFromElement(this)"></i></a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section id="pagee" class="section-p1">
+      <a href="shop.html">1</a>
+      <a href="shop.html">2</a>
+      <a href="shop.html" class="fas fa-long-arrow-alt-right"></a>
+    </section>
+
+    <!-- Banner -->
+    <section id="banner" class="section-m1">
+      <h2>Up to <span>50% off</span> - Enjoy the aroma of our premium
+        candles</h2>
+      <button id="button" class="normal"><a href="shop.html"
+          style="text-decoration:none ">Explore more </a></button>
+    </section>
+
+    <!-- Newsletter -->
+    <section id="news">
+      <div class="newstext">
+        <h4>Sign up for Newsletter</h4>
+        <p>Get updates about our latest shop and <span>special
+            offers.</span></p>
+      </div>
+      <div class="form">
+        <input type="text" placeholder="Your e-mail">
+        <button class="sign">Sign Up</button>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="footer" class="section-p1">
+      <div class="col">
+        <img src="images/logo.jpg" alt height="80">
+        <h4>Contact</h4>
+        <p><strong>Address:</strong> Govindpur, Dhanbad.</p>
+        <p><strong>Phone:</strong> 8969570204</p>
+        <p><strong>Hours:</strong> 10:00–20:00 - Open everyday</p>
+        <div class="follow">
+          <h4>Follow us</h4>
+          <div class="icon">
+            <i class="fab fa-facebook-f"></i>
+            <i class="fab fa-instagram"></i>
+            <i class="fab fa-twitter"></i>
+            <i class="fab fa-whatsapp"></i>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <h4>About</h4>
+        <a href="about.html">About us</a>
+        <a href="#">Delivery Information</a>
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms and Conditions</a>
+        <a href="contact.html">Contact us</a>
+      </div>
+      <div class="col">
+        <h4>My Account</h4>
+        <a href="#">Sign In</a>
+        <a href="cart.html">View Cart</a>
+        <a href="#">My Wishlist</a>
+        <a href="#">Track My Order</a>
+        <a href="#">Help</a>
+      </div>
+    </footer>
+
+    <div id="cartDialog" class="dialog-overlay" style="display: none;">
+      <div class="dialog-box">
+        <h3>Add to Cart</h3>
+        <p id="dialogProductName"></p>
+        <label for="quantity">Quantity:</label>
+        <input type="number" id="quantity" min="1" value="1">
+        <div class="dialog-buttons">
+          <button onclick="confirmAddToCart()">Yes</button>
+          <button onclick="closeDialog()">No</button>
+        </div>
+      </div>
     </div>
-  </section>
 
-  <!-- Hero Banner -->
-  <section id="hero">
-    <h4>NEW ARRIVAL!!</h4>
-    <h2>Super value deals</h2>
-    <h1>On all CANDLES</h1>
-    <h4>Up to 50% off !!</h4>
-    <button><a href="shop.html" class="l9">Shop now</a></button>
-  </section>
-
-  <!-- Features -->
-  <section id="feature" class="section-p1">
-    <div class="f-box"><img src="images/f1.png" alt=""><h6>Available Pan India</h6></div>
-    <div class="f-box"><img src="images/f2.png" alt=""><h6>Order online</h6></div>
-    <div class="f-box"><img src="images/f3.png" alt=""><h6>Get discounts!</h6></div>
-    <div class="f-box"><img src="images/f4.png" alt=""><h6>Gift wraps available</h6></div>
-    <div class="f-box"><img src="images/f5.png" alt=""><h6>Gift your loved ones!</h6></div>
-    <div class="f-box"><img src="images/f6.png" alt=""><h6>24/7 Support</h6></div>
-  </section>
-
-  <!-- Products -->
-  <section id="pro1" class="section-p1">
-    <h1>DELIGHTFUL SCENTED CANDLES</h1>
-    <div class="procont">
-
-      <!-- Product 1 -->
-      <div class="pc">
-        <div class="p">
-          <img src="products/Tea candle.jpg" alt="Tea candle"
-            data-name="Tea candle" data-price="150" data-image="products/Tea candle.jpg"
-            onclick="handleProductClick(this)" style="cursor: pointer;">
-          <div class="prod">
-            <div class="des">
-              <span>Tea candle</span>
-              <h5>₹150/-</h5>
-            </div>
-            <a href="#"><i class="fa-solid fa-cart-shopping cart" onclick="addToCartFromElement(this)"></i></a>
-          </div>
-        </div>
-      </div>
-      
-      <div class="pc">
-        <div class="p">
-          <img src="products/white rose.jpg" alt="white rose"
-            data-name="white rose" data-price="150" data-image="products/white rose.jpg"
-            onclick="handleProductClick(this)" style="cursor: pointer;">
-          <div class="prod">
-            <div class="des">
-              <span>white rose</span>
-              <h5>₹150/-</h5>
-            </div>
-            <a href="#"><i class="fa-solid fa-cart-shopping cart" onclick="addToCartFromElement(this)"></i></a>
-          </div>
-        </div>
-      </div>
-      
-      <div class="pc">
-        <div class="p">
-          <img src="products/chocolate box.jpg" alt="chocolate box"
-            data-name="chocolate box" data-price="150" data-image="products/chocolate box.jpg"
-            onclick="handleProductClick(this)" style="cursor: pointer;">
-          <div class="prod">
-            <div class="des">
-              <span>chocolate box</span>
-              <h5>₹150/-</h5>
-            </div>
-            <a href="#"><i class="fa-solid fa-cart-shopping cart" onclick="addToCartFromElement(this)"></i></a>
-          </div>
-        </div>
-      </div>
-      
-      <div class="pc">
-        <div class="p">
-          <img src="products/Coconut spiced candle.jpg" alt="Coconut spiced candle"
-            data-name="Coconut spiced candle" data-price="150" data-image="products/Coconut spiced candle.jpg"
-            onclick="handleProductClick(this)" style="cursor: pointer;">
-          <div class="prod">
-            <div class="des">
-              <span>Coconut spiced candle</span>
-              <h5>₹150/-</h5>
-            </div>
-            <a href="#"><i class="fa-solid fa-cart-shopping cart" onclick="addToCartFromElement(this)"></i></a>
-          </div>
-        </div>
-      </div>
-      
-      <div class="pc">
-        <div class="p">
-          <img src="products/Flower in bowl.jpg" alt="Flower in bowl"
-            data-name="Flower in bowl" data-price="150" data-image="products/Flower in bowl.jpg"
-            onclick="handleProductClick(this)" style="cursor: pointer;">
-          <div class="prod">
-            <div class="des">
-              <span>Flower in bowl</span>
-              <h5>₹150/-</h5>
-            </div>
-            <a href="#"><i class="fa-solid fa-cart-shopping cart" onclick="addToCartFromElement(this)"></i></a>
-          </div>
-        </div>
-      </div>
-      
-      <div class="pc">
-        <div class="p">
-          <img src="products/Garden in a boat.jpg" alt="Garden in a boat"
-            data-name="Garden in a boat" data-price="150" data-image="products/Garden in a boat.jpg"
-            onclick="handleProductClick(this)" style="cursor: pointer;">
-          <div class="prod">
-            <div class="des">
-              <span>Garden in a boat</span>
-              <h5>₹150/-</h5>
-            </div>
-            <a href="#"><i class="fa-solid fa-cart-shopping cart" onclick="addToCartFromElement(this)"></i></a>
-          </div>
-        </div>
-      </div>
-      
-      <div class="pc">
-        <div class="p">
-          <img src="products/Heart candle.jpg" alt="Heart candle"
-            data-name="Heart candle" data-price="150" data-image="products/Heart candle.jpg"
-            onclick="handleProductClick(this)" style="cursor: pointer;">
-          <div class="prod">
-            <div class="des">
-              <span>Heart candle</span>
-              <h5>₹150/-</h5>
-            </div>
-            <a href="#"><i class="fa-solid fa-cart-shopping cart" onclick="addToCartFromElement(this)"></i></a>
-          </div>
-        </div>
-      </div>
-      
-      <div class="pc">
-        <div class="p">
-          <img src="products/Iced coffee latte.jpg" alt="Iced coffee latte"
-            data-name="Iced coffee latte" data-price="150" data-image="products/Iced coffee latte.jpg"
-            onclick="handleProductClick(this)" style="cursor: pointer;">
-          <div class="prod">
-            <div class="des">
-              <span>Iced coffee latte</span>
-              <h5>₹150/-</h5>
-            </div>
-            <a href="#"><i class="fa-solid fa-cart-shopping cart" onclick="addToCartFromElement(this)"></i></a>
-          </div>
-        </div>
-      </div>
-      
-      <div class="pc">
-        <div class="p">
-          <img src="products/Iced lavander.jpg" alt="Iced lavander"
-            data-name="Iced lavander" data-price="150" data-image="products/Iced lavander.jpg"
-            onclick="handleProductClick(this)" style="cursor: pointer;">
-          <div class="prod">
-            <div class="des">
-              <span>Iced lavander</span>
-              <h5>₹150/-</h5>
-            </div>
-            <a href="#"><i class="fa-solid fa-cart-shopping cart" onclick="addToCartFromElement(this)"></i></a>
-          </div>
-        </div>
-      </div>
-      
-      <div class="pc">
-        <div class="p">
-          <img src="products/Iced Strawberry latte.jpg" alt="Iced Strawberry latte"
-            data-name="Iced Strawberry latte" data-price="150" data-image="products/Iced Strawberry latte.jpg"
-            onclick="handleProductClick(this)" style="cursor: pointer;">
-          <div class="prod">
-            <div class="des">
-              <span>Iced Strawberry latte</span>
-              <h5>₹150/-</h5>
-            </div>
-            <a href="#"><i class="fa-solid fa-cart-shopping cart" onclick="addToCartFromElement(this)"></i></a>
-          </div>
-        </div>
-      </div>
-      
-      <div class="pc">
-        <div class="p">
-          <img src="products/Ocean in a boat .jpg" alt="Ocean in a boat"
-            data-name="Ocean in a boat" data-price="150" data-image="products/Ocean in a boat .jpg"
-            onclick="handleProductClick(this)" style="cursor: pointer;">
-          <div class="prod">
-            <div class="des">
-              <span>Ocean in a boat</span>
-              <h5>₹150/-</h5>
-            </div>
-            <a href="#"><i class="fa-solid fa-cart-shopping cart" onclick="addToCartFromElement(this)"></i></a>
-          </div>
-        </div>
-      </div>
-      
-      <div class="pc">
-        <div class="p">
-          <img src="products/Ocean jar candle.jpg" alt="Ocean jar candle"
-            data-name="Ocean jar candle" data-price="150" data-image="products/Ocean jar candle.jpg"
-            onclick="handleProductClick(this)" style="cursor: pointer;">
-          <div class="prod">
-            <div class="des">
-              <span>Ocean jar candle</span>
-              <h5>₹150/-</h5>
-            </div>
-            <a href="#"><i class="fa-solid fa-cart-shopping cart" onclick="addToCartFromElement(this)"></i></a>
-          </div>
-        </div>
-      </div>
-      
-      <div class="pc">
-        <div class="p">
-          <img src="products/Peony candle.jpg" alt="Peony candle"
-            data-name="Peony candle" data-price="150" data-image="products/Peony candle.jpg"
-            onclick="handleProductClick(this)" style="cursor: pointer;">
-          <div class="prod">
-            <div class="des">
-              <span>Peony candle</span>
-              <h5>₹150/-</h5>
-            </div>
-            <a href="#"><i class="fa-solid fa-cart-shopping cart" onclick="addToCartFromElement(this)"></i></a>
-          </div>
-        </div>
-      </div>
-      
-      <div class="pc">
-        <div class="p">
-          <img src="products/pink heart.jpg" alt="pink heart"
-            data-name="pink heart" data-price="150" data-image="products/pink heart.jpg"
-            onclick="handleProductClick(this)" style="cursor: pointer;">
-          <div class="prod">
-            <div class="des">
-              <span>pink heart</span>
-              <h5>₹150/-</h5>
-            </div>
-            <a href="#"><i class="fa-solid fa-cart-shopping cart" onclick="addToCartFromElement(this)"></i></a>
-          </div>
-        </div>
-      </div>
-      
-      <div class="pc">
-        <div class="p">
-          <img src="products/red heart.jpg" alt="red heart"
-            data-name="red heart" data-price="150" data-image="products/red heart.jpg"
-            onclick="handleProductClick(this)" style="cursor: pointer;">
-          <div class="prod">
-            <div class="des">
-              <span>red heart</span>
-              <h5>₹150/-</h5>
-            </div>
-            <a href="#"><i class="fa-solid fa-cart-shopping cart" onclick="addToCartFromElement(this)"></i></a>
-          </div>
-        </div>
-      </div>
-      
-      <div class="pc">
-        <div class="p">
-          <img src="products/Small bubble.jpg" alt="Small bubble"
-            data-name="Small bubble" data-price="150" data-image="products/Small bubble.jpg"
-            onclick="handleProductClick(this)" style="cursor: pointer;">
-          <div class="prod">
-            <div class="des">
-              <span>Small bubble</span>
-              <h5>₹150/-</h5>
-            </div>
-            <a href="#"><i class="fa-solid fa-cart-shopping cart" onclick="addToCartFromElement(this)"></i></a>
-          </div>
-        </div>
-      </div>
-      
-      <div class="pc">
-        <div class="p">
-          <img src="products/Spiral candle.jpg" alt="Spiral candle"
-            data-name="Spiral candle" data-price="150" data-image="products/Spiral candle.jpg"
-            onclick="handleProductClick(this)" style="cursor: pointer;">
-          <div class="prod">
-            <div class="des">
-              <span>Spiral candle</span>
-              <h5>₹150/-</h5>
-            </div>
-            <a href="#"><i class="fa-solid fa-cart-shopping cart" onclick="addToCartFromElement(this)"></i></a>
-          </div>
-        </div>
-      </div>
-      
-    </div>
-  </section>
-
-  <section id="pagee" class="section-p1">
-    <a href="#">1</a>
-    <a href="#">2</a>
-    <a href="#" class="fas fa-long-arrow-alt-right"></a>
-  </section>
-
-  <!-- Banner -->
-  <section id="banner" class="section-m1">
-    <h2>Up to <span>50% off</span> - Enjoy the aroma of our premium candles</h2>
-    <button id="button" class="normal"><a href="shop.html" style="text-decoration:none ">Explore more </a></button>
-  </section>
-
-  <!-- Newsletter -->
-  <section id="news">
-    <div class="newstext">
-      <h4>Sign up for Newsletter</h4>
-      <p>Get updates about our latest shop and <span>special offers.</span></p>
-    </div>
-    <div class="form">
-      <input type="text" placeholder="Your e-mail">
-      <button class="sign">Sign Up</button>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer id="footer" class="section-p1">
-    <div class="col">
-      <img src="images/logo.jpg" alt="" height="80">
-      <h4>Contact</h4>
-      <p><strong>Address:</strong> Govindpur, Dhanbad.</p>
-      <p><strong>Phone:</strong> 8969570204</p>
-      <p><strong>Hours:</strong> 10:00–20:00 - Open everyday</p>
-      <div class="follow">
-        <h4>Follow us</h4>
-        <div class="icon">
-          <i class="fab fa-facebook-f"></i>
-          <i class="fab fa-instagram"></i>
-          <i class="fab fa-twitter"></i>
-          <i class="fab fa-whatsapp"></i>
-        </div>
-      </div>
-    </div>
-    <div class="col">
-      <h4>About</h4>
-      <a href="about.html">About us</a>
-      <a href="#">Delivery Information</a>
-      <a href="#">Privacy Policy</a>
-      <a href="#">Terms and Conditions</a>
-      <a href="contact.html">Contact us</a>
-    </div>
-    <div class="col">
-      <h4>My Account</h4>
-      <a href="#">Sign In</a>
-      <a href="cart.html">View Cart</a>
-      <a href="#">My Wishlist</a>
-      <a href="#">Track My Order</a>
-      <a href="#">Help</a>
-    </div>
-  </footer>
-  
-  <div id="cartDialog" class="dialog-overlay" style="display: none;">
-    <div class="dialog-box">
-      <h3>Add to Cart</h3>
-      <p id="dialogProductName"></p>
-      <label for="quantity">Quantity:</label>
-      <input type="number" id="quantity" min="1" value="1">
-      <div class="dialog-buttons">
-        <button onclick="confirmAddToCart()">Yes</button>
-        <button onclick="closeDialog()">No</button>
-      </div>
-    </div>
-  </div>
-  <script src="script.js"></script>
-</body>
+    <script src="script.js"></script>
+  </body>
 </html>

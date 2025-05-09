@@ -99,7 +99,7 @@ body {
     position: relative;
     top: 0;
     left: 0;
-     position: sticky;
+    position: sticky;
     top: 0;
     z-index: 1000;
 
@@ -109,7 +109,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-   
+
 }
 
 #navbar li {
@@ -160,23 +160,56 @@ body {
 #hero h2 {
     color: #49f1e6;
 }
+
 .flicker {
-  color: #fff;
-  animation: flickerAnimation 1.5s infinite;
+    color: #fff;
+    animation: flickerAnimation 1.5s infinite;
 }
 
 @keyframes flickerAnimation {
-  0%   { opacity: 1; }
-  10%  { opacity: 0.3; }
-  20%  { opacity: 1; }
-  30%  { opacity: 0.5; }
-  40%  { opacity: 1; }
-  50%  { opacity: 0.2; }
-  60%  { opacity: 1; }
-  70%  { opacity: 0.4; }
-  80%  { opacity: 1; }
-  90%  { opacity: 0.3; }
-  100% { opacity: 1; }
+    0% {
+        opacity: 1;
+    }
+
+    10% {
+        opacity: 0.3;
+    }
+
+    20% {
+        opacity: 1;
+    }
+
+    30% {
+        opacity: 0.5;
+    }
+
+    40% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.2;
+    }
+
+    60% {
+        opacity: 1;
+    }
+
+    70% {
+        opacity: 0.4;
+    }
+
+    80% {
+        opacity: 1;
+    }
+
+    90% {
+        opacity: 0.3;
+    }
+
+    100% {
+        opacity: 1;
+    }
 }
 
 #hero h4 {
@@ -708,7 +741,7 @@ body {
 
 @media(max-width: 799px) {
     .section-p1 {
-        padding: 40px 40px;
+        padding: 40px 15px;
     }
 
     #navbar {
@@ -827,4 +860,58 @@ body {
     #news input {
         width: 100%;
     }
+
+    .singleproimage img {
+        width: 100%;
+        min-width: 300px;
+        min-height: 20px;
+        border-radius: 12px;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+    
+    }
+    .singleprodetails h2 {
+    font-size: 35px;
+    color: #222;
+    margin-bottom: 2px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+#prodetail .singleprodetails h4 {
+    padding: 0px 0px;
+    font-size: 25px;
+}
+#prodetail .singleprodetails h1 {
+    font-size: 26px;
+    padding: 0px 0px;
+}
+#prodetail .singleprodetails h4 {
+    padding: 0px 0px;
+    font-size: 25px;
+}
+#banner {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-image: url(images/b1.jpg);
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    height: 30vh;
+    background-size: cover;
+    background-position: center;
+}
+
+ #cart table img {
+    width: 40px;
+    height: auto;
+  }
+
+  #about-head {
+    display: flex;
+    align-items: center;
+}
+    .about-text {
+    padding: 10px 10px;
+}
+
 }

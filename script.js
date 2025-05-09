@@ -203,3 +203,4 @@ function confirmAddToCart() {
 function closeDialog() {
   document.getElementById("cartDialog").style.display = "none";
 }
+

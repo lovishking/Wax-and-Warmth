@@ -621,12 +621,13 @@ body {
     text-decoration: none;
     font-size: 50px;
     text-align: center;
-    color: #091f14
+    color: #091f14;
 }
 
 #whats .h8 {
     color: #15123a;
     text-decoration: none;
+    padding-right: 20px;;
 }
 
 .dialog-overlay {
@@ -817,6 +818,46 @@ body {
 
     }
 }
+.blog-header {
+      background: url('images/blog-banner.jpg') no-repeat center center/cover;
+      height: 250px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      text-align: center;
+    }
+    .blog-header h1 {
+      font-size: 48px;
+      background: rgba(182, 162, 162, 0.5);
+      padding: 20px 20px 20px 20px;
+      border-radius: 50px;
+    }
+    .blog-container {
+      max-width: 1000px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+    .blog-post {
+      margin-bottom: 40px;
+      border-bottom: 1px solid #ddd;
+      padding-bottom: 20px;
+    }
+    .blog-post h2 {
+      color: #0e0c0c;
+      margin-bottom: 10px;
+    }
+    .blog-post p {
+      color: #221717;
+      line-height: 1.6;
+    }
+    .blog-post a {
+      color: #ff4081;
+      text-decoration: none;
+    }
+    .blog-post a:hover {
+      text-decoration: underline;
+    }
 
 @media(max-width:477px) {
     #section-p1 {
@@ -912,6 +953,11 @@ body {
 }
     .about-text {
     padding: 10px 10px;
+} 
+.blog-header {
+   
+    padding: 10px 20px 20px 10px;
+    border-radius: 50px;
 }
 
 }

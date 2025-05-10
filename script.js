@@ -222,3 +222,43 @@ document.querySelectorAll('.p').forEach(card => {
   });
 });
 
+const testimonials = document.querySelectorAll('.testimonial');
+let currentIndex = 0;
+let autoSlideInterval = setInterval(showNextTestimonial, 5000); // Change every 5 seconds
+
+function showTestimonial(index) {
+  testimonials.forEach((t, i) => {
+    t.classList.toggle('active', i === index);
+  });
+}
+
+function showNextTestimonial() {
+  currentIndex = (currentIndex + 1) % testimonials.length;
+  showTestimonial(currentIndex);
+}
+
+function showPrevTestimonial() {
+  currentIndex = (currentIndex - 1 + testimonials.length) % testimonials.length;
+  showTestimonial(currentIndex);
+}
+
+// Button Event Listeners
+document.getElementById('nextBtn').addEventListener('click', () => {
+  showNextTestimonial();
+  resetAutoSlide();
+});
+
+document.getElementById('prevBtn').addEventListener('click', () => {
+  showPrevTestimonial();
+  resetAutoSlide();
+});
+
+// Reset the interval timer on manual click
+function resetAutoSlide() {
+  clearInterval(autoSlideInterval);
+  autoSlideInterval = setInterval(showNextTestimonial, 5000);
+}
+
+// Initialize
+showTestimonial(currentIndex);
+

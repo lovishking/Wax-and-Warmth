@@ -1421,3 +1421,209 @@ body {
     font-size: small;
 }    
 }
+#about-head {
+  background: linear-gradient(to right, #fffaf6, #fef6f2); /* soft warm gradient */
+  padding: 100px 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Text Block Styling */
+.about-text {
+  max-width: 900px;
+  background: #ffffff;
+  padding: 50px;
+  border-radius: 16px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+  font-family: 'Poppins', 'Segoe UI', sans-serif;
+  color: #3a2f2f;
+  line-height: 1.8;
+  transition: all 0.3s ease;
+}
+
+/* Heading Style */
+.about-text h2 {
+  font-size: 3rem;
+  margin-bottom: 20px;
+  color: #a8583c;
+  font-weight: 700;
+  text-align: center;
+}
+
+/* Paragraph Style */
+.about-text p {
+  font-size: 1.15rem;
+  color: #4a3f3f;
+  margin-bottom: 30px;
+  text-align: justify;
+}
+
+/* Quote / Motto Style */
+.about-text abbr {
+  display: block;
+  font-style: italic;
+  font-weight: 600;
+  font-size: 1.3rem;
+  color: #8b4e2b;
+  border-left: 5px solid #d97a56;
+  padding-left: 15px;
+  margin-top: 20px;
+  background: #fff3ec;
+  padding: 10px 15px;
+  border-radius: 8px;
+}
+
+/* Banner Message (replacing marquee) */
+.banner-strip {
+  margin-top: 35px;
+  padding: 15px 20px;
+  background: linear-gradient(to right, #fde8d4, #fbdcc4);
+  color: #5b3727;
+  font-weight: 600;
+  font-size: 1.15rem;
+  text-align: center;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  animation: fadeInUp 1s ease-in-out;
+}
+
+.dialog-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); /* semi-transparent black */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+/* Dialog Box */
+.dialog-box {
+  background-color: #ffffff;
+  padding: 30px 40px;
+  border-radius: 16px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  max-width: 400px;
+  width: 90%;
+  font-family: 'Poppins', 'Segoe UI', sans-serif;
+  animation: slideUp 0.4s ease;
+}
+
+/* Dialog Title */
+.dialog-box h3 {
+  margin-bottom: 15px;
+  font-size: 1.8rem;
+  color: #4b2e2e;
+}
+
+/* Product Name Text */
+#dialogProductName {
+  font-size: 1.1rem;
+  margin-bottom: 20px;
+  color: #555;
+}
+
+/* Input Field */
+.dialog-box input[type="number"] {
+  width: 80px;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  font-size: 1rem;
+  text-align: center;
+  transition: border-color 0.3s;
+}
+
+.dialog-box input[type="number"]:focus {
+  border-color: #b86b45;
+  outline: none;
+}
+
+/* Button Container */
+.dialog-buttons {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+/* Buttons */
+.dialog-buttons button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 10px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.dialog-buttons button:first-child {
+  background-color: #b86b45;
+  color: #fff;
+}
+
+.dialog-buttons button:first-child:hover {
+  background-color: #a75d3c;
+}
+
+.dialog-buttons button:last-child {
+  background-color: #ddd;
+  color: #333;
+}
+
+.dialog-buttons button:last-child:hover {
+  background-color: #ccc;
+}
+
+/* Cart Summary Container */
+#cart-summary {
+  background-color: #fff8f2;
+  border-radius: 12px;
+  padding: 20px 30px;
+  max-width: 400px;
+  margin: 40px auto;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  font-family: 'Poppins', 'Segoe UI', sans-serif;
+  text-align: center;
+}
+
+/* Total Amount Display */
+#total-amount {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #4e322e;
+  margin-bottom: 20px;
+}
+
+/* WhatsApp Checkout Button */
+.checkout-btn {
+  background-color: #25D366; /* WhatsApp green */
+  color: #ffffff;
+  border: none;
+  border-radius: 10px;
+  padding: 12px 24px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  width: 100%;
+}
+
+/* Hover Effects */
+.checkout-btn:hover {
+  background-color: #1ebe5b;
+  transform: scale(1.03);
+}
+
+/* Anchor Link Reset */
+#whatsapp-link {
+  text-decoration: none;
+  display: block;
+}

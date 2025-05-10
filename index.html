@@ -13,30 +13,29 @@
   <body>
 
     <!-- Header -->
-     <section id="header">
+    <section id="header">
       <a href="shop.html"><img src="images/logo.jpg" height="80" class="logo"
           alt="Company Logo" /></a>
       <div>
         <ul id="navbar">
-          <li><a  href="index.html">Home</a></li>
+          <li><a href="index.html">Home</a></li>
           <li><a class="active" href="shop.html">Shop</a></li>
           <li><a href="blog.html">Blog</a></li>
           <li><a href="about.html">About</a></li>
           <li><a href="contact.html">Contact</a></li>
           <li><a href="cart.html"><i
                 class="fa-solid fa-cart-shopping"> cart</i></a></li>
-                <a href="#" id="close"><i class="fa-solid fa-xmark"></i></a>
+          <a href="#" id="close"><i class="fa-solid fa-xmark"></i></a>
 
         </ul>
         <div id="mobile">
           <a href="cart.html"><i
-            class="fa-solid fa-cart-shopping">cart</i> </a>
+              class="fa-solid fa-cart-shopping">cart</i> </a>
           <i id="bar" class="fas fa-outdent"></i>
         </div>
 
       </div>
     </section>
-
 
     <!-- Hero Banner -->
     <section id="hero">
@@ -63,28 +62,26 @@
           Support</h6></div>
     </section>
 
- <!-- Testimonials Section -->
-<section id="testimonials" class="section-p1">
-  <h2>What Our Customers Say</h2>
-  <br><br>
-  <div class="testimonial-container">
-    <button id="prevBtn">&#10094;</button>
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="section-p1">
+      <h2>What Our Customers Say</h2>
+      <br><br>
+      <div class="testimonial-container">
+        <button id="prevBtn">&#10094;</button>
 
-    <div class="testimonial active">
-      <img src="testi/1.jpg" alt="Customer Review 1" />
-    </div>
-    <div class="testimonial">
-      <img src="testi/2.jpg" alt="Customer Review 2" />
-    </div>
-    <div class="testimonial">
-      <img src="testi/3.jpg" alt="Customer Review 3" />
-    </div>
+        <div class="testimonial active">
+          <img src="testi/1.jpg" alt="Customer Review 1" />
+        </div>
+        <div class="testimonial">
+          <img src="testi/2.jpg" alt="Customer Review 2" />
+        </div>
+        <div class="testimonial">
+          <img src="testi/3.jpg" alt="Customer Review 3" />
+        </div>
 
-    <button id="nextBtn">&#10095;</button>
-  </div>
-</section>
-
-
+        <button id="nextBtn">&#10095;</button>
+      </div>
+    </section>
 
     <!-- Products -->
     <section id="pro1" class="section-p1">
@@ -145,14 +142,16 @@
         <div class="pc">
           <div class="p">
             <img src="products/smallbubble.jpg" alt="smallbubble"
-              data-name="Small bubble" data-price="99" data-image="products/smallbubble.jpg"
+              data-name="Small bubble" data-price="99"
+              data-image="products/smallbubble.jpg"
               onclick="handleProductClick(this)" style="cursor: pointer;">
             <div class="prod">
               <div class="des">
                 <span>Small bubble</span>
                 <h5>₹99/- (x2)</h5>
               </div>
-              <a href="#"><i class="fa-solid fa-cart-shopping cart" onclick="addToCartFromElement(this)"></i></a>
+              <a href="#"><i class="fa-solid fa-cart-shopping cart"
+                  onclick="addToCartFromElement(this)"></i></a>
             </div>
           </div>
         </div>
@@ -379,6 +378,62 @@
           </div>
         </div>
 
+        <!-- Rose in a Glass Jar -->
+        <div class="pc">
+          <div class="p">
+            <img src="products/roseinaglassjar.jpg" alt="roseinaglassjar"
+              data-name="Rose in a Glass Jar" data-price="220"
+              data-image="products/roseinaglassjar.jpg"
+              onclick="handleProductClick(this)" style="cursor: pointer;">
+            <div class="prod">
+              <div class="des">
+                <span>Rose in a Glass Jar</span>
+                <h5>₹220/-</h5>
+              </div>
+              <a href="#"><i class="fa-solid fa-cart-shopping cart"
+                  onclick="addToCartFromElement(this)"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Rose in a Cage -->
+        <div class="pc">
+          <div class="p">
+            <img src="products/roseinacage.jpg" alt="roseinacage"
+              data-name="Rose in a Cage" data-price="99"
+              data-image="products/roseinacage.jpg"
+              onclick="handleProductClick(this)" style="cursor: pointer;">
+            <div class="prod">
+              <div class="des">
+                <span>Rose in a Cage</span>
+                <h5>₹99/-</h5>
+              </div>
+              <a href="#"><i class="fa-solid fa-cart-shopping cart"
+                  onclick="addToCartFromElement(this)"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Custom1 -->
+        <div class="pc">
+          <div class="p">
+            <img src="products/custom1.jpg" alt="custom1"
+              data-name="Custom1" data-price="50"
+              data-image="products/custom1.jpg"
+              onclick="handleProductClick(this)" style="cursor: pointer;">
+            <div class="prod">
+              <div class="des">
+                <span>Customised
+                  starting at 
+                </span>
+                <h5>₹50/-</h5>
+              </div>
+              <a href="#"><i class="fa-solid fa-cart-shopping cart"
+                  onclick="addToCartFromElement(this)"></i></a>
+            </div>
+          </div>
+        </div>
+
       </div>
     </section>
 
@@ -411,33 +466,35 @@
 
     <!-- Footer -->
     <footer id="footer">
-  <div class="footer-left">
-    <img src="images/logo.jpg" alt="Wax and Warmth Logo" height="60">
-    <p>&copy; 2025 Wax and Warmth</p>
-    <nav>
-      <a href="#">Home</a> |
-      <a href="blog.html">Blog</a> |
-      <a href="#">About</a> |
-      <a href="#">Contact</a>
-    </nav>
-  </div>
+      <div class="footer-left">
+        <img src="images/logo.jpg" alt="Wax and Warmth Logo" height="60">
+        <p>&copy; 2025 Wax and Warmth</p>
+        <nav>
+          <a href="#">Home</a> |
+          <a href="blog.html">Blog</a> |
+          <a href="#">About</a> |
+          <a href="#">Contact</a>
+        </nav>
+      </div>
 
-  <div class="footer-center">
-    <p><i class="fas fa-map-marker-alt"></i> Govindpur, Dhanbad, India</p>
-    <p><i class="fas fa-phone-alt"></i> +91 8969570204</p>
-    <p><i class="fas fa-envelope"></i> waxandwarmth@gmail.com</p>
-  </div>
+      <div class="footer-center">
+        <p><i class="fas fa-map-marker-alt"></i> Govindpur, Dhanbad, India</p>
+        <p><i class="fas fa-phone-alt"></i> +91 8969570204</p>
+        <p><i class="fas fa-envelope"></i> waxandwarmth@gmail.com</p>
+      </div>
 
-  <div class="footer-right">
-    <h4>About Wax and Warmth</h4>
-    <p>Hand-poured candles made with love and warmth. Crafted to fill your space with gentle aromas and cozy vibes.</p>
-    <div class="social-icons">
-      <a href="https://www.instagram.com/wax_and_warmth" target="_blank"><i class="fab fa-instagram"></i></a>
-      <a href="https://wa.me/918969570204" target="_blank"><i class="fab fa-whatsapp"></i></a>
-    </div>
-  </div>
-</footer>
-
+      <div class="footer-right">
+        <h4>About Wax and Warmth</h4>
+        <p>Hand-poured candles made with love and warmth. Crafted to fill your
+          space with gentle aromas and cozy vibes.</p>
+        <div class="social-icons">
+          <a href="https://www.instagram.com/wax_and_warmth" target="_blank"><i
+              class="fab fa-instagram"></i></a>
+          <a href="https://wa.me/918969570204" target="_blank"><i
+              class="fab fa-whatsapp"></i></a>
+        </div>
+      </div>
+    </footer>
 
     <div id="cartDialog" class="dialog-overlay" style="display: none;">
       <div class="dialog-box">

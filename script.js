@@ -262,3 +262,4 @@ function resetAutoSlide() {
 // Initialize
 showTestimonial(currentIndex);
 
+

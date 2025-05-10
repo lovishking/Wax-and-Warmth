@@ -863,6 +863,7 @@ body {
     #section-p1 {
         padding: 20px;
     }
+    
 
     #header {
 
@@ -1414,3 +1415,9 @@ body {
   margin-right: 10px;
 }
 
+@media(max-width:477px)
+{
+.social-card a {
+    font-size: small;
+}    
+}

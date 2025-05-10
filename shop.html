@@ -442,8 +442,21 @@
         </div>
       </div>
     </footer>
+    
+    <div id="cartDialog" class="dialog-overlay" style="display: none;">
+      <div class="dialog-box">
+        <h3>Add to Cart</h3>
+        <p id="dialogProductName"></p>
+        <label for="quantity">Quantity:</label>
+        <input type="number" id="quantity" min="1" value="1">
+        <div class="dialog-buttons">
+          <button onclick="confirmAddToCart()">Yes</button>
+          <button onclick="closeDialog()">No</button>
+        </div>
+      </div>
+    </div>
 
-    <script src="script.js"> </script>
+    <script src="script.js"></script>
 
   </body>
 </html>

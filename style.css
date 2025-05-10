@@ -1355,3 +1355,62 @@ body {
   right: 0;
 }
 
+#whats {
+  display: flex;
+  justify-content: center;
+  padding: 60px 20px;
+  background: #f5f7fa;
+}
+
+.social-card {
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 40px;
+  max-width: 600px;
+  width: 100%;
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  font-family: 'Poppins', sans-serif;
+  transition: transform 0.3s ease;
+}
+
+.social-card:hover {
+  transform: translateY(-5px);
+}
+
+.social-card h4 {
+  margin: 25px 0;
+}
+
+.social-card a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 30px;
+  font-size: 18px;
+  font-weight: 600;
+  border-radius: 50px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  color: white;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+.social-card a.fa-whatsapp {
+  background: #25D366;
+}
+
+.social-card a.fa-instagram {
+  background: linear-gradient(135deg, #fd5949, #d6249f, #285AEB);
+}
+
+.social-card a:hover {
+  opacity: 0.9;
+  transform: scale(1.03);
+}
+
+.social-card a::before {
+  font-size: 20px;
+  margin-right: 10px;
+}
+

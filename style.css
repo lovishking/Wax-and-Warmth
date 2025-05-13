@@ -1626,7 +1626,7 @@ body {
   font-weight: 600;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  font-size: x-small;
+  font-size: medium;
 }
 
 .prod button:hover {

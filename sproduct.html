@@ -270,8 +270,7 @@
     </div>
 
     <script src="script.js"></script>
-    <script>
-
+   <script>
   function getQueryParam(param) {
     const urlParams = new URLSearchParams(window.location.search);
     return urlParams.get(param);
@@ -281,22 +280,49 @@
   const productName = getQueryParam('name') || 'Product Name';
   const productPrice = getQueryParam('price') || '0';
 
+  // Update main image and thumbnails
   document.getElementById('mainimg').src = productImg;
   const thumbnails = document.querySelectorAll('.smallimg');
   thumbnails.forEach(img => img.src = productImg);
 
+  // Set product name and price
   document.getElementById('productName').textContent = productName;
   document.getElementById('productPrice').textContent = 'Rs ' + productPrice + '/-';
 
-  document.getElementById('addToCartBtn').onclick = function() {
-    const quantity = parseInt(document.querySelector('input[type="number"]').value);
+  let selectedQuantity = 1;
+
+  document.getElementById('addToCartBtn').onclick = function () {
+    selectedQuantity = parseInt(document.querySelector('input[type="number"]').value);
+    if (selectedQuantity <= 0 || isNaN(selectedQuantity)) {
+      alert("Please enter a valid quantity.");
+      return;
+    }
+
+    // Show confirmation dialog
+    document.getElementById('dialogProductName').textContent = `${selectedQuantity} x ${productName}`;
+    document.getElementById('quantity').value = selectedQuantity;
+    document.getElementById('cartDialog').style.display = 'flex';
+  };
+
+  function confirmAddToCart() {
+    const quantity = parseInt(document.getElementById('quantity').value);
     if (quantity <= 0 || isNaN(quantity)) {
       alert("Please enter a valid quantity.");
       return;
     }
     addToCart(productName, parseInt(productPrice), productImg, quantity);
-  };
+    closeDialog();
+  }
+
+  function closeDialog() {
+    document.getElementById('cartDialog').style.display = 'none';
+  }
+
+  // Make confirmAddToCart and closeDialog globally accessible
+  window.confirmAddToCart = confirmAddToCart;
+  window.closeDialog = closeDialog;
 </script>
+
 
   </body>
 </html>

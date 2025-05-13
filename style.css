@@ -1613,3 +1613,47 @@ body {
 
   }
 }
+
+
+.prod button {
+  margin-top: 0.5rem;
+  background-color: #ac052f;
+  color: #fff;
+  padding: 6px 12px;
+  border:#000000;
+  border-radius: 5px;
+  width: 100%;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-size: x-small;
+}
+
+.prod button:hover {
+  background-color: #1d1618;
+}
+
+#pro1 .bun{
+  padding-left: 50px;
+}
+
+/* Make all product images the same size and square */
+.p img {
+  width: 250px;         /* Fixed width */
+  height: 250px;        /* Fixed height to make it square */
+  object-fit: cover;    /* Ensures image fills the box without distortion */
+  border-radius: 10px;  /* Optional: Rounded corners */
+}
+
+.pc {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.p {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

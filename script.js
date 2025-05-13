@@ -117,7 +117,7 @@ function addToCart(name, price, image, quantity = 1) {
   
     message += `\nTotal: ₹${total}\n\nThank you!`;
   
-    const whatsappURL = `https://wa.me/918969570204?text=${encodeURIComponent(message)}`;
+    const whatsappURL = `https://wa.me/916200835077?text=${encodeURIComponent(message)}`;
     window.open(whatsappURL, "_blank");
   
     localStorage.removeItem("cart");

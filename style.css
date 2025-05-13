@@ -250,7 +250,7 @@ body {
 }
 
 #feature .f-box:hover {
-  box-shadow: 10px 10px 50px rgba(25, 25, 255, 0.4);
+  box-shadow: 10px 10px 50px rgba(0, 0, 0, 0.1);
 }
 
 #feature .f-box h6 {

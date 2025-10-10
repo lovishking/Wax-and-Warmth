@@ -16,30 +16,103 @@ if (close){
 
 // Add to Cart function (with quantity)
 function addToCart(name, price, image, quantity = 1) {
-  const cart = JSON.parse(localStorage.getItem("cart")) || [];
-  const existingProduct = cart.find(item => item.name === name);
+  try {
+    console.log('addToCart called:', { name, price, image, quantity });
+    
+    // Check localStorage availability
+    if (typeof Storage === "undefined") {
+      console.error('LocalStorage not available');
+      alert('Your browser does not support storage. Cart won\'t work.');
+      return;
+    }
+    
+    const cart = JSON.parse(localStorage.getItem("cart")) || [];
+    const existingProduct = cart.find(item => item.name === name);
 
-  if (existingProduct) {
-    existingProduct.quantity += quantity;
-  } else {
-    const product = { name, price, image, quantity };
-    cart.push(product);
+    if (existingProduct) {
+      existingProduct.quantity += quantity;
+      console.log('Updated existing product quantity');
+    } else {
+      const product = { name, price, image, quantity };
+      cart.push(product);
+      console.log('Added new product to cart');
+    }
+
+    localStorage.setItem("cart", JSON.stringify(cart));
+    console.log('Cart updated in localStorage:', cart);
+    
+    // Mobile-friendly notification
+    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    if (isMobile) {
+      // Quick visual feedback instead of alert for mobile
+      const notification = document.createElement('div');
+      notification.textContent = `${name} added to cart!`;
+      notification.style.cssText = `
+        position: fixed; 
+        top: 20px; 
+        right: 20px; 
+        background: green; 
+        color: white; 
+        padding: 10px; 
+        border-radius: 5px; 
+        z-index: 9999;
+        font-size: 14px;
+      `;
+      document.body.appendChild(notification);
+      setTimeout(() => {
+        document.body.removeChild(notification);
+      }, 2000);
+    }
+    
+  } catch (error) {
+    console.error('Error in addToCart:', error);
+    alert('Error adding item to cart');
   }
-
-  localStorage.setItem("cart", JSON.stringify(cart));
-  // alert(`${quantity} ${name} added to cart`);
 }
 
 // Add to Cart from product card element
 function addToCartFromElement(cartIcon) {
-  const productCard = cartIcon.closest(".p");
-  const imgElement = productCard.querySelector("img");
+  try {
+    console.log('addToCartFromElement called on mobile');
+    const productCard = cartIcon.closest(".p");
+    
+    if (!productCard) {
+      console.error('Product card not found');
+      return;
+    }
+    
+    const imgElement = productCard.querySelector("img");
+    
+    if (!imgElement) {
+      console.error('Image element not found');
+      return;
+    }
 
-  const name = imgElement.getAttribute("data-name");
-  const price = parseFloat(imgElement.getAttribute("data-price"));
-  const image = imgElement.getAttribute("data-image");
+    const name = imgElement.getAttribute("data-name");
+    const price = parseFloat(imgElement.getAttribute("data-price"));
+    const image = imgElement.getAttribute("data-image");
 
-  addToCart(name, price, image);
+    console.log('Product details:', { name, price, image });
+
+    if (!name || !price || !image) {
+      console.error('Missing product data:', { name, price, image });
+      return;
+    }
+
+    addToCart(name, price, image);
+    
+    // Mobile feedback
+    if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+      // Visual feedback for mobile
+      cartIcon.style.color = 'green';
+      setTimeout(() => {
+        cartIcon.style.color = '';
+      }, 1000);
+    }
+    
+  } catch (error) {
+    console.error('Error in addToCartFromElement:', error);
+  }
 }
 
 // Display cart items in cart table

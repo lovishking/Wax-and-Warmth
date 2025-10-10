@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mobile Cart Debug</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        .debug-info { background: #f0f0f0; padding: 10px; margin: 10px 0; border-radius: 5px; }
+        button { padding: 15px; margin: 10px; font-size: 16px; }
+    </style>
+</head>
+<body>
+    <h1>Mobile Cart Debug Page</h1>
+    
+    <div class="debug-info">
+        <h3>Browser Info:</h3>
+        <p><strong>User Agent:</strong> <span id="user-agent"></span></p>
+        <p><strong>Is Mobile:</strong> <span id="is-mobile"></span></p>
+        <p><strong>LocalStorage Available:</strong> <span id="storage-available"></span></p>
+        <p><strong>Current URL:</strong> <span id="current-url"></span></p>
+    </div>
+
+    <div class="debug-info">
+        <h3>Cart Test:</h3>
+        <button onclick="testAddToCart()">Add Test Item to Cart</button>
+        <button onclick="showCart()">Show Cart Contents</button>
+        <button onclick="clearCart()">Clear Cart</button>
+        <button onclick="testWhatsApp()">Test WhatsApp</button>
+    </div>
+
+    <div class="debug-info">
+        <h3>Debug Output:</h3>
+        <div id="debug-output"></div>
+    </div>
+
+    <script>
+        // Fill in debug info
+        document.getElementById('user-agent').textContent = navigator.userAgent;
+        document.getElementById('is-mobile').textContent = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+        document.getElementById('storage-available').textContent = typeof Storage !== "undefined";
+        document.getElementById('current-url').textContent = window.location.href;
+
+        function debugLog(message) {
+            const output = document.getElementById('debug-output');
+            output.innerHTML += '<p>' + new Date().toLocaleTimeString() + ': ' + message + '</p>';
+            console.log(message);
+        }
+
+        function testAddToCart() {
+            try {
+                debugLog('Testing add to cart...');
+                const cart = JSON.parse(localStorage.getItem("cart")) || [];
+                const testProduct = {
+                    name: "Test Product",
+                    price: 100,
+                    image: "/products/test.jpg",
+                    quantity: 1
+                };
+                cart.push(testProduct);
+                localStorage.setItem("cart", JSON.stringify(cart));
+                debugLog('Test product added successfully');
+            } catch (error) {
+                debugLog('Error adding to cart: ' + error.message);
+            }
+        }
+
+        function showCart() {
+            try {
+                const cart = JSON.parse(localStorage.getItem("cart")) || [];
+                debugLog('Cart contents: ' + JSON.stringify(cart, null, 2));
+            } catch (error) {
+                debugLog('Error reading cart: ' + error.message);
+            }
+        }
+
+        function clearCart() {
+            try {
+                localStorage.removeItem("cart");
+                debugLog('Cart cleared');
+            } catch (error) {
+                debugLog('Error clearing cart: ' + error.message);
+            }
+        }
+
+        function testWhatsApp() {
+            try {
+                const message = "Test message from debug page";
+                const whatsappNumber = "916200835077";
+                const encodedMessage = encodeURIComponent(message);
+                const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
+                debugLog('Opening WhatsApp: ' + whatsappURL);
+                window.open(whatsappURL, "_blank");
+            } catch (error) {
+                debugLog('Error with WhatsApp: ' + error.message);
+            }
+        }
+
+        debugLog('Debug page loaded successfully');
+    </script>
+</body>
+</html>

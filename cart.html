@@ -37,6 +37,34 @@
         .checkout-btn:hover {
             background: #555;
         }
+        
+        /* Mobile-specific styles */
+        @media (max-width: 768px) {
+            #cart table {
+                font-size: 12px;
+            }
+            #cart table td {
+                padding: 8px 4px;
+            }
+            #cart table img {
+                width: 40px !important;
+            }
+            .checkout-btn {
+                padding: 10px 20px;
+                font-size: 14px;
+            }
+            #cart-summary {
+                flex-direction: column;
+                gap: 15px;
+            }
+            #total-amount {
+                font-size: 18px;
+            }
+            /* Make table scrollable on mobile */
+            #cart {
+                overflow-x: auto;
+            }
+        }
     </style>
   </head>
   <body>
@@ -85,7 +113,7 @@
 
     <div id="cart-summary">
       <div id="total-amount">Total: ₹0</div>
-      <a id="whatsapp-link" href="javascript:void(0);" onclick="checkout()">
+      <a id="whatsapp-link" href="javascript:void(0);" onclick="checkoutMobile()">
         <button class="checkout-btn">Checkout on WhatsApp</button>
       </a>
 
@@ -123,10 +151,147 @@
 
     <script src="/script.js"></script>
     <script>
-// Load cart on page load
-window.onload = function() {
-  displayCartTable();
-};
+// Enhanced mobile-friendly cart loading
+function loadCartMobile() {
+    try {
+        console.log('Loading cart...');
+        const cart = JSON.parse(localStorage.getItem("cart")) || [];
+        console.log('Cart data:', cart);
+        
+        if (typeof displayCartTable === 'function') {
+            displayCartTable();
+            console.log('displayCartTable called successfully');
+        } else {
+            console.error('displayCartTable function not found');
+            // Fallback for mobile
+            displayCartFallback();
+        }
+    } catch (error) {
+        console.error('Error loading cart:', error);
+        displayCartFallback();
+    }
+}
+
+// Fallback cart display for mobile issues
+function displayCartFallback() {
+    const cartBody = document.getElementById("cart-body");
+    const totalAmountDiv = document.getElementById("total-amount");
+    
+    if (!cartBody) {
+        console.error('cart-body element not found');
+        return;
+    }
+    
+    const cart = JSON.parse(localStorage.getItem("cart")) || [];
+    cartBody.innerHTML = "";
+    let total = 0;
+    
+    cart.forEach((item, index) => {
+        const subtotal = item.price * item.quantity;
+        total += subtotal;
+        
+        const row = document.createElement("tr");
+        row.innerHTML = `
+            <td><button onclick="removeItemMobile(${index})" style="background:red;color:white;border:none;padding:5px;border-radius:3px;">×</button></td>
+            <td><img src="${item.image}" alt="${item.name}" width="50" style="max-width:50px;"></td>
+            <td>${item.name}</td>
+            <td>₹${item.price}</td>
+            <td><input type="number" min="1" value="${item.quantity}" style="width:50px;" onchange="updateQuantityMobile(${index}, this.value)"></td>
+            <td>₹${subtotal}</td>
+        `;
+        cartBody.appendChild(row);
+    });
+    
+    if (totalAmountDiv) {
+        totalAmountDiv.innerHTML = `Total: ₹${total}`;
+    }
+}
+
+// Mobile-specific remove function
+function removeItemMobile(index) {
+    try {
+        const cart = JSON.parse(localStorage.getItem("cart")) || [];
+        cart.splice(index, 1);
+        localStorage.setItem("cart", JSON.stringify(cart));
+        loadCartMobile();
+    } catch (error) {
+        console.error('Error removing item:', error);
+    }
+}
+
+// Mobile-specific update quantity function
+function updateQuantityMobile(index, newQuantity) {
+    try {
+        const cart = JSON.parse(localStorage.getItem("cart")) || [];
+        cart[index].quantity = parseInt(newQuantity);
+        localStorage.setItem("cart", JSON.stringify(cart));
+        loadCartMobile();
+    } catch (error) {
+        console.error('Error updating quantity:', error);
+    }
+}
+
+// Mobile-friendly checkout
+function checkoutMobile() {
+    try {
+        const cart = JSON.parse(localStorage.getItem("cart")) || [];
+        
+        if (cart.length === 0) {
+            alert("Your cart is empty!");
+            return;
+        }
+        
+        let message = "Hello! I'd like to order:\n\n";
+        let total = 0;
+        
+        cart.forEach(item => {
+            message += `${item.name} - ₹${item.price} x ${item.quantity}\n`;
+            total += item.price * item.quantity;
+        });
+        
+        message += `\nTotal: ₹${total}\n\nThank you!`;
+        
+        // For mobile, try different WhatsApp URL formats
+        const whatsappNumber = "916200835077";
+        const encodedMessage = encodeURIComponent(message);
+        
+        // Try mobile WhatsApp first
+        const mobileWhatsApp = `whatsapp://send?phone=${whatsappNumber}&text=${encodedMessage}`;
+        const webWhatsApp = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
+        const apiWhatsApp = `https://api.whatsapp.com/send?phone=${whatsappNumber}&text=${encodedMessage}`;
+        
+        // Detect mobile device
+        const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+        
+        if (isMobile) {
+            // Try mobile WhatsApp app first
+            window.location.href = mobileWhatsApp;
+            // Fallback after 2 seconds
+            setTimeout(() => {
+                window.open(webWhatsApp, "_blank");
+            }, 2000);
+        } else {
+            window.open(webWhatsApp, "_blank");
+        }
+        
+        // Clear cart after successful checkout
+        localStorage.removeItem("cart");
+        loadCartMobile();
+        
+    } catch (error) {
+        console.error('Checkout error:', error);
+        alert('Error during checkout. Please try again.');
+    }
+}
+
+// Load cart when page loads - with multiple fallbacks
+document.addEventListener('DOMContentLoaded', loadCartMobile);
+window.addEventListener('load', loadCartMobile);
+window.onload = loadCartMobile;
+
+// Debug info for mobile
+console.log('User Agent:', navigator.userAgent);
+console.log('Local Storage available:', typeof Storage !== "undefined");
 
     </script>
     <script src="/newsletter.js"></script>

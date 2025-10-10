@@ -4,28 +4,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>wax and warmth</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="/style.css?v={{ csrf_token }}">
     <link rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
   </head>
   <body>
     <section id="header">
-      <a href="shop.html"><img src="images/logo.jpg" height="80" class="logo"
+      <a href="/shop/"><img src="/images/logo.jpg" height="80" class="logo"
           alt="Company Logo" /></a>
       <div>
         <ul id="navbar">
-          <li><a href="index.html">Home</a></li>
-          <li><a class="active" href="shop.html">Shop</a></li>
-          <li><a href="blog.html">Blog</a></li>
-          <li><a href="about.html">About</a></li>
-          <li><a href="contact.html">Contact</a></li>
-          <li><a href="cart.html"><i
+          <li><a href="/">Home</a></li>
+          <li><a class="active" href="/shop/">Shop</a></li>
+          <li><a href="/blog/">Blog</a></li>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/contact/">Contact</a></li>
+          <li><a href="/cart/"><i
                 class="fa-solid fa-cart-shopping"> cart</i></a></li>
           <a href="#" id="close"><i class="fa-solid fa-xmark"></i></a>
 
         </ul>
         <div id="mobile">
-          <a href="cart.html"><i
+          <a href="/cart/"><i
               class="fa-solid fa-cart-shopping">cart</i> </a>
           <i id="bar" class="fas fa-outdent"></i>
         </div>
@@ -41,9 +41,9 @@
          <!-- Product 1 -->
         <div class="pc">
           <div class="p">
-            <img src="products/blushingbloom.jpg" alt=""
+            <img src="/products/blushingbloom.jpg" alt=""
               data-name="Blushing bloom" data-price="299"
-              data-image="products/blushingbloom.jpg"
+              data-image="/products/blushingbloom.jpg"
               onclick="handleProductClick(this)" style="cursor: pointer;">
 
             <div class="prod">
@@ -68,9 +68,9 @@
          <!-- Product 1 -->
         <div class="pc">
           <div class="p">
-            <img src="products/fourrose.jpg" alt="The Rose Siblings"
+            <img src="/products/fourrose.jpg" alt="The Rose Siblings"
               data-name="The Rose Siblings" data-price="649"
-              data-image="products/fourrose.jpg"
+              data-image="/products/fourrose.jpg"
               onclick="handleProductClick(this)" style="cursor: pointer;">
 
             <div class="prod">
@@ -94,9 +94,9 @@
         <!-- Product 1 -->
         <div class="pc">
           <div class="p">
-            <img src="products/teacandle.jpg" alt="teacandle"
+            <img src="/products/teacandle.jpg" alt="teacandle"
               data-name="Tea candle" data-price="149"
-              data-image="products/teacandle.jpg"
+              data-image="/products/teacandle.jpg"
               onclick="handleProductClick(this)" style="cursor: pointer;">
 
             <div class="prod">
@@ -120,9 +120,9 @@
 
         <div class="pc">
           <div class="p">
-            <img src="products/whiterose.jpg" alt="whiterose"
+            <img src="/products/whiterose.jpg" alt="whiterose"
               data-name="white rose" data-price="99"
-              data-image="products/whiterose.jpg"
+              data-image="/products/whiterose.jpg"
               onclick="handleProductClick(this)" style="cursor: pointer;">
             <div class="prod">
               <div class="des">
@@ -147,9 +147,9 @@
         <!-- Rose in a Glass Jar -->
         <div class="pc">
           <div class="p">
-            <img src="products/roseinaglassjar.jpg" alt="roseinaglassjar"
+            <img src="/products/roseinaglassjar.jpg" alt="roseinaglassjar"
               data-name="Rose in a Glass Jar" data-price="220"
-              data-image="products/roseinaglassjar.jpg"
+              data-image="/products/roseinaglassjar.jpg"
               onclick="handleProductClick(this)" style="cursor: pointer;">
             <div class="prod">
               <div class="des">
@@ -173,9 +173,9 @@
         <!-- Rose in a Cage -->
         <div class="pc">
           <div class="p">
-            <img src="products/roseinacage.jpg" alt="roseinacage"
+            <img src="/products/roseinacage.jpg" alt="roseinacage"
               data-name="Red Peony" data-price="99"
-              data-image="products/roseinacage.jpg"
+              data-image="/products/roseinacage.jpg"
               onclick="handleProductClick(this)" style="cursor: pointer;">
             <div class="prod">
               <div class="des">
@@ -198,9 +198,9 @@
 
         <div class="pc">
           <div class="p">
-            <img src="products/custom1.jpg" alt="custom1"
+            <img src="/products/custom1.jpg" alt="custom1"
               data-name="Custom1" data-price="99"
-              data-image="products/custom1.jpg"
+              data-image="/products/custom1.jpg"
               onclick="handleProductClick(this)" style="cursor: pointer;">
 
             <div class="prod">
@@ -225,9 +225,9 @@
 
         <div class="pc">
           <div class="p">
-            <img src="products/chocolatebox.jpg" alt="chocolatebox"
+            <img src="/products/chocolatebox.jpg" alt="chocolatebox"
               data-name="Large bubble" data-price="199"
-              data-image="products/chocolatebox.jpg"
+              data-image="/products/chocolatebox.jpg"
               onclick="handleProductClick(this)" style="cursor: pointer;">
             <div class="prod">
               <div class="des">
@@ -249,9 +249,9 @@
         </div>
         <div class="pc">
           <div class="p">
-            <img src="products/smallbubble.jpg" alt="smallbubble"
+            <img src="/products/smallbubble.jpg" alt="smallbubble"
               data-name="Small bubble" data-price="99"
-              data-image="products/smallbubble.jpg"
+              data-image="/products/smallbubble.jpg"
               onclick="handleProductClick(this)" style="cursor: pointer;">
             <div class="prod">
               <div class="des">
@@ -273,10 +273,10 @@
         </div>
         <div class="pc">
           <div class="p">
-            <img src="products/coconutspicedcandle.jpg"
+            <img src="/products/coconutspicedcandle.jpg"
               alt="coconutspicedcandle"
               data-name="Coconut spiced candle" data-price="199"
-              data-image="products/coconutspicedcandle.jpg"
+              data-image="/products/coconutspicedcandle.jpg"
               onclick="handleProductClick(this)" style="cursor: pointer;">
             <div class="prod">
               <div class="des">
@@ -299,9 +299,9 @@
 
         <div class="pc">
           <div class="p">
-            <img src="products/flowerinbowl.jpg" alt="flowerinbowl"
+            <img src="/products/flowerinbowl.jpg" alt="flowerinbowl"
               data-name="Flower in bowl" data-price="249"
-              data-image="products/flowerinbowl.jpg"
+              data-image="/products/flowerinbowl.jpg"
               onclick="handleProductClick(this)" style="cursor: pointer;">
             <div class="prod">
               <div class="des">
@@ -324,9 +324,9 @@
 
         <div class="pc">
           <div class="p">
-            <img src="products/gardeninaboat.jpg" alt="gardeninaboat"
+            <img src="/products/gardeninaboat.jpg" alt="gardeninaboat"
               data-name="Garden in a boat" data-price="499"
-              data-image="products/gardeninaboat.jpg"
+              data-image="/products/gardeninaboat.jpg"
               onclick="handleProductClick(this)" style="cursor: pointer;">
             <div class="prod">
               <div class="des">
@@ -349,9 +349,9 @@
 
         <div class="pc">
           <div class="p">
-            <img src="products/heartcandle.jpg" alt="heartcandle"
+            <img src="/products/heartcandle.jpg" alt="heartcandle"
               data-name="Heart candle" data-price="199"
-              data-image="products/heartcandle.jpg"
+              data-image="/products/heartcandle.jpg"
               onclick="handleProductClick(this)" style="cursor: pointer;">
             <div class="prod">
               <div class="des">
@@ -374,9 +374,9 @@
 
         <div class="pc">
           <div class="p">
-            <img src="products/icedcoffeelatte.jpg" alt="icedcoffeelatte"
+            <img src="/products/icedcoffeelatte.jpg" alt="icedcoffeelatte"
               data-name="Iced coffee latte" data-price="220"
-              data-image="products/icedcoffeelatte.jpg"
+              data-image="/products/icedcoffeelatte.jpg"
               onclick="handleProductClick(this)" style="cursor: pointer;">
             <div class="prod">
               <div class="des">
@@ -399,9 +399,9 @@
 
         <div class="pc">
           <div class="p">
-            <img src="products/icedlavander.jpg" alt="icedlavander"
+            <img src="/products/icedlavander.jpg" alt="icedlavander"
               data-name="iced lavander latte" data-price="220"
-              data-image="products/icedlavander.jpg"
+              data-image="/products/icedlavander.jpg"
               onclick="handleProductClick(this)" style="cursor: pointer;">
             <div class="prod">
               <div class="des">
@@ -424,10 +424,10 @@
 
         <div class="pc">
           <div class="p">
-            <img src="products/icedstrawberrylatte.jpg"
+            <img src="/products/icedstrawberrylatte.jpg"
               alt="icedstrawberrylatte"
               data-name="Iced Strawberry latte" data-price="220"
-              data-image="products/icedstrawberrylatte.jpg"
+              data-image="/products/icedstrawberrylatte.jpg"
               onclick="handleProductClick(this)" style="cursor: pointer;">
             <div class="prod">
               <div class="des">
@@ -450,9 +450,9 @@
 
         <div class="pc">
           <div class="p">
-            <img src="products/oceaninaboat.jpg" alt="oceaninaboat"
+            <img src="/products/oceaninaboat.jpg" alt="oceaninaboat"
               data-name="Ocean in a boat" data-price="499"
-              data-image="products/oceaninaboat.jpg"
+              data-image="/products/oceaninaboat.jpg"
               onclick="handleProductClick(this)" style="cursor: pointer;">
             <div class="prod">
               <div class="des">
@@ -475,9 +475,9 @@
 
         <div class="pc">
           <div class="p">
-            <img src="products/oceanjarcandle.jpg" alt="oceanjarcandle"
+            <img src="/products/oceanjarcandle.jpg" alt="oceanjarcandle"
               data-name="Ocean jar candle" data-price="220"
-              data-image="products/oceanjarcandle.jpg"
+              data-image="/products/oceanjarcandle.jpg"
               onclick="handleProductClick(this)" style="cursor: pointer;">
             <div class="prod">
               <div class="des">
@@ -500,9 +500,9 @@
 
         <div class="pc">
           <div class="p">
-            <img src="products/peonycandle.jpg" alt="peonycandle"
+            <img src="/products/peonycandle.jpg" alt="peonycandle"
               data-name="Peony candle" data-price="99"
-              data-image="products/peonycandle.jpg"
+              data-image="/products/peonycandle.jpg"
               onclick="handleProductClick(this)" style="cursor: pointer;">
             <div class="prod">
               <div class="des">
@@ -525,9 +525,9 @@
 
         <div class="pc">
           <div class="p">
-            <img src="products/pinkheart.jpg" alt="pinkheart"
+            <img src="/products/pinkheart.jpg" alt="pinkheart"
               data-name="pink heart" data-price="199"
-              data-image="products/pinkheart.jpg"
+              data-image="/products/pinkheart.jpg"
               onclick="handleProductClick(this)" style="cursor: pointer;">
             <div class="prod">
               <div class="des">
@@ -550,9 +550,9 @@
 
         <div class="pc">
           <div class="p">
-            <img src="products/redheart.jpg" alt="redheart"
+            <img src="/products/redheart.jpg" alt="redheart"
               data-name="red heart" data-price="199"
-              data-image="products/redheart.jpg"
+              data-image="/products/redheart.jpg"
               onclick="handleProductClick(this)" style="cursor: pointer;">
             <div class="prod">
               <div class="des">
@@ -575,9 +575,9 @@
 
         <div class="pc">
           <div class="p">
-            <img src="products/spiralcandle.jpg" alt="spiralcandle"
+            <img src="/products/spiralcandle.jpg" alt="spiralcandle"
               data-name="Spiral candle" data-price="199"
-              data-image="products/spiralcandle.jpg"
+              data-image="/products/spiralcandle.jpg"
               onclick="handleProductClick(this)" style="cursor: pointer;">
             <div class="prod">
               <div class="des">
@@ -602,16 +602,16 @@
     </section>
     
     <section id="pagee" class="section-p1">
-      <a href="index.html">1</a>
-      <a href="shop.html">2</a>
-      <a href="shop.html" class="fas fa-long-arrow-alt-right"></a>
+      <a href="/">1</a>
+      <a href="/shop/">2</a>
+      <a href="/shop/" class="fas fa-long-arrow-alt-right"></a>
 
     </section>
 
     <section id="banner" class="section-m1">
       <h2>Up to <span>50% off</span> - Enjoy the aroma of our premium
         candles</h2>
-      <button id="button" class="normal"><a href="about.html">About
+      <button id="button" class="normal"><a href="/about/">About
           us</a></button>
     </section>
 
@@ -622,20 +622,27 @@
             offers.</span></p>
       </div>
       <div class="form">
-        <input type="text" placeholder="Your e-mail">
-        <button class="sign">Sign Up</button>
+        <form id="newsletterForm" method="post" action="/newsletter-login/">
+          {% csrf_token %}
+          <input type="email" name="email" placeholder="Your e-mail" required>
+          <button class="sign" type="submit">Sign Up</button>
+        </form>
+        <p id="responseMessage" style="color: green; margin-top: 10px;"></p>
       </div>
+      {% if request.session.newsletter_email %}
+        <p style="color:green;">Welcome, {{ request.session.newsletter_email }}! You are subscribed.</p>
+      {% endif %}
     </section>
 
       <footer id="footer">
   <div class="footer-left">
-    <img src="images/logo.jpg" alt="Wax and Warmth Logo" height="60">
+    <img src="/images/logo.jpg" alt="Wax and Warmth Logo" height="60">
     <p>&copy; 2025 Wax and Warmth</p>
     <nav>
-      <a href="index.html">Home</a> |
-      <a href="blog.html">Blog</a> |
-      <a href="about.html">About</a> |
-      <a href="contact.html">Contact</a>
+      <a href="/">Home</a> |
+      <a href="/blog/">Blog</a> |
+      <a href="/about/">About</a> |
+      <a href="/contact/">Contact</a>
     </nav>
   </div>
 
@@ -670,7 +677,8 @@
       </div>
     </div>
 
-    <script src="script.js"></script>
+    <script src="/script.js"></script>
+    <script src="/newsletter.js"></script>
 
   </body>
 </html>

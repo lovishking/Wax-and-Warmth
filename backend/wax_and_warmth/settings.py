@@ -24,9 +24,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-your-secret-key-here-change-in-production'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', '*']
+ALLOWED_HOSTS = ['wax-and-warmth.shop', 'www.wax-and-warmth.shop', 'localhost', '127.0.0.1']
 
 
 # Application definition
@@ -133,17 +133,21 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # CORS settings for frontend integration
 CORS_ALLOWED_ORIGINS = [
+    "https://wax-and-warmth.shop",
+    "https://www.wax-and-warmth.shop",
     "http://localhost:3000",
     "http://127.0.0.1:3000",
     "http://localhost:8000",
     "http://127.0.0.1:8000",
 ]
 
-CORS_ALLOW_ALL_ORIGINS = True  # Only for development
+CORS_ALLOW_ALL_ORIGINS = False  # Disabled for production security
 CORS_ALLOW_CREDENTIALS = True
 
 # CSRF settings
 CSRF_TRUSTED_ORIGINS = [
+    "https://wax-and-warmth.shop",
+    "https://www.wax-and-warmth.shop",
     "http://localhost:3000",
     "http://127.0.0.1:3000",
     "http://localhost:8000",

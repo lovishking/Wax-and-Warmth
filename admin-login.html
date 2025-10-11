@@ -200,15 +200,9 @@
             // Simulate login delay for better UX
             setTimeout(() => {
                 if (username === ADMIN_CREDENTIALS.username && password === ADMIN_CREDENTIALS.password) {
-                    // Create admin session
-                    const adminSession = {
-                        username: username,
-                        loginTime: new Date().toISOString(),
-                        isAdmin: true
-                    };
-                    
-                    // Store session in localStorage
-                    localStorage.setItem('admin_session', JSON.stringify(adminSession));
+                    // Store session using the same format as admin-dashboard.js expects
+                    localStorage.setItem('adminSession', 'active');
+                    localStorage.setItem('adminUsername', username);
                     
                     // Show success message
                     successMessage.textContent = '✅ Login successful! Redirecting...';
@@ -238,18 +232,10 @@
 
         // Check if already logged in
         document.addEventListener('DOMContentLoaded', function() {
-            const adminSession = localStorage.getItem('admin_session');
-            if (adminSession) {
-                try {
-                    const session = JSON.parse(adminSession);
-                    if (session.isAdmin) {
-                        // Already logged in, redirect to dashboard
-                        window.location.href = '/admin-dashboard.html';
-                    }
-                } catch (error) {
-                    // Invalid session, clear it
-                    localStorage.removeItem('admin_session');
-                }
+            const adminSession = localStorage.getItem('adminSession');
+            if (adminSession === 'active') {
+                // Already logged in, redirect to dashboard
+                window.location.href = '/admin-dashboard.html';
             }
         });
 

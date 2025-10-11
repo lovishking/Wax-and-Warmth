@@ -24,8 +24,10 @@ function checkAuth() {
 
 // Logout function
 function logout() {
+    // Clear all possible admin session keys
     localStorage.removeItem('adminSession');
     localStorage.removeItem('adminUsername');
+    localStorage.removeItem('admin_session'); // Clean up old format if exists
     window.location.href = '/admin-login.html';
 }
 

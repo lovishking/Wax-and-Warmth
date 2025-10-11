@@ -13,6 +13,7 @@ urlpatterns = [
     path('cart/', lambda request: views.serve_html_file(request, 'cart.html'), name='cart'),
     path('sproduct/', lambda request: views.serve_html_file(request, 'sproduct.html'), name='sproduct'),
     path('debug/', lambda request: views.serve_html_file(request, 'debug.html'), name='debug'),
+    path('mobile-access/', lambda request: views.serve_html_file(request, 'mobile-access.html'), name='mobile_access'),
     
     # Newsletter subscription endpoints
     path('newsletter-signup/', views.newsletter_subscribe, name='subscribe'),

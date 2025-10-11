@@ -295,7 +295,65 @@ function loadProductsFromConfig() {
 // Auto-load products when page loads
 document.addEventListener('DOMContentLoaded', function() {
     loadProductsFromConfig();
+    
+    // Add structured data for products (SEO)
+    setTimeout(() => {
+        generateProductStructuredData();
+    }, 1000);
 });
+
+// Generate structured data for products (SEO)
+function generateProductStructuredData() {
+    const featuredProducts = getFeaturedProducts().slice(0, 8); // Top 8 products
+    
+    const structuredData = {
+        "@context": "https://schema.org/",
+        "@type": "ItemList",
+        "name": "Wax and Warmth Premium Candles",
+        "description": "Handcrafted premium candles and home fragrances",
+        "url": "https://wax-and-warmth.shop/",
+        "numberOfItems": featuredProducts.length,
+        "itemListElement": featuredProducts.map((product, index) => ({
+            "@type": "Product",
+            "position": index + 1,
+            "name": product.name,
+            "description": product.description,
+            "image": `https://wax-and-warmth.shop${product.image}`,
+            "offers": {
+                "@type": "Offer",
+                "price": product.price,
+                "priceCurrency": "INR",
+                "availability": "https://schema.org/InStock",
+                "seller": {
+                    "@type": "Organization",
+                    "name": "Wax and Warmth"
+                }
+            },
+            "aggregateRating": {
+                "@type": "AggregateRating",
+                "ratingValue": product.rating,
+                "bestRating": "5",
+                "worstRating": "1",
+                "ratingCount": "50"
+            },
+            "brand": {
+                "@type": "Brand",
+                "name": "Wax and Warmth"
+            },
+            "category": "Home & Garden > Home Fragrances > Candles"
+        }))
+    };
+
+    // Add structured data to page head
+    const existingSchema = document.querySelector('script[type="application/ld+json"]');
+    if (!existingSchema || !existingSchema.textContent.includes('ItemList')) {
+        const script = document.createElement('script');
+        script.type = 'application/ld+json';
+        script.textContent = JSON.stringify(structuredData);
+        document.head.appendChild(script);
+        console.log('Product structured data added for SEO');
+    }
+}
 
 // Export functions for global use
 window.PRODUCT_IMAGES = PRODUCT_IMAGES;

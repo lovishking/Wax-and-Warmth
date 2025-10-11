@@ -1,0 +1,59 @@
+🔥 MOBILE ACCESS TROUBLESHOOTING GUIDE 🔥
+
+❌ PROBLEM: Getting 404 NOT_FOUND errors on mobile
+✅ SOLUTION: Your Windows Firewall is blocking mobile connections
+
+🔧 METHOD 1: Add Firewall Rule (RECOMMENDED)
+1. Right-click on PowerShell and select "Run as Administrator"
+2. Run this command:
+   netsh advfirewall firewall add rule name="Django Dev Server" dir=in action=allow protocol=TCP localport=8000
+
+🔧 METHOD 2: Temporarily Disable Firewall (QUICK TEST)
+1. Open Windows Settings
+2. Go to Update & Security > Windows Security > Firewall & network protection
+3. Turn off "Domain network", "Private network", and "Public network" firewalls
+4. Test your mobile access
+5. REMEMBER TO TURN THEM BACK ON LATER!
+
+🔧 METHOD 3: Use Different Port
+Instead of port 8000, try port 80:
+   python manage.py runserver 0.0.0.0:80
+
+Then access: http://192.168.0.101/ (no :8000 needed)
+
+🔧 METHOD 4: Check Router Settings
+Some routers have "AP Isolation" enabled which blocks device-to-device communication:
+1. Access your router admin panel (usually 192.168.1.1 or 192.168.0.1)
+2. Look for "AP Isolation" or "Client Isolation" 
+3. Disable it if enabled
+
+📱 TEST STEPS:
+1. After applying any method above, test on your computer first:
+   - Open browser and go to http://192.168.0.101:8000/
+   - Should show your website (not 404)
+
+2. Then test on mobile:
+   - Make sure both devices are on same WiFi
+   - Open mobile browser and go to http://192.168.0.101:8000/
+
+🚨 IMPORTANT NOTES:
+- The error ID "bom1::t7x48-1760141016640-1d48a987f304" suggests you might be accessing a different URL
+- Make sure you're typing http://192.168.0.101:8000/ exactly
+- Don't use any other URLs or bookmarks
+- Clear mobile browser cache if needed
+
+✅ WORKING URLs FOR MOBILE:
+- Home: http://192.168.0.101:8000/
+- Shop: http://192.168.0.101:8000/shop/
+- About: http://192.168.0.101:8000/about/
+- Cart: http://192.168.0.101:8000/cart/
+
+❌ WRONG URLs (will give 404):
+- Don't use: localhost:8000
+- Don't use: 127.0.0.1:8000
+- Don't use: any https:// URLs
+- Don't use: any domain names
+
+🔍 QUICK DEBUG:
+Try this on your mobile browser to test basic connectivity:
+http://192.168.0.101:8000/debug/

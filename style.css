@@ -504,16 +504,21 @@ p {
   align-items: center;
   justify-content: space-between;
   flex-wrap: wrap;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
 }
 
 #feature .f-box {
   padding: 25px 15px;
   text-align: center;
-  width: 180px;
+  width: calc(16.66% - 20px);
+  min-width: 160px;
   box-shadow: 20px 20px 34px rgba(0, 0, 0, 0.03);
   border: 1px solid #cce7d0;
   border-radius: 4px;
-  margin: 15px 0;
+  margin: 15px 10px;
+  flex: 1;
 }
 
 #feature .f-box img {
@@ -539,6 +544,16 @@ p {
 #feature .f-box:nth-child(4) h6 { background-color: #d5ca77; }
 #feature .f-box:nth-child(5) h6 { background-color: #f697b0; }
 #feature .f-box:nth-child(6) h6 { background-color: #9ac7b4; }
+#feature .f-box:nth-child(7) h6 { background-color: #9ac7b4; }
+
+/* Desktop - All 6 buttons in one line */
+@media (min-width: 1025px) {
+  #feature .f-box {
+    width: calc(16.66% - 20px);
+    flex: 1 1 calc(16.66% - 20px);
+    max-width: 180px;
+  }
+}
 
 /* Product Section */
 #pro1 {

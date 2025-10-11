@@ -1362,30 +1362,32 @@ p {
   
   #pro1 .pc img {
     width: 100%;
-    height: 140px;
+    height: 120px;
     object-fit: cover;
     border-radius: 16px 16px 0 0;
   }
   
   .prod {
-    padding: 12px 10px 12px 10px;
+    padding: 8px 8px 10px 8px;
     display: flex;
     flex-direction: column;
     height: auto;
-    min-height: 120px;
+    min-height: 90px;
   }
   
   .des {
     flex: 1;
+    margin-bottom: 6px;
   }
   
   .des span {
     font-size: 11px;
-    margin-bottom: 4px;
+    margin-bottom: 3px;
   }
   
   .des h5 {
-    font-size: 13px;
+    font-size: 12px;
+    margin-bottom: 2px;
   }
   
   .des small {
@@ -1393,12 +1395,13 @@ p {
   }
   
   .bun {
-    gap: 8px;
+    gap: 4px;
     width: 100%;
-    margin-top: 8px;
+    margin-top: auto;
     display: flex;
     justify-content: center;
     align-items: center;
+    padding-bottom: 4px;
   }
   
   /* Hide cart icon on mobile */
@@ -1407,19 +1410,19 @@ p {
   }
   
   .bun button {
-    font-size: 11px;
-    padding: 8px 16px;
-    border-radius: 8px;
+    font-size: 10px;
+    padding: 6px 14px;
+    border-radius: 6px;
     width: auto;
-    max-width: 120px;
-    min-height: 32px;
+    max-width: 100px;
+    min-height: 28px;
     font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 0.3px;
+    letter-spacing: 0.2px;
     background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%) !important;
     color: white !important;
     border: none !important;
-    box-shadow: 0 2px 8px rgba(44, 62, 80, 0.3) !important;
+    box-shadow: 0 2px 6px rgba(44, 62, 80, 0.3) !important;
   }
   
   /* Ensure star ratings are properly sized for mobile */

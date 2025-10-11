@@ -15,6 +15,170 @@
     <link rel="stylesheet" href="/style.css" />
     <link rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
+    
+    <!-- Modern Product Card Styles -->
+    <style>
+      /* Modern Product Cards */
+      .procont {
+        display: grid !important;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)) !important;
+        gap: 30px !important;
+        max-width: 1200px !important;
+        margin: 0 auto !important;
+        padding: 0 20px !important;
+      }
+      
+      .modern-product-card {
+        background: white;
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        transition: all 0.3s ease;
+        position: relative;
+      }
+      
+      .modern-product-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+      }
+      
+      .product-card-image {
+        width: 100%;
+        height: 250px;
+        object-fit: cover;
+        cursor: pointer;
+        transition: transform 0.3s ease;
+      }
+      
+      .modern-product-card:hover .product-card-image {
+        transform: scale(1.1);
+      }
+      
+      .product-card-content {
+        padding: 25px;
+      }
+      
+      .product-card-name {
+        font-size: 1.2rem;
+        font-weight: 600;
+        color: #1a1a1a;
+        margin-bottom: 10px;
+        line-height: 1.3;
+      }
+      
+      .product-card-price {
+        font-size: 1.4rem;
+        font-weight: 700;
+        background: linear-gradient(45deg, #d4af37, #f4e47b);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        margin-bottom: 20px;
+      }
+      
+      .product-card-actions {
+        display: flex;
+        gap: 15px;
+        align-items: center;
+      }
+      
+      .modern-cart-btn {
+        flex: 1;
+        background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+        color: white;
+        border: none;
+        padding: 12px 20px;
+        border-radius: 25px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        text-transform: uppercase;
+        font-size: 14px;
+        letter-spacing: 0.5px;
+      }
+      
+      .modern-cart-btn:hover {
+        background: linear-gradient(135deg, #d4af37 0%, #f4e47b 100%);
+        color: #1a1a1a;
+        transform: translateY(-2px);
+      }
+      
+      .cart-icon-btn {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #d4af37 0%, #f4e47b 100%);
+        border: none;
+        color: #1a1a1a;
+        font-size: 18px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      
+      .cart-icon-btn:hover {
+        transform: scale(1.1);
+        box-shadow: 0 5px 15px rgba(212, 175, 55, 0.4);
+      }
+      
+      /* Star rating styles */
+      .star-rating {
+        display: flex;
+        gap: 2px;
+        margin: 8px 0;
+        font-size: 0.9rem;
+      }
+      
+      .star-rating .fa-star {
+        color: #d4af37;
+      }
+      
+      /* Small text styles */
+      .product-card-content small {
+        display: block;
+        color: #666;
+        font-size: 0.8rem;
+        margin-top: 5px;
+        font-style: italic;
+      }
+      
+      /* Loading message style */
+      .loading-message {
+        grid-column: 1 / -1;
+        text-align: center;
+        padding: 40px;
+        color: #666;
+        font-size: 1.1rem;
+      }
+      
+      /* Mobile responsive */
+      @media (max-width: 768px) {
+        .procont {
+          grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)) !important;
+          gap: 20px !important;
+          padding: 0 15px !important;
+        }
+        
+        .product-card-content {
+          padding: 20px;
+        }
+        
+        .product-card-name {
+          font-size: 1.1rem;
+        }
+        
+        .product-card-price {
+          font-size: 1.2rem;
+        }
+      }
+      
+      /* Backward compatibility for existing styles */
+      .pc, .p {
+        display: none;
+      }
+    </style>
 
     <!-- SEO Meta Tags -->
     <meta name="description" content="Wax and Warmth - Premium hand-poured candles, wax melts, and gift sets. Shop luxury home fragrances, eco-friendly candles, and unique gifts online. Free shipping across India!">
@@ -336,21 +500,188 @@
   </div>
 </footer>
 
-    <div id="cartDialog" class="dialog-overlay" style="display: none;">
-      <div class="dialog-box">
-        <h3>Add to Cart</h3>
-        <p id="dialogProductName"></p>
-        <label for="quantity">Quantity:</label>
-        <input type="number" id="quantity" min="1" value="1">
-        <div class="dialog-buttons">
-          <button onclick="confirmAddToCart()">Yes</button>
-          <button onclick="closeDialog()">No</button>
+    <!-- Modern Dialog -->
+    <div id="cartDialog" class="modern-dialog-overlay" style="display: none;">
+      <div class="modern-dialog-box">
+        <h3 class="modern-dialog-title">
+          <i class="fa-solid fa-cart-plus" style="color: #d4af37; margin-right: 10px;"></i>
+          Add to Cart
+        </h3>
+        <p id="dialogProductName" style="color: #555; font-size: 1.1rem; margin-bottom: 20px;"></p>
+        
+        <div style="margin: 20px 0;">
+          <label for="quantity" style="display: block; margin-bottom: 10px; font-weight: 600; color: #1a1a1a;">Quantity:</label>
+          <input type="number" id="quantity" min="1" value="1" 
+            style="width: 80px; padding: 12px; border: 2px solid #d4af37; border-radius: 10px; text-align: center; font-size: 16px; font-weight: 600;">
+        </div>
+        
+        <div class="modern-dialog-buttons">
+          <button onclick="confirmAddToCart()" class="modern-dialog-btn confirm-btn">
+            <i class="fa-solid fa-check"></i> Add to Cart
+          </button>
+          <button onclick="closeDialog()" class="modern-dialog-btn cancel-btn">
+            <i class="fa-solid fa-times"></i> Cancel
+          </button>
         </div>
       </div>
     </div>
 
+    <!-- Modern Dialog Styles -->
+    <style>
+      .modern-dialog-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.7);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 1000;
+        backdrop-filter: blur(5px);
+      }
+      
+      .modern-dialog-box {
+        background: white;
+        border-radius: 20px;
+        padding: 40px;
+        max-width: 500px;
+        width: 90%;
+        text-align: center;
+        box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        animation: slideIn 0.3s ease;
+      }
+      
+      @keyframes slideIn {
+        from {
+          transform: translateY(-50px);
+          opacity: 0;
+        }
+        to {
+          transform: translateY(0);
+          opacity: 1;
+        }
+      }
+      
+      .modern-dialog-title {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: #1a1a1a;
+        margin-bottom: 20px;
+      }
+      
+      .modern-dialog-buttons {
+        display: flex;
+        gap: 15px;
+        margin-top: 30px;
+        justify-content: center;
+      }
+      
+      .modern-dialog-btn {
+        padding: 12px 30px;
+        border-radius: 25px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        border: none;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+      
+      .confirm-btn {
+        background: linear-gradient(135deg, #d4af37 0%, #f4e47b 100%);
+        color: #1a1a1a;
+      }
+      
+      .cancel-btn {
+        background: #e9ecef;
+        color: #6c757d;
+      }
+      
+      .confirm-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(212, 175, 55, 0.4);
+      }
+      
+      .cancel-btn:hover {
+        background: #dee2e6;
+      }
+    </style>
+
     <script src="/product-images.js"></script>
     <script src="/script.js"></script>
     <script src="/newsletter.js"></script>
+    
+    <!-- Enhanced notification system -->
+    <script>
+      // Modern notification system
+      function showNotification(message, type = "info") {
+        // Remove existing notifications
+        const existingNotifications = document.querySelectorAll('.modern-notification');
+        existingNotifications.forEach(notif => notif.remove());
+
+        const notification = document.createElement('div');
+        notification.className = 'modern-notification';
+        notification.innerHTML = `
+          <div style="
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: ${type === 'success' ? 'linear-gradient(135deg, #28a745, #20c997)' : type === 'error' ? 'linear-gradient(135deg, #dc3545, #fd7e14)' : 'linear-gradient(135deg, #d4af37, #f4e47b)'};
+            color: white;
+            padding: 15px 25px;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+            z-index: 10000;
+            font-weight: 600;
+            animation: slideInNotification 0.3s ease;
+          ">
+            <i class="fa-solid ${type === 'success' ? 'fa-check-circle' : type === 'error' ? 'fa-exclamation-triangle' : 'fa-info-circle'}" style="margin-right: 10px;"></i>
+            ${message}
+          </div>
+        `;
+
+        document.body.appendChild(notification);
+
+        // Auto remove after 3 seconds
+        setTimeout(() => {
+          if (notification.parentNode) {
+            notification.style.animation = 'slideOutNotification 0.3s ease';
+            setTimeout(() => notification.remove(), 300);
+          }
+        }, 3000);
+      }
+
+      // Add CSS for notification animations
+      const notificationStyles = document.createElement('style');
+      notificationStyles.textContent = `
+        @keyframes slideInNotification {
+          from {
+            transform: translateX(100%);
+            opacity: 0;
+          }
+          to {
+            transform: translateX(0);
+            opacity: 1;
+          }
+        }
+        
+        @keyframes slideOutNotification {
+          from {
+            transform: translateX(0);
+            opacity: 1;
+          }
+          to {
+            transform: translateX(100%);
+            opacity: 0;
+          }
+        }
+      `;
+      document.head.appendChild(notificationStyles);
+
+      // Make function globally accessible
+      window.showNotification = showNotification;
+    </script>
   </body>
 </html>

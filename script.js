@@ -70,51 +70,6 @@ function addToCart(name, price, image, quantity = 1) {
   }
 }
 
-// Add to Cart from product card element
-function addToCartFromElement(cartIcon) {
-  try {
-    console.log('addToCartFromElement called on mobile');
-    const productCard = cartIcon.closest(".p");
-    
-    if (!productCard) {
-      console.error('Product card not found');
-      return;
-    }
-    
-    const imgElement = productCard.querySelector("img");
-    
-    if (!imgElement) {
-      console.error('Image element not found');
-      return;
-    }
-
-    const name = imgElement.getAttribute("data-name");
-    const price = parseFloat(imgElement.getAttribute("data-price"));
-    const image = imgElement.getAttribute("data-image");
-
-    console.log('Product details:', { name, price, image });
-
-    if (!name || !price || !image) {
-      console.error('Missing product data:', { name, price, image });
-      return;
-    }
-
-    addToCart(name, price, image);
-    
-    // Mobile feedback
-    if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-      // Visual feedback for mobile
-      cartIcon.style.color = 'green';
-      setTimeout(() => {
-        cartIcon.style.color = '';
-      }, 1000);
-    }
-    
-  } catch (error) {
-    console.error('Error in addToCartFromElement:', error);
-  }
-}
-
 // Display cart items in cart table
 function displayCartTable() {
   const cartBody = document.getElementById("cart-body");
@@ -237,11 +192,35 @@ window.addEventListener("DOMContentLoaded", () => {
 // Dialog logic
 let selectedProduct = {};
 function addToCartFromElement(el) {
-  const productCard = el.closest(".p");
+  // Check if it's the new modern card design
+  let productCard = el.closest(".modern-product-card");
+  let name, price, image;
+  
+  if (productCard) {
+    // Modern card design - get data from button attributes
+    name = el.getAttribute("data-name");
+    price = el.getAttribute("data-price");
+    image = el.getAttribute("data-image");
+  } else {
+    // Legacy card design - get data from image element
+    productCard = el.closest(".p");
+    if (productCard) {
+      const imgElement = productCard.querySelector("img");
+      name = imgElement.getAttribute("data-name");
+      price = imgElement.getAttribute("data-price");
+      image = imgElement.getAttribute("data-image");
+    }
+  }
+
+  if (!name || !price || !image) {
+    console.error('Missing product data for dialog');
+    return;
+  }
+
   selectedProduct = {
-    name: productCard.querySelector("img").getAttribute("data-name"),
-    price: productCard.querySelector("img").getAttribute("data-price"),
-    image: productCard.querySelector("img").getAttribute("data-image")
+    name: name,
+    price: price,
+    image: image
   };
 
   document.getElementById("dialogProductName").innerText = selectedProduct.name;
@@ -263,7 +242,12 @@ function confirmAddToCart() {
   }
 
   localStorage.setItem("cart", JSON.stringify(cart));
-  // alert(`${quantity} x ${product.name} added to cart.`);
+  
+  // Show success feedback
+  if (window.showNotification) {
+    showNotification(`${quantity} x ${product.name} added to cart!`, "success");
+  }
+  
   closeDialog();
 }
 

@@ -230,32 +230,29 @@ function generateStarRating(rating) {
     return `<div class="star-rating">${starsHtml} <span class="rating-number">(${rating})</span></div>`;
 }
 
-// Function to generate product HTML
+// Function to generate product HTML with modern design
 function generateProductHTML(product) {
     const noteHtml = product.note ? `<small>${product.note}</small>` : '';
     const ratingHtml = product.rating ? generateStarRating(product.rating) : '';
     return `
-        <div class="pc">
-            <div class="p">
-                <img src="${product.image}" alt="${product.name}"
-                    data-name="${product.name}" data-price="${product.price}"
-                    data-image="${product.image}"
-                    onclick="handleProductClick(this)" style="cursor: pointer;">
-                <div class="prod">
-                    <div class="des">
-                        <span>${product.name}</span>
-                        ${ratingHtml}
-                        <h5>₹${product.price}/-</h5>${noteHtml}
-                    </div>
-                    <div class="bun">
-                        <!-- Cart icon -->
-                        <a href="#"><i class="fa-solid fa-cart-shopping cart"
-                            onclick="addToCartFromElement(this)"></i></a>
-                        <!-- Add to Cart button -->
-                        <button onclick="addToCartFromElement(this)">
-                            Add to Cart
-                        </button>
-                    </div>
+        <div class="modern-product-card">
+            <img src="${product.image}" alt="${product.name}" class="product-card-image"
+                data-name="${product.name}" data-price="${product.price}" data-image="${product.image}"
+                onclick="handleProductClick(this)">
+            <div class="product-card-content">
+                <h3 class="product-card-name">${product.name}</h3>
+                ${ratingHtml}
+                <div class="product-card-price">₹${product.price}</div>
+                ${noteHtml}
+                <div class="product-card-actions">
+                    <button class="modern-cart-btn" onclick="addToCartFromElement(this)"
+                        data-name="${product.name}" data-price="${product.price}" data-image="${product.image}">
+                        Add to Cart
+                    </button>
+                    <button class="cart-icon-btn" onclick="addToCartFromElement(this)"
+                        data-name="${product.name}" data-price="${product.price}" data-image="${product.image}">
+                        <i class="fa-solid fa-cart-plus"></i>
+                    </button>
                 </div>
             </div>
         </div>

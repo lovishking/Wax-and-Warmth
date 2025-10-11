@@ -327,3 +327,73 @@ function resetAutoSlide() {
 
 // Initialize first testimonial
 showTestimonial(currentIndex);
+
+// Dynamic Product Loading from Admin Dashboard
+function loadAdminProducts() {
+  const adminProducts = JSON.parse(localStorage.getItem('websiteProducts') || '[]');
+  
+  if (adminProducts.length === 0) {
+    console.log('No admin products found, keeping default products');
+    return;
+  }
+  
+  const productContainer = document.querySelector('#pro1 .procont');
+  if (!productContainer) {
+    console.log('Product container not found');
+    return;
+  }
+  
+  // Clear existing products (but keep first few as fallback)
+  // productContainer.innerHTML = '';
+  
+  // Create HTML for admin products
+  const adminProductsHTML = adminProducts.map(product => `
+    <div class="pc">
+      <div class="p">
+        <img src="${product.image}" alt="${product.name}"
+          data-name="${product.name}" data-price="${product.price}"
+          data-image="${product.image}"
+          onclick="handleProductClick(this)" style="cursor: pointer;">
+        <div class="prod">
+          <div class="des">
+            <span>${product.name}</span>
+            <h5>₹${product.price}/-</h5>
+          </div>
+          <div class="bun">
+            <!-- Cart icon -->
+            <a href="#"><i class="fa-solid fa-cart-shopping cart"
+                onclick="addToCartFromElement(this)"></i></a>
+            <!-- Add to Cart button -->
+            <button onclick="addToCartFromElement(this)">
+              Add to Cart
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  `).join('');
+  
+  // Append admin products to existing ones
+  productContainer.innerHTML += adminProductsHTML;
+  
+  console.log(`Loaded ${adminProducts.length} admin products`);
+}
+
+// Listen for product updates from admin dashboard
+window.addEventListener('productsUpdated', function(event) {
+  console.log('Products updated event received');
+  loadAdminProducts();
+});
+
+// Load admin products when page loads
+document.addEventListener('DOMContentLoaded', function() {
+  loadAdminProducts();
+});
+
+// For mobile: Handle storage events across tabs/windows
+window.addEventListener('storage', function(e) {
+  if (e.key === 'websiteProducts') {
+    console.log('Storage event detected for products');
+    loadAdminProducts();
+  }
+});

@@ -11,7 +11,8 @@ const PRODUCT_IMAGES = [
         description: "Small bubble",
         category: "candles",
         featured: true,
-        note: "(x2)"
+        note: "(x2)",
+        rating: 4.8
     },
     {
         id: 2,
@@ -20,7 +21,8 @@ const PRODUCT_IMAGES = [
         price: 199,
         description: "Coconut spiced candle",
         category: "candles",
-        featured: true
+        featured: true,
+        rating: 4.9
     },
     {
         id: 3,
@@ -29,7 +31,8 @@ const PRODUCT_IMAGES = [
         price: 249,
         description: "Flower in bowl",
         category: "candles",
-        featured: true
+        featured: true,
+        rating: 4.7
     },
     {
         id: 4,
@@ -38,7 +41,8 @@ const PRODUCT_IMAGES = [
         price: 499,
         description: "Garden in a boat",
         category: "candles",
-        featured: true
+        featured: true,
+        rating: 5.0
     },
     {
         id: 5,
@@ -47,7 +51,8 @@ const PRODUCT_IMAGES = [
         price: 199,
         description: "Heart candle",
         category: "candles",
-        featured: false
+        featured: false,
+        rating: 4.6
     },
     {
         id: 6,
@@ -56,7 +61,8 @@ const PRODUCT_IMAGES = [
         price: 220,
         description: "Iced coffee latte",
         category: "latte",
-        featured: true
+        featured: true,
+        rating: 4.8
     },
     {
         id: 7,
@@ -65,7 +71,8 @@ const PRODUCT_IMAGES = [
         price: 220,
         description: "Iced lavander latte",
         category: "latte",
-        featured: false
+        featured: false,
+        rating: 4.5
     },
     {
         id: 8,
@@ -74,7 +81,8 @@ const PRODUCT_IMAGES = [
         price: 220,
         description: "Iced Strawberry latte",
         category: "latte",
-        featured: false
+        featured: false,
+        rating: 4.7
     },
     {
         id: 9,
@@ -83,7 +91,8 @@ const PRODUCT_IMAGES = [
         price: 499,
         description: "Ocean in a boat",
         category: "candles",
-        featured: false
+        featured: false,
+        rating: 4.9
     },
     {
         id: 10,
@@ -92,7 +101,8 @@ const PRODUCT_IMAGES = [
         price: 220,
         description: "Ocean jar candle",
         category: "candles",
-        featured: false
+        featured: false,
+        rating: 4.6
     },
     {
         id: 11,
@@ -102,7 +112,8 @@ const PRODUCT_IMAGES = [
         description: "Peony candle",
         category: "candles",
         featured: false,
-        note: "(CUSTOMISED COLOUR)"
+        note: "(CUSTOMISED COLOUR)",
+        rating: 4.8
     },
     {
         id: 12,
@@ -111,7 +122,8 @@ const PRODUCT_IMAGES = [
         price: 199,
         description: "pink heart",
         category: "candles",
-        featured: false
+        featured: false,
+        rating: 4.5
     },
     {
         id: 13,
@@ -120,7 +132,8 @@ const PRODUCT_IMAGES = [
         price: 199,
         description: "red heart",
         category: "candles",
-        featured: false
+        featured: false,
+        rating: 4.7
     },
     {
         id: 14,
@@ -129,7 +142,8 @@ const PRODUCT_IMAGES = [
         price: 199,
         description: "Spiral candle",
         category: "candles",
-        featured: false
+        featured: false,
+        rating: 4.9
     },
     {
         id: 15,
@@ -138,7 +152,8 @@ const PRODUCT_IMAGES = [
         price: 99,
         description: "Red Peony",
         category: "candles",
-        featured: false
+        featured: false,
+        rating: 4.6
     },
     {
         id: 16,
@@ -147,7 +162,8 @@ const PRODUCT_IMAGES = [
         price: 99,
         description: "Custom1",
         category: "candles",
-        featured: false
+        featured: false,
+        rating: 4.8
     },
     {
         id: 17,
@@ -157,7 +173,8 @@ const PRODUCT_IMAGES = [
         description: "Large bubble",
         category: "candles",
         featured: false,
-        note: "(x2)"
+        note: "(x2)",
+        rating: 4.7
     }
 ];
 
@@ -187,9 +204,36 @@ function addNewProduct(productData) {
     return newProduct;
 }
 
+// Function to generate star rating HTML
+function generateStarRating(rating) {
+    const fullStars = Math.floor(rating);
+    const hasHalfStar = rating % 1 !== 0;
+    const emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0);
+    
+    let starsHtml = '';
+    
+    // Add full stars
+    for (let i = 0; i < fullStars; i++) {
+        starsHtml += '<i class="fas fa-star"></i>';
+    }
+    
+    // Add half star if needed
+    if (hasHalfStar) {
+        starsHtml += '<i class="fas fa-star-half-alt"></i>';
+    }
+    
+    // Add empty stars
+    for (let i = 0; i < emptyStars; i++) {
+        starsHtml += '<i class="far fa-star"></i>';
+    }
+    
+    return `<div class="star-rating">${starsHtml} <span class="rating-number">(${rating})</span></div>`;
+}
+
 // Function to generate product HTML
 function generateProductHTML(product) {
     const noteHtml = product.note ? `<small>${product.note}</small>` : '';
+    const ratingHtml = product.rating ? generateStarRating(product.rating) : '';
     return `
         <div class="pc">
             <div class="p">
@@ -200,6 +244,7 @@ function generateProductHTML(product) {
                 <div class="prod">
                     <div class="des">
                         <span>${product.name}</span>
+                        ${ratingHtml}
                         <h5>₹${product.price}/-</h5>${noteHtml}
                     </div>
                     <div class="bun">

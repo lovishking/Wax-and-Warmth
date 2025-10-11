@@ -312,23 +312,57 @@ p {
   box-shadow: 10px 10px 40px rgba(49, 8, 8, 0.09);
 }
 
+/* Product Cards - Modern & Minimal Design */
 #pro1 .pc {
   width: 23%;
   min-width: 250px;
-  padding: 10px 12px;
-  border: 1px solid #c4b7b7;
-  border-radius: 25px;
+  padding: 0;
+  border: none;
+  border-radius: 20px;
   cursor: pointer;
   margin: 15px;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  background: #ffffff;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+  position: relative;
+}
+
+#pro1 .pc:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+}
+
+#pro1 .pc:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #ff6b6b, #4ecdc4, #45b7d1);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+#pro1 .pc:hover:before {
+  opacity: 1;
 }
 
 #pro1 .pc img {
   width: 100%;
-  border-radius: 25px;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 16px 16px 0 0;
+  transition: transform 0.3s ease;
+}
+
+#pro1 .pc:hover img {
+  transform: scale(1.05);
 }
 
 #pro1 .p {
@@ -368,57 +402,128 @@ p {
 }
 
 .prod {
-  padding: 20px;
+  padding: 20px 18px 18px 18px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  backdrop-filter: blur(8px);
-  background: rgba(255, 255, 255, 0.7);
-  border-bottom-left-radius: 20px;
-  border-bottom-right-radius: 20px;
+  background: #ffffff;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 #pro1 .prod {
   display: flex;
   justify-content: space-between;
+  align-items: flex-start;
+  gap: 15px;
 }
 
-#pro1 .procont .cart {
-  width: 40px;
-  height: 40px;
-  line-height: 40px;
-  border-radius: 50%;
-  background-color: #d7e4df;
-  color: #122720;
-  text-align: center;
-  font-size: 18px;
+/* Product Info Styling */
+.des {
+  flex: 1;
 }
 
 .des span {
   display: block;
-  font-size: 16px;
-  color: #333;
-  margin-bottom: 6px;
+  font-size: 15px;
+  color: #2c3e50;
   font-weight: 600;
+  margin-bottom: 6px;
+  line-height: 1.3;
 }
 
 .des h5 {
-  font-size: 20px;
-  color: #867657;
-  margin: 0;
+  color: #e74c3c;
+  font-size: 16px;
   font-weight: 700;
+  margin: 0;
 }
 
-.cart {
-  font-size: 24px;
-  color: #555;
-  transition: color 0.3s ease, transform 0.3s ease;
+.des small {
+  display: block;
+  color: #7f8c8d;
+  font-size: 11px;
+  margin-top: 2px;
+  font-style: italic;
 }
 
-.cart:hover {
-  color: #feb013;
-  transform: scale(1.3);
+/* Star Rating Styling */
+.star-rating {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin: 4px 0;
 }
+
+.star-rating i {
+  color: #f39c12;
+  font-size: 12px;
+}
+
+.star-rating .fas {
+  color: #f39c12;
+}
+
+.star-rating .far {
+  color: #ddd;
+}
+
+.star-rating .rating-number {
+  font-size: 11px;
+  color: #7f8c8d;
+  margin-left: 2px;
+  font-weight: 500;
+}
+
+/* Button Area Styling */
+.bun {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: center;
+}
+
+#pro1 .procont .cart {
+  width: 36px;
+  height: 36px;
+  line-height: 36px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #60676e 0%, #34495e 100%);
+  color: #ffffff;
+  text-align: center;
+  font-size: 16px;
+  transition: all 0.3s ease;
+  border: none;
+  cursor: pointer;
+}
+
+#pro1 .procont .cart:hover {
+  transform: scale(1.1);
+  background: linear-gradient(135deg, #467bac 0%, #2c3e50 100%);
+  box-shadow: 0 4px 16px rgba(44, 62, 80, 0.4);
+}
+
+.bun button {
+  background: linear-gradient(135deg, #9fa1a2 0%, #34495e 100%);
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.bun button:hover {
+  background: linear-gradient(135deg, #1a252f 0%, #2c3e50 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(44, 62, 80, 0.3);
+}
+
+/* Clean up - removing duplicate styles */
 
 .badge {
   position: absolute;
@@ -1190,7 +1295,7 @@ p {
   #pro1 .procont {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 15px;
+    gap: 18px;
     justify-content: center;
   }
   
@@ -1198,6 +1303,24 @@ p {
     width: 100%;
     min-width: unset;
     margin: 0;
+    border-radius: 18px;
+  }
+  
+  #pro1 .pc img {
+    height: 180px;
+    border-radius: 18px 18px 0 0;
+  }
+  
+  .prod {
+    padding: 16px 14px 14px 14px;
+  }
+  
+  .des span {
+    font-size: 13px;
+  }
+  
+  .des h5 {
+    font-size: 15px;
   }
 }
 
@@ -1223,7 +1346,7 @@ p {
   #pro1 .procont {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 10px;
+    gap: 12px;
     justify-content: center;
     margin: 10px;
   }
@@ -1232,27 +1355,83 @@ p {
     width: 100%;
     min-width: unset;
     margin: 0;
-    padding: 8px;
+    padding: 0;
     font-size: 14px;
+    border-radius: 16px;
   }
   
   #pro1 .pc img {
     width: 100%;
-    height: 120px;
+    height: 140px;
     object-fit: cover;
+    border-radius: 16px 16px 0 0;
   }
   
-  #pro1 .pc .des span {
-    font-size: 12px;
+  .prod {
+    padding: 12px 10px 12px 10px;
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    min-height: 120px;
   }
   
-  #pro1 .pc .des h5 {
-    font-size: 14px;
+  .des {
+    flex: 1;
   }
   
-  #pro1 .pc button {
+  .des span {
+    font-size: 11px;
+    margin-bottom: 4px;
+  }
+  
+  .des h5 {
+    font-size: 13px;
+  }
+  
+  .des small {
+    font-size: 9px;
+  }
+  
+  .bun {
+    gap: 8px;
+    width: 100%;
+    margin-top: 8px;
+  }
+  
+  #pro1 .procont .cart {
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    font-size: 13px;
+    border-radius: 8px;
+  }
+  
+  .bun button {
+    font-size: 11px;
+    padding: 10px 14px;
+    border-radius: 8px;
+    width: 100%;
+    min-height: 36px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+    background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%) !important;
+    color: white !important;
+    border: none !important;
+    box-shadow: 0 2px 8px rgba(44, 62, 80, 0.3) !important;
+  }
+  
+  /* Ensure star ratings are properly sized for mobile */
+  .star-rating {
+    margin: 2px 0;
+  }
+  
+  .star-rating i {
     font-size: 10px;
-    padding: 5px 8px;
+  }
+  
+  .star-rating .rating-number {
+    font-size: 9px;
   }
 
   #news { padding: 40px 20px; }

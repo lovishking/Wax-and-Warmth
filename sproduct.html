@@ -20,6 +20,7 @@
           <li><a href="/blog/">Blog</a></li>
           <li><a href="/about/">About</a></li>
           <li><a href="/contact/">Contact</a></li>
+          <li><a href="/admin-login.html" style="opacity: 0.7; font-size: 0.9em;"><i class="fa-solid fa-user-shield"></i> Admin</a></li>
           <li><a href="/cart/"><i
                 class="fa-solid fa-cart-shopping"> cart</i></a></li>
           <a href="#" id="close"><i class="fa-solid fa-xmark"></i></a>
@@ -64,31 +65,9 @@
       <h1>DELIGHTFUL SCENTED CANDLES</h1>
       <div class="procont">
 
-        <!-- Product 1 -->
-        <div class="pc">
-          <div class="p">
-            <img src="/products/blushingbloom.jpg" alt
-              data-name="Blushing bloom" data-price="299"
-              data-image="/products/blushingbloom.jpg"
-              onclick="handleProductClick(this)" style="cursor: pointer;">
-
-            <div class="prod">
-              <div class="des">
-                <span>Blushing Bloom</span>
-                <h5>₹299/-</h5>
-              </div>
-              <div class="bun">
-                <!-- Cart icon -->
-                <a href="#"><i class="fa-solid fa-cart-shopping cart"
-                    onclick="addToCartFromElement(this)"></i></a>
-
-                <!-- Add to Cart button -->
-                <button onclick="addToCartFromElement(this)">
-                  Add to Cart
-                </button>
-              </div>
-            </div>
-          </div>
+        <!-- Products will be loaded dynamically from product-images.js -->
+        <div class="loading-message" style="text-align: center; padding: 20px; color: #666;">
+          Loading products...
         </div>
 
         <!-- Product 1 -->
@@ -705,6 +684,7 @@
 
     <script src="/script.js"></script>
     <script src="/newsletter.js"></script>
+    <script src="/product-images.js"></script>
     <script>
   function getQueryParam(param) {
     const urlParams = new URLSearchParams(window.location.search);

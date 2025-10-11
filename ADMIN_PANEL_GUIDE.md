@@ -11,6 +11,7 @@ The admin panel allows you to manage products, view newsletter subscribers, and 
 - **URL**: `https://wax-and-warmth.shop/admin-login.html`
 - **Username**: `admin`
 - **Password**: `waxandwarmth2025`
+- **Quick Access**: Click "Admin" in the main navigation bar (located next to Contact)
 - **Alternative Access**: Small "Admin" link in the footer of the main website
 
 ### 2. Admin Dashboard Features

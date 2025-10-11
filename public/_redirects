@@ -1,0 +1,16 @@
+/shop shop.html 200
+/shop/ shop.html 200
+/about about.html 200
+/about/ about.html 200
+/contact contact.html 200
+/contact/ contact.html 200
+/cart cart.html 200
+/cart/ cart.html 200
+/blog blog.html 200
+/blog/ blog.html 200
+/sproduct sproduct.html 200
+/sproduct/ sproduct.html 200
+/debug debug.html 200
+/debug/ debug.html 200
+/mobile-access mobile-access.html 200
+/mobile-access/ mobile-access.html 200

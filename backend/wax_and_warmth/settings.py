@@ -21,12 +21,14 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-your-secret-key-here-change-in-production'
+SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY')
+if not SECRET_KEY:
+    raise ValueError("The DJANGO_SECRET_KEY environment variable is not set. Please set it to a secure, random value.")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['wax-and-warmth.shop', 'www.wax-and-warmth.shop', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['wax-and-warmth.shop', 'www.wax-and-warmth.shop', 'localhost', '127.0.0.1', '.vercel.app']
 
 
 # Application definition
@@ -120,11 +122,15 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = BASE_DIR / 'staticfiles'
+STATIC_ROOT = BASE_DIR / 'staticfiles_build' / 'static'
 
 STATICFILES_DIRS = [
     BASE_DIR.parent,  # This points to the main project directory with CSS, JS, images
 ]
+
+# Media files for user uploads (if any)
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
@@ -135,6 +141,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 CORS_ALLOWED_ORIGINS = [
     "https://wax-and-warmth.shop",
     "https://www.wax-and-warmth.shop",
+    "https://*.vercel.app",
     "http://localhost:3000",
     "http://127.0.0.1:3000",
     "http://localhost:8000",
@@ -148,6 +155,7 @@ CORS_ALLOW_CREDENTIALS = True
 CSRF_TRUSTED_ORIGINS = [
     "https://wax-and-warmth.shop",
     "https://www.wax-and-warmth.shop",
+    "https://*.vercel.app",
     "http://localhost:3000",
     "http://127.0.0.1:3000",
     "http://localhost:8000",

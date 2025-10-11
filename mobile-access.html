@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mobile Access Instructions - Wax and Warmth</title>
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            padding: 20px; 
+            max-width: 600px; 
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+        .instruction-box { 
+            background: #f8f9fa; 
+            padding: 20px; 
+            margin: 15px 0; 
+            border-radius: 8px; 
+            border-left: 4px solid #f5b942;
+        }
+        .url-box { 
+            background: #e8f5e8; 
+            padding: 15px; 
+            border-radius: 5px; 
+            font-family: monospace; 
+            font-size: 18px;
+            text-align: center;
+            margin: 10px 0;
+        }
+        .step { 
+            background: #fff; 
+            padding: 15px; 
+            margin: 10px 0; 
+            border-radius: 5px; 
+            border: 1px solid #ddd;
+        }
+        h1 { color: #333; text-align: center; }
+        h2 { color: #f5b942; }
+        .warning { 
+            background: #fff3cd; 
+            padding: 10px; 
+            border-radius: 5px; 
+            border-left: 4px solid #ffc107;
+            margin: 15px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>📱 Access Your Website on Mobile</h1>
+    
+    <div class="instruction-box">
+        <h2>🏠 Your Website URLs</h2>
+        <p><strong>On Computer:</strong></p>
+        <div class="url-box">http://127.0.0.1:8000/</div>
+        
+        <p><strong>On Mobile Device:</strong></p>
+        <div class="url-box">http://192.168.0.101:8000/</div>
+    </div>
+
+    <div class="instruction-box">
+        <h2>📋 Step-by-Step Instructions</h2>
+        
+        <div class="step">
+            <h3>Step 1: Ensure Same WiFi Network</h3>
+            <p>Make sure your phone and computer are connected to the <strong>same WiFi network</strong>.</p>
+        </div>
+
+        <div class="step">
+            <h3>Step 2: Open Browser on Phone</h3>
+            <p>Open your mobile browser (Chrome, Safari, etc.) and type:</p>
+            <div class="url-box">http://192.168.0.101:8000/</div>
+        </div>
+
+        <div class="step">
+            <h3>Step 3: Navigate to Different Pages</h3>
+            <p>Use these URLs on your mobile:</p>
+            <ul>
+                <li><strong>Home:</strong> http://192.168.0.101:8000/</li>
+                <li><strong>Shop:</strong> http://192.168.0.101:8000/shop/</li>
+                <li><strong>About:</strong> http://192.168.0.101:8000/about/</li>
+                <li><strong>Contact:</strong> http://192.168.0.101:8000/contact/</li>
+                <li><strong>Cart:</strong> http://192.168.0.101:8000/cart/</li>
+                <li><strong>Blog:</strong> http://192.168.0.101:8000/blog/</li>
+                <li><strong>Debug:</strong> http://192.168.0.101:8000/debug/</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="warning">
+        <h3>⚠️ Important Notes</h3>
+        <ul>
+            <li>Your computer must be running the Django server</li>
+            <li>Both devices must be on the same WiFi network</li>
+            <li>If it doesn't work, try disabling Windows Firewall temporarily</li>
+            <li>Some routers block device-to-device communication</li>
+        </ul>
+    </div>
+
+    <div class="instruction-box">
+        <h2>🔧 Troubleshooting</h2>
+        
+        <div class="step">
+            <h3>If you get 404 errors:</h3>
+            <ol>
+                <li>Make sure the Django server is running with: <code>python manage.py runserver 0.0.0.0:8000</code></li>
+                <li>Check if Windows Firewall is blocking port 8000</li>
+                <li>Try accessing the debug page first: http://192.168.0.101:8000/debug/</li>
+            </ol>
+        </div>
+
+        <div class="step">
+            <h3>If the site doesn't load at all:</h3>
+            <ol>
+                <li>Verify both devices are on the same WiFi</li>
+                <li>Try pinging from your phone: ping 192.168.0.101</li>
+                <li>Check your router settings for AP isolation</li>
+            </ol>
+        </div>
+    </div>
+
+    <div class="instruction-box">
+        <h2>🎯 Quick Test</h2>
+        <p>Try this URL on your mobile browser right now:</p>
+        <div class="url-box">
+            <a href="http://192.168.0.101:8000/" target="_blank">http://192.168.0.101:8000/</a>
+        </div>
+    </div>
+
+    <script>
+        // Auto-update the IP if needed
+        console.log('Mobile access page loaded');
+        console.log('Server should be accessible at: http://192.168.0.101:8000/');
+    </script>
+</body>
+</html>

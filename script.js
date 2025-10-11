@@ -397,3 +397,69 @@ window.addEventListener('storage', function(e) {
     loadAdminProducts();
   }
 });
+
+// Testimonial Auto-Scroll for Mobile
+function initTestimonialAutoScroll() {
+  const testimonialGrid = document.querySelector('.testimonial-grid');
+  const testimonialCards = document.querySelectorAll('.testimonial-card');
+  
+  if (!testimonialGrid || testimonialCards.length === 0) return;
+  
+  // Check if it's mobile view
+  function isMobileView() {
+    return window.innerWidth <= 477;
+  }
+  
+  let currentIndex = 0;
+  let autoScrollInterval;
+  
+  function startAutoScroll() {
+    if (!isMobileView()) return;
+    
+    autoScrollInterval = setInterval(() => {
+      currentIndex = (currentIndex + 1) % testimonialCards.length;
+      const scrollPosition = currentIndex * 300; // 280px card width + 20px gap
+      
+      testimonialGrid.scrollTo({
+        left: scrollPosition,
+        behavior: 'smooth'
+      });
+    }, 4000); // Change every 4 seconds
+  }
+  
+  function stopAutoScroll() {
+    if (autoScrollInterval) {
+      clearInterval(autoScrollInterval);
+      autoScrollInterval = null;
+    }
+  }
+  
+  // Start/stop based on mobile view
+  function handleResize() {
+    if (isMobileView()) {
+      testimonialGrid.style.overflowX = 'auto';
+      startAutoScroll();
+    } else {
+      stopAutoScroll();
+      testimonialGrid.style.overflowX = 'visible';
+      testimonialGrid.scrollTo({ left: 0 });
+    }
+  }
+  
+  // Pause auto-scroll when user interacts
+  testimonialGrid.addEventListener('touchstart', stopAutoScroll);
+  testimonialGrid.addEventListener('scroll', () => {
+    stopAutoScroll();
+    // Restart after 3 seconds of no interaction
+    setTimeout(() => {
+      if (isMobileView()) startAutoScroll();
+    }, 3000);
+  });
+  
+  // Initialize
+  handleResize();
+  window.addEventListener('resize', handleResize);
+}
+
+// Initialize testimonial auto-scroll when DOM is loaded
+document.addEventListener('DOMContentLoaded', initTestimonialAutoScroll);

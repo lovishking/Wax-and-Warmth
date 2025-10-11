@@ -3,21 +3,122 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mobile Cart Debug</title>
+    <title>Admin Debug - Clear Session</title>
     <style>
-        body { font-family: Arial, sans-serif; padding: 20px; }
-        .debug-info { background: #f0f0f0; padding: 10px; margin: 10px 0; border-radius: 5px; }
-        button { padding: 15px; margin: 10px; font-size: 16px; }
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        .btn {
+            padding: 15px 30px;
+            margin: 10px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+        }
+        .btn-danger {
+            background: #dc3545;
+            color: white;
+        }
+        .btn-primary {
+            background: #007bff;
+            color: white;
+        }
+        .btn-success {
+            background: #28a745;
+            color: white;
+        }
+        .info {
+            margin: 20px 0;
+            padding: 15px;
+            background: #e9ecef;
+            border-radius: 5px;
+            text-align: left;
+        }
     </style>
 </head>
 <body>
-    <h1>Mobile Cart Debug Page</h1>
-    
-    <div class="debug-info">
-        <h3>Browser Info:</h3>
-        <p><strong>User Agent:</strong> <span id="user-agent"></span></p>
-        <p><strong>Is Mobile:</strong> <span id="is-mobile"></span></p>
-        <p><strong>LocalStorage Available:</strong> <span id="storage-available"></span></p>
+    <div class="container">
+        <h1>🔧 Admin Debug Tool</h1>
+        <p>This page helps resolve login loop issues by clearing conflicting session data.</p>
+        
+        <div class="info">
+            <h3>Current localStorage Data:</h3>
+            <div id="storageInfo"></div>
+        </div>
+        
+        <button class="btn btn-danger" onclick="clearAllAdminData()">
+            Clear All Admin Data
+        </button>
+        
+        <button class="btn btn-primary" onclick="checkAdminData()">
+            Check Current Data
+        </button>
+        
+        <button class="btn btn-success" onclick="goToLogin()">
+            Go to Admin Login
+        </button>
+        
+        <div id="message" style="margin-top: 20px; padding: 10px; display: none;"></div>
+    </div>
+
+    <script>
+        function checkAdminData() {
+            const storageInfo = document.getElementById('storageInfo');
+            const adminSession = localStorage.getItem('adminSession');
+            const adminUsername = localStorage.getItem('adminUsername');
+            const oldAdminSession = localStorage.getItem('admin_session');
+            
+            storageInfo.innerHTML = `
+                <strong>adminSession:</strong> ${adminSession || 'Not set'}<br>
+                <strong>adminUsername:</strong> ${adminUsername || 'Not set'}<br>
+                <strong>admin_session (old):</strong> ${oldAdminSession || 'Not set'}<br>
+                <hr>
+                <small>Total localStorage items: ${localStorage.length}</small>
+            `;
+        }
+        
+        function clearAllAdminData() {
+            // Clear all admin-related localStorage
+            localStorage.removeItem('adminSession');
+            localStorage.removeItem('adminUsername');
+            localStorage.removeItem('admin_session');
+            
+            const message = document.getElementById('message');
+            message.textContent = '✅ All admin session data cleared successfully!';
+            message.style.display = 'block';
+            message.style.background = '#d4edda';
+            message.style.color = '#155724';
+            message.style.borderRadius = '5px';
+            
+            checkAdminData();
+            
+            setTimeout(() => {
+                message.style.display = 'none';
+            }, 3000);
+        }
+        
+        function goToLogin() {
+            window.location.href = '/admin-login.html';
+        }
+        
+        // Check data on page load
+        window.addEventListener('DOMContentLoaded', checkAdminData);
+    </script>
+</body>
+</html>
         <p><strong>Current URL:</strong> <span id="current-url"></span></p>
     </div>
 

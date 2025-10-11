@@ -223,14 +223,14 @@ function loadProductsFromConfig() {
     let productsToShow = [];
     
     if (currentPage === '/' || currentPage === '/index.html' || currentPage.includes('index')) {
-        // Home page - show featured products
-        productsToShow = getFeaturedProducts();
-    } else if (currentPage === '/shop/' || currentPage === '/shop.html' || currentPage.includes('shop')) {
+        // Home page - show all products (like original design)
+        productsToShow = getAllProducts();
+    } else if (currentPage === '/shop.html' || currentPage.includes('shop')) {
         // Shop page - show all products
         productsToShow = getAllProducts();
     } else {
-        // Other pages - show featured products
-        productsToShow = getFeaturedProducts();
+        // Other pages - show all products
+        productsToShow = getAllProducts();
     }
     
     const productContainer = document.querySelector('#pro1 .procont');

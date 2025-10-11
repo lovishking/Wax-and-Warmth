@@ -1,0 +1,26 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "deploy.sh",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "."
+      }
+    }
+  ],
+  "rewrites": [
+    { "source": "/shop", "destination": "/shop.html" },
+    { "source": "/shop/", "destination": "/shop.html" },
+    { "source": "/about", "destination": "/about.html" },
+    { "source": "/about/", "destination": "/about.html" },
+    { "source": "/contact", "destination": "/contact.html" },
+    { "source": "/contact/", "destination": "/contact.html" },
+    { "source": "/cart", "destination": "/cart.html" },
+    { "source": "/cart/", "destination": "/cart.html" },
+    { "source": "/blog", "destination": "/blog.html" },
+    { "source": "/blog/", "destination": "/blog.html" },
+    { "source": "/sproduct", "destination": "/sproduct.html" },
+    { "source": "/sproduct/", "destination": "/sproduct.html" }
+  ]
+}

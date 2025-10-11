@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Newsletter Admin - Wax and Warmth</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            opacity: 0.9;
+            font-size: 1.1rem;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            padding: 30px;
+            background: #f8f9fa;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            color: #666;
+            font-size: 1.1rem;
+        }
+
+        .content {
+            padding: 30px;
+        }
+
+        .controls {
+            margin-bottom: 30px;
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background: #667eea;
+            color: white;
+        }
+
+        .btn-success {
+            background: #28a745;
+            color: white;
+        }
+
+        .btn-danger {
+            background: #dc3545;
+            color: white;
+        }
+
+        .btn-info {
+            background: #17a2b8;
+            color: white;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .email-list {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 20px;
+            max-height: 500px;
+            overflow-y: auto;
+        }
+
+        .email-item {
+            background: white;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .email-address {
+            font-weight: 600;
+            color: #333;
+        }
+
+        .email-date {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .no-data {
+            text-align: center;
+            color: #666;
+            font-style: italic;
+            padding: 40px;
+        }
+
+        .search-box {
+            width: 100%;
+            padding: 12px 20px;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            font-size: 1rem;
+            margin-bottom: 20px;
+        }
+
+        .search-box:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .controls {
+                flex-direction: column;
+            }
+            
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📧 Newsletter Admin</h1>
+            <p>Manage your Wax and Warmth newsletter subscriptions</p>
+        </div>
+
+        <div class="stats">
+            <div class="stat-card">
+                <div class="stat-number" id="totalSubscribers">0</div>
+                <div class="stat-label">Total Subscribers</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="todaySubscribers">0</div>
+                <div class="stat-label">Today's Subscriptions</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="thisWeekSubscribers">0</div>
+                <div class="stat-label">This Week</div>
+            </div>
+        </div>
+
+        <div class="content">
+            <div class="controls">
+                <button class="btn btn-primary" onclick="refreshData()">
+                    🔄 Refresh Data
+                </button>
+                <button class="btn btn-success" onclick="exportEmails()">
+                    📥 Export Emails
+                </button>
+                <button class="btn btn-info" onclick="copyAllEmails()">
+                    📋 Copy All Emails
+                </button>
+                <button class="btn btn-danger" onclick="clearAllData()">
+                    🗑️ Clear All Data
+                </button>
+            </div>
+
+            <input type="text" class="search-box" id="searchBox" placeholder="🔍 Search emails..." onkeyup="filterEmails()">
+
+            <div class="email-list" id="emailList">
+                <div class="no-data">Loading newsletter data...</div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/newsletter.js"></script>
+    <script>
+        let allSubscribers = [];
+        let allHistory = [];
+
+        // Load data when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            loadNewsletterData();
+        });
+
+        function loadNewsletterData() {
+            // Get data from localStorage
+            allSubscribers = getAllSubscribers() || [];
+            allHistory = getSubscriptionHistory() || [];
+            
+            updateStats();
+            displayEmails();
+        }
+
+        function updateStats() {
+            // Total subscribers
+            document.getElementById('totalSubscribers').textContent = allSubscribers.length;
+
+            // Today's subscriptions
+            const today = new Date().toDateString();
+            const todayCount = allHistory.filter(sub => 
+                new Date(sub.timestamp).toDateString() === today
+            ).length;
+            document.getElementById('todaySubscribers').textContent = todayCount;
+
+            // This week's subscriptions
+            const weekAgo = new Date();
+            weekAgo.setDate(weekAgo.getDate() - 7);
+            const weekCount = allHistory.filter(sub => 
+                new Date(sub.timestamp) >= weekAgo
+            ).length;
+            document.getElementById('thisWeekSubscribers').textContent = weekCount;
+        }
+
+        function displayEmails() {
+            const emailList = document.getElementById('emailList');
+            
+            if (allHistory.length === 0) {
+                emailList.innerHTML = '<div class="no-data">No newsletter subscriptions yet. 📭</div>';
+                return;
+            }
+
+            // Sort by newest first
+            const sortedHistory = allHistory.sort((a, b) => 
+                new Date(b.timestamp) - new Date(a.timestamp)
+            );
+
+            const emailHTML = sortedHistory.map(sub => `
+                <div class="email-item" data-email="${sub.email}">
+                    <div class="email-address">${sub.email}</div>
+                    <div class="email-date">${formatDate(sub.timestamp)}</div>
+                </div>
+            `).join('');
+
+            emailList.innerHTML = emailHTML;
+        }
+
+        function formatDate(timestamp) {
+            const date = new Date(timestamp);
+            return date.toLocaleDateString() + ' ' + date.toLocaleTimeString([], {
+                hour: '2-digit',
+                minute: '2-digit'
+            });
+        }
+
+        function filterEmails() {
+            const searchTerm = document.getElementById('searchBox').value.toLowerCase();
+            const emailItems = document.querySelectorAll('.email-item');
+            
+            emailItems.forEach(item => {
+                const email = item.getAttribute('data-email').toLowerCase();
+                if (email.includes(searchTerm)) {
+                    item.style.display = 'flex';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+
+        function refreshData() {
+            loadNewsletterData();
+            showNotification('Data refreshed successfully! ✅', 'success');
+        }
+
+        function exportEmails() {
+            exportSubscribers(); // Use the function from newsletter.js
+            showNotification('Email data exported! 📥', 'success');
+        }
+
+        function copyAllEmails() {
+            const emails = allSubscribers.join('\n');
+            navigator.clipboard.writeText(emails).then(() => {
+                showNotification('All emails copied to clipboard! 📋', 'success');
+            }).catch(() => {
+                // Fallback for older browsers
+                const textArea = document.createElement('textarea');
+                textArea.value = emails;
+                document.body.appendChild(textArea);
+                textArea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textArea);
+                showNotification('All emails copied to clipboard! 📋', 'success');
+            });
+        }
+
+        function clearAllData() {
+            if (confirm('⚠️ Are you sure you want to delete ALL newsletter data? This cannot be undone!')) {
+                localStorage.removeItem('newsletter_subscribers');
+                localStorage.removeItem('newsletter_subscription_history');
+                loadNewsletterData();
+                showNotification('All newsletter data cleared! 🗑️', 'info');
+            }
+        }
+
+        function showNotification(message, type) {
+            // Create notification element
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                padding: 15px 25px;
+                border-radius: 8px;
+                color: white;
+                font-weight: 600;
+                z-index: 1000;
+                animation: slideIn 0.3s ease;
+                ${type === 'success' ? 'background: #28a745;' : 
+                  type === 'error' ? 'background: #dc3545;' : 
+                  'background: #17a2b8;'}
+            `;
+            notification.textContent = message;
+            
+            // Add animation styles
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes slideIn {
+                    from { transform: translateX(100%); opacity: 0; }
+                    to { transform: translateX(0); opacity: 1; }
+                }
+            `;
+            document.head.appendChild(style);
+            
+            document.body.appendChild(notification);
+            
+            // Remove after 3 seconds
+            setTimeout(() => {
+                notification.remove();
+            }, 3000);
+        }
+    </script>
+</body>
+</html>

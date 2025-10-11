@@ -6,6 +6,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Wax and Warmth</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/jpeg" href="/images/logo.jpg">
+    <link rel="shortcut icon" type="image/jpeg" href="/images/logo.jpg">
+    <link rel="apple-touch-icon" href="/images/logo.jpg">
   
     <link rel="stylesheet" href="/style.css" />
     <link rel="stylesheet"
@@ -22,17 +27,17 @@
         <ul id="navbar">
           <li><a class="active" href="/">Home</a></li>
           <li><a href="/shop.html">Shop</a></li>
-          <li><a href="/blog/">Blog</a></li>
-          <li><a href="/about/">About</a></li>
-          <li><a href="/contact/">Contact</a></li>
+          <li><a href="/blog.html">Blog</a></li>
+          <li><a href="/about.html">About</a></li>
+          <li><a href="/contact.html">Contact</a></li>
           <li><a href="/admin-login.html" style="opacity: 0.7; font-size: 0.9em;"><i class="fa-solid fa-user-shield"></i> Admin</a></li>
-          <li><a href="/cart/"><i
+          <li><a href="/cart.html"><i
                 class="fa-solid fa-cart-shopping"> cart</i></a></li>
           <a href="#" id="close"><i class="fa-solid fa-xmark"></i></a>
 
         </ul>
         <div id="mobile">
-          <a href="/cart/"><i
+          <a href="/cart.html"><i
               class="fa-solid fa-cart-shopping">cart</i> </a>
           <i id="bar" class="fas fa-outdent"></i>
         </div>
@@ -42,11 +47,58 @@
 
     <!-- Hero Banner -->
     <section id="hero">
-      <h4 class="flicker">NEW ARRIVAL!!</h4>
-      <h2>Super value deals</h2>
-      <h1>On all CANDLES</h1>
-      <h4>Up to 50% off !!</h4>
-      <button><a href="/shop.html" class="l9">Shop now</a></button>
+      <div class="hero-overlay"></div>
+      <div class="hero-content">
+        <h1 class="hero-title">
+          Illuminate Your Space with
+          <span class="gradient-text">Premium Candles</span>
+        </h1>
+        <p class="hero-description">
+          Discover our handcrafted collection of luxury candles that transform any moment into something magical. Made with natural wax and premium fragrances.
+        </p>
+        <div class="hero-features">
+          <div class="feature-item">
+            <span class="feature-icon">🕯️</span>
+            <span>Handcrafted</span>
+          </div>
+          <div class="feature-item">
+            <span class="feature-icon">🌿</span>
+            <span>Natural Wax</span>
+          </div>
+          <div class="feature-item">
+            <span class="feature-icon">💎</span>
+            <span>Premium Quality</span>
+          </div>
+        </div>
+        <div class="hero-buttons">
+          <a href="/shop.html" class="btn-primary">
+            <span>Shop Collection</span>
+            <i class="fas fa-arrow-right"></i>
+          </a>
+          <a href="/about.html" class="btn-secondary">
+            <span>Learn More</span>
+          </a>
+        </div>
+        <div class="hero-stats">
+          <div class="stat-item">
+            <div class="stat-number">1000+</div>
+            <div class="stat-label">Happy Customers</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">50+</div>
+            <div class="stat-label">Unique Scents</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">5★</div>
+            <div class="stat-label">Average Rating</div>
+          </div>
+        </div>
+      </div>
+      <div class="hero-image">
+        <div class="floating-candle">
+          <img src="/images/candle-546563.jpg" alt="Premium Candle Collection">
+        </div>
+      </div>
     </section>
 
     <!-- Features -->
@@ -67,22 +119,98 @@
 
     <!-- Testimonials Section -->
     <section id="testimonials" class="section-p1">
-      <h2>What Our Customers Say</h2>
-      <br><br>
-      <div class="testimonial-container">
-        <button id="prevBtn">&#10094;</button>
+      <div class="testimonial-header">
+        <h2>What Our Customers Say</h2>
+        <p>Real experiences from people who love our candles</p>
+      </div>
+      
+      <div class="testimonial-grid">
+        <div class="testimonial-card">
+          <div class="testimonial-content">
+            <div class="review-image">
+              <img src="testi/1.jpg" alt="Customer's candle purchase">
+            </div>
+            <div class="stars">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+            </div>
+            <p class="testimonial-text">
+              "The scents are absolutely divine! These candles create such a warm and cozy atmosphere in my home. The quality is exceptional and they burn evenly for hours."
+            </p>
+            <div class="customer-info">
+              <div class="customer-details">
+                <h4>Pranav</h4>
+                <span>Mumbai, Maharashtra</span>
+              </div>
+            </div>
+          </div>
+        </div>
 
-        <div class="testimonial active">
-          <img src="testi/1.jpg" alt="Customer Review 1" />
-        </div>
-        <div class="testimonial">
-          <img src="testi/2.jpg" alt="Customer Review 2" />
-        </div>
-        <div class="testimonial">
-          <img src="testi/3.jpg" alt="Customer Review 3" />
+        <div class="testimonial-card">
+          <div class="testimonial-content">
+            <div class="review-image">
+              <img src="testi/2.jpg" alt="Customer's candle purchase">
+            </div>
+            <div class="stars">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+            </div>
+            <p class="testimonial-text">
+              "Perfect for festivals and gifting! I ordered custom candles for Diwali celebrations and they exceeded all expectations. Beautiful packaging and amazing fragrances that last for hours."
+            </p>
+            <div class="customer-info">
+              <div class="customer-details">
+                <h4>Srishti Thakur</h4>
+                <span>Bangalore, Karnataka</span>
+              </div>
+            </div>
+          </div>
         </div>
 
-        <button id="nextBtn">&#10095;</button>
+        <div class="testimonial-card">
+          <div class="testimonial-content">
+            <div class="review-image">
+              <img src="testi/3.jpg" alt="Customer's candle purchase">
+            </div>
+            <div class="stars">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+            </div>
+            <p class="testimonial-text">
+              "Outstanding quality and customer service! The natural wax burns cleanly and the scents are not overpowering. Perfect for meditation and creating a peaceful ambiance at home."
+            </p>
+            <div class="customer-info">
+              <div class="customer-details">
+                <h4>Kavya Reddy</h4>
+                <span>Hyderabad, Telangana</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="testimonial-stats">
+        <div class="stat-box">
+          <div class="stat-number">4.9/5</div>
+          <div class="stat-label">Average Rating</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-number">2,500+</div>
+          <div class="stat-label">Happy Customers</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-number">98%</div>
+          <div class="stat-label">Would Recommend</div>
+        </div>
       </div>
     </section>
 
@@ -135,9 +263,9 @@
     <p>&copy; 2025 Wax and Warmth</p>
     <nav>
       <a href="/">Home</a> |
-      <a href="/blog/">Blog</a> |
-      <a href="/about/">About</a> |
-      <a href="/contact/">Contact</a> |
+      <a href="/blog.html">Blog</a> |
+      <a href="/about.html">About</a> |
+      <a href="/contact.html">Contact</a> |
       <a href="/admin-login.html" style="opacity: 0.3; font-size: 10px;">Admin</a>
     </nav>
   </div>

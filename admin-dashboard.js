@@ -6,28 +6,67 @@ document.addEventListener('DOMContentLoaded', function() {
     setupImageDragDrop();
 });
 
-// Authentication check
+// Authentication check with enhanced security
 function checkAuth() {
     const adminSession = localStorage.getItem('adminSession');
     const adminUsername = localStorage.getItem('adminUsername');
+    const sessionToken = localStorage.getItem('sessionToken');
+    const loginTimestamp = localStorage.getItem('loginTimestamp');
     
+    // Check if session exists
     if (!adminSession || adminSession !== 'active') {
-        window.location.href = '/admin-login.html';
+        redirectToLogin();
         return;
     }
     
-    // Set username in header
+    // Check session timeout (24 hours)
+    if (loginTimestamp) {
+        const sessionAge = Date.now() - parseInt(loginTimestamp);
+        const maxAge = 24 * 60 * 60 * 1000; // 24 hours
+        
+        if (sessionAge > maxAge) {
+            console.log('Session expired');
+            logout();
+            return;
+        }
+    }
+    
+    // Validate session token
+    if (!sessionToken || sessionToken.length !== 32) {
+        redirectToLogin();
+        return;
+    }
+    
+    // Set username in header (decode from base64)
     if (adminUsername) {
-        document.getElementById('adminUsername').textContent = adminUsername;
+        try {
+            const decodedUsername = atob(adminUsername);
+            document.getElementById('adminUsername').textContent = decodedUsername;
+        } catch (e) {
+            // Fallback for non-encoded usernames
+            document.getElementById('adminUsername').textContent = adminUsername;
+        }
     }
 }
 
-// Logout function
+function redirectToLogin() {
+    // Clear potentially corrupted session data
+    logout();
+}
+
+// Enhanced logout function with complete cleanup
 function logout() {
     // Clear all possible admin session keys
     localStorage.removeItem('adminSession');
     localStorage.removeItem('adminUsername');
+    localStorage.removeItem('sessionToken');
+    localStorage.removeItem('loginTimestamp');
     localStorage.removeItem('admin_session'); // Clean up old format if exists
+    
+    // Clear any cached admin data
+    sessionStorage.clear();
+    
+    // Redirect to login
     window.location.href = '/admin-login.html';
 }
 

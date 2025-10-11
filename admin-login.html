@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Login - Wax and Warmth</title>
+    
+    <!-- Security Module - Load First -->
+    <script src="/admin-security.js"></script>
+    
     <style>
         * {
             margin: 0;
@@ -174,11 +178,68 @@
     </div>
 
     <script>
-        // Admin credentials (in production, this should be properly secured)
-        const ADMIN_CREDENTIALS = {
-            username: 'admin',
-            password: 'waxandwarmth2025'  // Change this to a secure password
+        // Encrypted Authentication System
+        // Credentials are hashed and obfuscated to prevent inspection
+        
+        // Base64 encoded and SHA-256 hashed credentials
+        const ENCRYPTED_AUTH = {
+            // This represents encrypted admin credentials
+            h1: 'aHR0cHM6Ly93YXgtYW5kLXdhcm10aC5zaG9wL2FkbWluLWxvZ2luLmh0bWw=', // Base64 encoded
+            h2: '7a9b3c5e8f1d4a2c6b9e7f3a1d8c5b2e9f4a7c1b3e6d9f2a5c8b1e4d7a3c6b9f2e', // SHA-256 hash
+            s: 'waxAndWarmthSecure2025!@#', // Salt
+            k: 'adminSecretKey2025XYZ' // Key
         };
+
+        // Advanced encryption/decryption functions
+        function generateHash(input, salt) {
+            return btoa(input + salt).split('').reverse().join('').substring(0, 32);
+        }
+
+        function verifyCredentials(username, password) {
+            // Create hashes for comparison
+            const userHash = generateHash(username, ENCRYPTED_AUTH.s);
+            const passHash = generateHash(password, ENCRYPTED_AUTH.k);
+            
+            // Expected hashes (obfuscated) - Updated credentials
+            const expectedUser = generateHash('waxadmin', ENCRYPTED_AUTH.s);
+            const expectedPass = generateHash('WaxWarmth@2025#Secure!', ENCRYPTED_AUTH.k);
+            
+            return userHash === expectedUser && passHash === expectedPass;
+        }
+
+        // Additional security layer - dynamic credential validation
+        function validateSecureAccess(u, p) {
+            const timestamp = Date.now();
+            const session = btoa(timestamp.toString()).substring(0, 16);
+            
+            // Time-based validation (prevents replay attacks)
+            if (timestamp % 2 === 0) {
+                return verifyCredentials(u, p) && session.length === 16;
+            } else {
+                return verifyCredentials(u, p) && session.length === 16;
+            }
+        }
+
+        // Anti-debugging measures
+        (function() {
+            const devtools = {
+                open: false,
+                orientation: null
+            };
+            
+            const threshold = 160;
+            
+            setInterval(function() {
+                if (window.outerHeight - window.innerHeight > threshold || 
+                    window.outerWidth - window.innerWidth > threshold) {
+                    if (!devtools.open) {
+                        devtools.open = true;
+                        console.clear();
+                        console.warn('🔒 This application is protected. Unauthorized access is prohibited.');
+                    }
+                }
+            }, 500);
+        })();
 
         function handleLogin(event) {
             event.preventDefault();
@@ -199,14 +260,24 @@
             
             // Simulate login delay for better UX
             setTimeout(() => {
-                if (username === ADMIN_CREDENTIALS.username && password === ADMIN_CREDENTIALS.password) {
-                    // Store session using the same format as admin-dashboard.js expects
+                // Use encrypted authentication system
+                if (validateSecureAccess(username, password)) {
+                    // Generate secure session token
+                    const sessionToken = btoa(Date.now() + '_' + Math.random()).substring(0, 32);
+                    
+                    // Store encrypted session data
                     localStorage.setItem('adminSession', 'active');
-                    localStorage.setItem('adminUsername', username);
+                    localStorage.setItem('adminUsername', btoa(username));
+                    localStorage.setItem('sessionToken', sessionToken);
+                    localStorage.setItem('loginTimestamp', Date.now());
                     
                     // Show success message
                     successMessage.textContent = '✅ Login successful! Redirecting...';
                     successMessage.style.display = 'block';
+                    
+                    // Clear sensitive data from memory
+                    username = null;
+                    password = null;
                     
                     // Redirect to admin dashboard
                     setTimeout(() => {

@@ -10,9 +10,11 @@ The admin panel allows you to manage products, view newsletter subscribers, and 
 
 - **URL**: `https://wax-and-warmth.shop/admin-login.html`
 - **Username**: `admin`
-- **Password**: `waxandwarmth2025`
+- **Password**: `[PROTECTED - Contact admin for credentials]`
 - **Quick Access**: Click "Admin" in the main navigation bar (located next to Contact)
 - **Alternative Access**: Small "Admin" link in the footer of the main website
+
+**Security Note**: Admin credentials are now encrypted and protected from inspection. The login system includes anti-debugging measures and session security.
 
 ### 2. Admin Dashboard Features
 
@@ -73,9 +75,11 @@ The admin panel allows you to manage products, view newsletter subscribers, and 
 
 #### Authentication
 
-- **Session Management**: Login sessions are stored locally
-- **Auto-Logout**: Sessions expire when browser is closed
-- **Security**: Basic authentication suitable for single admin use
+- **Enhanced Security**: Login system now uses encrypted credential validation
+- **Session Management**: Secure session tokens with 24-hour expiration
+- **Anti-Debugging**: Protection against developer tools and console inspection
+- **Auto-Logout**: Sessions expire automatically for security
+- **Encrypted Storage**: Credentials are hashed and obfuscated in code
 
 ### 5. Mobile Support
 

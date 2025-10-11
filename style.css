@@ -1396,22 +1396,23 @@ p {
     gap: 8px;
     width: 100%;
     margin-top: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
   
+  /* Hide cart icon on mobile */
   #pro1 .procont .cart {
-    width: 30px;
-    height: 30px;
-    line-height: 30px;
-    font-size: 13px;
-    border-radius: 8px;
+    display: none;
   }
   
   .bun button {
     font-size: 11px;
-    padding: 10px 14px;
+    padding: 8px 16px;
     border-radius: 8px;
-    width: 100%;
-    min-height: 36px;
+    width: auto;
+    max-width: 120px;
+    min-height: 32px;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.3px;

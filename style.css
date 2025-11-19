@@ -185,7 +185,9 @@ p {
 /* Hero Section */
 #hero {
   min-height: 100vh;
-  background: linear-gradient(135deg, #ffffff 0%, #f8f8f8 100%);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(248, 248, 248, 0.95) 100%),
+    url('/images/candle-546563.jpg') center/cover no-repeat;
+  background-attachment: fixed;
   position: relative;
   display: flex;
   align-items: center;
@@ -2042,6 +2044,18 @@ p {
   }
 
   /* Testimonials Mobile */
+  #testimonials {
+    padding: 40px 20px 30px 20px;
+  }
+
+  .testimonial-header {
+    margin-bottom: 30px;
+  }
+
+  .testimonial-header h2 {
+    font-size: 1.8rem;
+  }
+
   .testimonial-grid {
     display: flex !important;
     overflow-x: auto !important;
@@ -2100,6 +2114,7 @@ p {
     flex-direction: column !important;
     gap: 15px !important;
     text-align: center !important;
+    margin-top: 10px !important;
   }
 
   .stat-item h3 {

@@ -185,9 +185,7 @@ p {
 /* Hero Section */
 #hero {
   min-height: 100vh;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(248, 248, 248, 0.95) 100%),
-    url('/images/candle-546563.jpg') center/cover no-repeat;
-  background-attachment: fixed;
+  background: #ffffff url('/images/bg.png') center/cover no-repeat;
   position: relative;
   display: flex;
   align-items: center;
@@ -202,7 +200,7 @@ p {
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(135deg, rgba(248, 248, 248, 0.9) 0%, rgba(255, 255, 255, 0.8) 100%);
+  background: rgba(255, 255, 255, 0.3);
   z-index: 1;
 }
 
@@ -211,7 +209,7 @@ p {
   max-width: 100%;
   z-index: 2;
   position: relative;
-  color: #222;
+  color: #1a1a1a;
   animation: slideInLeft 1s ease-out;
   text-align: center;
   width: 100%;
@@ -317,9 +315,9 @@ p {
 
 .btn-secondary {
   background: transparent;
-  color: #222;
+  color: #ffffff;
   padding: 16px 32px;
-  border: 2px solid rgba(34, 34, 34, 0.2);
+  border: 2px solid rgba(255, 255, 255, 0.6);
   border-radius: 50px;
   text-decoration: none;
   font-weight: 600;
@@ -328,10 +326,10 @@ p {
 }
 
 .btn-secondary:hover {
-  background: rgba(13, 148, 136, 0.1);
-  border-color: #0d9488;
+  background: rgba(255, 255, 255, 0.15);
+  border-color: #ffffff;
   transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(13, 148, 136, 0.2);
+  box-shadow: 0 8px 20px rgba(13, 148, 136, 0.3);
 }
 
 .hero-stats {
@@ -471,7 +469,7 @@ p {
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(135deg, rgba(248, 248, 248, 0.9) 0%, rgba(255, 255, 255, 0.8) 100%);
+  background: transparent;
   z-index: 1;
 }
 
@@ -2135,13 +2133,13 @@ p {
     flex: 0 1 auto;
   }
 
-  /* Mobile product grid - 2x2 layout */
+  /* Mobile product grid - 2 products vertically stacked */
   #pro1 .procont {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 12px;
+    grid-template-columns: 1fr;
+    gap: 15px;
     justify-content: center;
-    margin: 10px;
+    margin: 15px 20px;
   }
 
   #pro1 .pc {
@@ -2155,36 +2153,36 @@ p {
 
   #pro1 .pc img {
     width: 100%;
-    height: 120px;
+    height: 180px;
     object-fit: cover;
     border-radius: 16px 16px 0 0;
   }
 
   .prod {
-    padding: 8px 8px 10px 8px;
+    padding: 12px 10px 12px 10px;
     display: flex;
     flex-direction: column;
     height: auto;
-    min-height: 90px;
+    min-height: 100px;
   }
 
   .des {
     flex: 1;
-    margin-bottom: 6px;
+    margin-bottom: 8px;
   }
 
   .des span {
-    font-size: 11px;
-    margin-bottom: 3px;
+    font-size: 12px;
+    margin-bottom: 4px;
   }
 
   .des h5 {
-    font-size: 12px;
-    margin-bottom: 2px;
+    font-size: 14px;
+    margin-bottom: 4px;
   }
 
   .des small {
-    font-size: 9px;
+    font-size: 10px;
   }
 
   .bun {

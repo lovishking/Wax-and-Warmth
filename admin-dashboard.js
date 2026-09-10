@@ -67,7 +67,7 @@ function logout() {
     sessionStorage.clear();
     
     // Redirect to login
-    window.location.href = '/admin-login.html';
+    window.location.href = 'admin-login.html';
 }
 
 // Section navigation

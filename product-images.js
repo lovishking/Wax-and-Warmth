@@ -6,7 +6,7 @@ const PRODUCT_IMAGES = [
     {
         id: 1,
         name: "Small bubble",
-        image: "/products/smallbubble.jpg",
+        image: "products/smallbubble.jpg",
         price: 99,
         description: "Small bubble",
         category: "candles",
@@ -17,7 +17,7 @@ const PRODUCT_IMAGES = [
     {
         id: 2,
         name: "Coconut spiced candle",
-        image: "/products/coconutspicedcandle.jpg",
+        image: "products/coconutspicedcandle.jpg",
         price: 199,
         description: "Coconut spiced candle",
         category: "candles",
@@ -27,7 +27,7 @@ const PRODUCT_IMAGES = [
     {
         id: 3,
         name: "Flower in bowl",
-        image: "/products/flowerinbowl.jpg",
+        image: "products/flowerinbowl.jpg",
         price: 249,
         description: "Flower in bowl",
         category: "candles",
@@ -37,7 +37,7 @@ const PRODUCT_IMAGES = [
     {
         id: 4,
         name: "Garden in a boat",
-        image: "/products/gardeninaboat.jpg",
+        image: "products/gardeninaboat.jpg",
         price: 499,
         description: "Garden in a boat",
         category: "candles",
@@ -47,7 +47,7 @@ const PRODUCT_IMAGES = [
     {
         id: 5,
         name: "Heart candle",
-        image: "/products/heartcandle.jpg",
+        image: "products/heartcandle.jpg",
         price: 199,
         description: "Heart candle",
         category: "candles",
@@ -57,7 +57,7 @@ const PRODUCT_IMAGES = [
     {
         id: 6,
         name: "Iced coffee latte",
-        image: "/products/icedcoffeelatte.jpg",
+        image: "products/icedcoffeelatte.jpg",
         price: 220,
         description: "Iced coffee latte",
         category: "latte",
@@ -67,7 +67,7 @@ const PRODUCT_IMAGES = [
     {
         id: 7,
         name: "iced lavander latte",
-        image: "/products/icedlavander.jpg",
+        image: "products/icedlavander.jpg",
         price: 220,
         description: "Iced lavander latte",
         category: "latte",
@@ -77,7 +77,7 @@ const PRODUCT_IMAGES = [
     {
         id: 8,
         name: "Iced Strawberry latte",
-        image: "/products/icedstrawberrylatte.jpg",
+        image: "products/icedstrawberrylatte.jpg",
         price: 220,
         description: "Iced Strawberry latte",
         category: "latte",
@@ -87,7 +87,7 @@ const PRODUCT_IMAGES = [
     {
         id: 9,
         name: "Ocean in a boat",
-        image: "/products/oceaninaboat.jpg",
+        image: "products/oceaninaboat.jpg",
         price: 499,
         description: "Ocean in a boat",
         category: "candles",
@@ -97,7 +97,7 @@ const PRODUCT_IMAGES = [
     {
         id: 10,
         name: "Ocean jar candle",
-        image: "/products/oceanjarcandle.jpg",
+        image: "products/oceanjarcandle.jpg",
         price: 220,
         description: "Ocean jar candle",
         category: "candles",
@@ -107,7 +107,7 @@ const PRODUCT_IMAGES = [
     {
         id: 11,
         name: "Peony candle",
-        image: "/products/peonycandle.jpg",
+        image: "products/peonycandle.jpg",
         price: 99,
         description: "Peony candle",
         category: "candles",
@@ -118,7 +118,7 @@ const PRODUCT_IMAGES = [
     {
         id: 12,
         name: "pink heart",
-        image: "/products/pinkheart.jpg",
+        image: "products/pinkheart.jpg",
         price: 199,
         description: "pink heart",
         category: "candles",
@@ -128,7 +128,7 @@ const PRODUCT_IMAGES = [
     {
         id: 13,
         name: "red heart",
-        image: "/products/redheart.jpg",
+        image: "products/redheart.jpg",
         price: 199,
         description: "red heart",
         category: "candles",
@@ -138,7 +138,7 @@ const PRODUCT_IMAGES = [
     {
         id: 14,
         name: "Spiral candle",
-        image: "/products/spiralcandle.jpg",
+        image: "products/spiralcandle.jpg",
         price: 199,
         description: "Spiral candle",
         category: "candles",
@@ -148,7 +148,7 @@ const PRODUCT_IMAGES = [
     {
         id: 15,
         name: "Red Peony",
-        image: "/products/roseinacage.jpg",
+        image: "products/roseinacage.jpg",
         price: 99,
         description: "Red Peony",
         category: "candles",
@@ -158,7 +158,7 @@ const PRODUCT_IMAGES = [
     {
         id: 16,
         name: "Custom1",
-        image: "/products/custom1.jpg",
+        image: "products/custom1.jpg",
         price: 99,
         description: "Custom1",
         category: "candles",
@@ -168,7 +168,7 @@ const PRODUCT_IMAGES = [
     {
         id: 17,
         name: "Large bubble",
-        image: "/products/largebubble.jpg",
+        image: "products/largebubble.jpg",
         price: 199,
         description: "Large bubble",
         category: "candles",
@@ -264,10 +264,10 @@ function loadProductsFromConfig() {
     const currentPage = window.location.pathname;
     let productsToShow = [];
     
-    if (currentPage === '/' || currentPage === '/index.html' || currentPage.includes('index')) {
+    if (currentPage === 'index.html' || currentPage === 'index.html' || currentPage.includes('index')) {
         // Home page - show all products (like original design)
         productsToShow = getAllProducts();
-    } else if (currentPage === '/shop.html' || currentPage.includes('shop')) {
+    } else if (currentPage === 'shop.html' || currentPage.includes('shop')) {
         // Shop page - show all products
         productsToShow = getAllProducts();
     } else {

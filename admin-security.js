@@ -131,7 +131,7 @@
                 // Optional: Redirect to login if debugging detected
                 if (window.location.pathname.includes('admin')) {
                     setTimeout(() => {
-                        window.location.href = '/admin-login.html';
+                        window.location.href = 'admin-login.html';
                     }, 2000);
                 }
             }

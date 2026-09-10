@@ -6,7 +6,7 @@
     <title>Admin Login - Wax and Warmth</title>
     
     <!-- Security Module - Load First -->
-    <script src="/admin-security.js"></script>
+    <script src="admin-security.js"></script>
     
     <style>
         * {
@@ -173,7 +173,7 @@
         <div id="successMessage" class="success-message"></div>
 
         <div class="back-link">
-            <a href="/">← Back to Website</a>
+            <a href="index.html">← Back to Website</a>
         </div>
     </div>
 
@@ -281,7 +281,7 @@
                     
                     // Redirect to admin dashboard
                     setTimeout(() => {
-                        window.location.href = '/admin-dashboard.html';
+                        window.location.href = 'admin-dashboard.html';
                     }, 1500);
                     
                 } else {
@@ -306,7 +306,7 @@
             const adminSession = localStorage.getItem('adminSession');
             if (adminSession === 'active') {
                 // Already logged in, redirect to dashboard
-                window.location.href = '/admin-dashboard.html';
+                window.location.href = 'admin-dashboard.html';
             }
         });
 

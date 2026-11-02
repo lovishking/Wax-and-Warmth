@@ -49,3 +49,10 @@ docker-compose.override.yml
 .coverage
 htmlcov/
 .pytest_cache/
+
+# Legacy static-site copies; the active storefront assets live in frontend/public/wax.
+/images/
+/products/
+/public/
+/testi/
+/vids/

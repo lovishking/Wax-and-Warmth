@@ -1,0 +1,130 @@
+[
+  {
+    "name": "Small bubble",
+    "image": "products/smallbubble.jpg",
+    "price": 99,
+    "description": "Small bubble",
+    "category": "candles",
+    "featured": true
+  },
+  {
+    "name": "Coconut spiced candle",
+    "image": "products/coconutspicedcandle.jpg",
+    "price": 199,
+    "description": "Coconut spiced candle",
+    "category": "candles",
+    "featured": true
+  },
+  {
+    "name": "Flower in bowl",
+    "image": "products/flowerinbowl.jpg",
+    "price": 249,
+    "description": "Flower in bowl",
+    "category": "candles",
+    "featured": true
+  },
+  {
+    "name": "Garden in a boat",
+    "image": "products/gardeninaboat.jpg",
+    "price": 499,
+    "description": "Garden in a boat",
+    "category": "candles",
+    "featured": true
+  },
+  {
+    "name": "Heart candle",
+    "image": "products/heartcandle.jpg",
+    "price": 199,
+    "description": "Heart candle",
+    "category": "candles",
+    "featured": false
+  },
+  {
+    "name": "Iced coffee latte",
+    "image": "products/icedcoffeelatte.jpg",
+    "price": 220,
+    "description": "Iced coffee latte",
+    "category": "latte",
+    "featured": true
+  },
+  {
+    "name": "iced lavander latte",
+    "image": "products/icedlavander.jpg",
+    "price": 220,
+    "description": "Iced lavander latte",
+    "category": "latte",
+    "featured": false
+  },
+  {
+    "name": "Iced Strawberry latte",
+    "image": "products/icedstrawberrylatte.jpg",
+    "price": 220,
+    "description": "Iced Strawberry latte",
+    "category": "latte",
+    "featured": false
+  },
+  {
+    "name": "Ocean in a boat",
+    "image": "products/oceaninaboat.jpg",
+    "price": 499,
+    "description": "Ocean in a boat",
+    "category": "candles",
+    "featured": false
+  },
+  {
+    "name": "Ocean jar candle",
+    "image": "products/oceanjarcandle.jpg",
+    "price": 220,
+    "description": "Ocean jar candle",
+    "category": "candles",
+    "featured": false
+  },
+  {
+    "name": "Peony candle",
+    "image": "products/peonycandle.jpg",
+    "price": 99,
+    "description": "Peony candle",
+    "category": "candles",
+    "featured": false
+  },
+  {
+    "name": "pink heart",
+    "image": "products/pinkheart.jpg",
+    "price": 199,
+    "description": "pink heart",
+    "category": "candles",
+    "featured": false
+  },
+  {
+    "name": "red heart",
+    "image": "products/redheart.jpg",
+    "price": 199,
+    "description": "red heart",
+    "category": "candles",
+    "featured": false
+  },
+  {
+    "name": "Spiral candle",
+    "image": "products/spiralcandle.jpg",
+    "price": 199,
+    "description": "Spiral candle",
+    "category": "candles",
+    "featured": false
+  },
+  {
+    "name": "Red Peony",
+    "image": "products/roseinacage.jpg",
+    "price": 99,
+    "description": "Red Peony",
+    "category": "candles",
+    "featured": false
+  },
+  {
+    "name": "Custom1",
+    "image": "products/custom1.jpg",
+    "price": 99,
+    "description": "Custom1",
+    "category": "candles",
+    "featured": false
+  }
+]

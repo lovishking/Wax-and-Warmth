@@ -1,0 +1,117 @@
+.home-page {
+  display: flex;
+  flex-direction: column;
+}
+
+.hero {
+  height: 70vh;
+  min-height: 500px;
+  background-color: var(--color-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0 24px;
+  /* Ideally add a subtle background image or pattern here */
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: radial-gradient(circle at center, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0) 70%);
+  pointer-events: none;
+}
+
+.hero-content {
+  max-width: 600px;
+  position: relative;
+  z-index: 1;
+}
+
+.hero h1 {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  margin-bottom: 24px;
+  letter-spacing: -0.02em;
+}
+
+.hero p {
+  font-size: 1.1rem;
+  color: var(--color-text-muted);
+  margin-bottom: 40px;
+  max-width: 500px;
+  margin-inline: auto;
+}
+
+.hero-btn {
+  padding: 16px 32px;
+  font-size: 1rem;
+}
+
+.featured-section {
+  padding: 80px 24px;
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 48px;
+}
+
+.section-header h2 {
+  font-size: 2rem;
+}
+
+.view-all-link {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--color-text-muted);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.view-all-link:hover {
+  color: var(--color-text);
+}
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 32px;
+}
+
+.values-section {
+  background-color: var(--color-surface);
+  padding: 80px 0;
+  border-top: 1px solid var(--border-light);
+  border-bottom: 1px solid var(--border-light);
+}
+
+.values-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 48px;
+  text-align: center;
+}
+
+.value-item h3 {
+  font-size: 1.25rem;
+  margin-bottom: 16px;
+}
+
+.value-item p {
+  color: var(--color-text-muted);
+  font-size: 0.95rem;
+}
+
+.loading-state {
+  text-align: center;
+  padding: 60px 0;
+  color: var(--color-text-muted);
+  font-family: var(--font-serif);
+  font-size: 1.2rem;
+  font-style: italic;
+}

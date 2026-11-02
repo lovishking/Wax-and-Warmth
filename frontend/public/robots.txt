@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /admin
+Disallow: /debug
+Disallow: /mobile-access
+
+Sitemap: https://wax-and-warmth.shop/sitemap.xml

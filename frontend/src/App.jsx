@@ -34,7 +34,7 @@ function Site() {
       <Route path="/products/:slug" element={<ProductDetail/>}/><Route path="/product" element={<ProductDetail/>}/><Route path="/sproduct.html" element={<ProductDetail/>}/>
       <Route path="/cart" element={<CartPage/>}/><Route path="/cart.html" element={<CartPage/>}/><Route path="/about" element={<About/>}/><Route path="/about.html" element={<About/>}/><Route path="/contact" element={<Contact/>}/><Route path="/contact.html" element={<Contact/>}/><Route path="/blog" element={<Blog/>}/><Route path="/blog.html" element={<Blog/>}/>
       <Route path="/login" element={<AuthPage mode="login"/>}/><Route path="/admin-login.html" element={<AuthPage mode="login"/>}/><Route path="/register" element={<AuthPage mode="register"/>}/>
-      <Route path="/checkout" element={<RequireAuth><Checkout/></RequireAuth>}/><Route path="/orders" element={<RequireAuth><Orders/></RequireAuth>}/><Route path="/admin" element={<RequireAdmin><Admin/></RequireAdmin>}/><Route path="/admin/users" element={<RequireAdmin><AdminUsers/></RequireAdmin>}/><Route path="/admin-dashboard.html" element={<RequireAdmin><Admin/></RequireAdmin>}/><Route path="/admin/settings" element={<RequireAdmin><AdminSettings/></RequireAdmin>}/><Route path="/admin-newsletter.html" element={<RequireAdmin><AdminNewsletter/></RequireAdmin>}/>
+      <Route path="/checkout" element={<RequireAuth><Checkout/></RequireAuth>}/><Route path="/orders" element={<RequireAuth><Orders/></RequireAuth>}/><Route path="/admin" element={<RequireAdmin><Admin/></RequireAdmin>}/><Route path="/admin/sales" element={<RequireAdmin><AdminSales/></RequireAdmin>}/><Route path="/admin/users" element={<RequireAdmin><AdminUsers/></RequireAdmin>}/><Route path="/admin-dashboard.html" element={<RequireAdmin><Admin/></RequireAdmin>}/><Route path="/admin/settings" element={<RequireAdmin><AdminSettings/></RequireAdmin>}/><Route path="/admin-newsletter.html" element={<RequireAdmin><AdminNewsletter/></RequireAdmin>}/>
       <Route path="/mobile-access.html" element={<MobileAccess/>}/><Route path="/debug.html" element={<DebugPage/>}/>
       <Route path="*" element={<NotFound/>}/>
     </Routes></main>
@@ -137,7 +137,7 @@ function Checkout(){const {cart,refreshCart}=useCart();const {user}=useAuth();co
   </section>
 }
 function AdminNav({active}){
-  const items=[['products','Products','/admin'],['users','Users','/admin/users'],['newsletter','Newsletter','/admin-newsletter.html'],['store','Store settings','/admin/settings']];
+  const items=[['products','Products','/admin'],['sales','Sales','/admin/sales'],['users','Users','/admin/users'],['newsletter','Newsletter','/admin-newsletter.html'],['store','Store settings','/admin/settings']];
   return <nav className="admin-nav" aria-label="Management sections">{items.map(([key,label,path])=><NavLink key={key} to={path} end={key==='products'} className={active===key?'is-current':''}>{label}</NavLink>)}</nav>
 }
 
@@ -162,6 +162,37 @@ function Admin(){
     <div className="admin-workspace"><form className="admin-form admin-product-form" onSubmit={save}><p className="eyebrow">CATALOGUE</p><h2>{editing?'Edit product':'Add a product'}</h2><label>Product name<input required maxLength="200" value={form.name} onChange={event=>setForm({...form,name:event.target.value})}/></label><label>Description<textarea required value={form.description} onChange={event=>setForm({...form,description:event.target.value})}/></label><div className="admin-form-pair"><label>Price (₹)<input required type="number" min="0.01" step="0.01" value={form.price} onChange={event=>setForm({...form,price:event.target.value})}/></label><label>Category<select value={form.category} onChange={event=>setForm({...form,category:event.target.value})}><option value="">Choose category</option>{categories.map(category=><option key={category.id} value={category.id}>{category.name}</option>)}</select></label></div><div className="admin-form-pair"><label>Scent family<select value={form.scent_family} onChange={event=>setForm({...form,scent_family:event.target.value})}>{['FLORAL','WOODY','CITRUS','FRUITY','SPICY','FRESH','SWEET','EARTHY','HERBAL'].map(value=><option key={value}>{value}</option>)}</select></label><label>Size<select value={form.size} onChange={event=>setForm({...form,size:event.target.value})}>{['SMALL','MEDIUM','LARGE','EXTRA_LARGE'].map(value=><option key={value}>{value.replace('_',' ')}</option>)}</select></label></div><label>Scent notes<input value={form.scent_notes} onChange={event=>setForm({...form,scent_notes:event.target.value})} placeholder="Rose, cedar, vanilla"/></label><label className="admin-file-field">Product image<input type="file" accept="image/*" onChange={event=>setImage(event.target.files?.[0]||null)}/><small>{image?image.name:editing?'Choose a file to replace the current image':'Choose a clear product photo'}</small></label><div className="admin-checks"><label className="check-label"><input type="checkbox" checked={form.is_featured} onChange={event=>setForm({...form,is_featured:event.target.checked})}/> Show in featured candles</label><label className="check-label"><input type="checkbox" checked={form.is_active} onChange={event=>setForm({...form,is_active:event.target.checked})}/> Visible in storefront</label></div><button className="gold-button" disabled={busy}>{busy?'Saving…':editing?'Save product':'Create product'}</button>{editing&&<button type="button" className="admin-secondary-button" onClick={()=>{setEditing(null);setForm(blank);setImage(null);setMessage('')}}>Cancel editing</button>}</form>
     <div className="admin-catalog"><div className="admin-catalog-heading"><div><p className="eyebrow">YOUR RANGE</p><h2>Products</h2></div><input aria-label="Search products" placeholder="Search products" value={query} onChange={event=>setQuery(event.target.value)}/></div><form className="admin-category-add" onSubmit={addCategory}><input aria-label="New category name" placeholder="Add a category" value={categoryName} onChange={event=>setCategoryName(event.target.value)}/><button type="submit" className="admin-secondary-button">Add category</button></form>{loading?<Loading text="Loading products…"/>:!filtered.length?<div className="admin-empty">No products match this search.</div>:<div className="admin-product-list">{filtered.map(product=><article className="admin-product-row" key={product.id}><ProductImage src={product.image} alt={product.name}/><div className="admin-product-main"><strong>{product.name}</strong><small>{product.category_name||'Uncategorised'} · {money(product.price)}</small><span className={(product.available_quantity||0)>0?'stock-pill is-available':'stock-pill'}>{product.available_quantity||0} in stock</span></div><div className="admin-product-actions">{stockProduct?.id===product.id?<form className="restock-inline" onSubmit={restock}><input type="number" min="1" step="1" aria-label={`Units to add for ${product.name}`} placeholder="Qty" value={stockAmount} onChange={event=>setStockAmount(event.target.value)}/><button type="submit">Add</button><button type="button" onClick={()=>setStockProduct(null)} aria-label="Cancel restock">×</button></form>:<button className="admin-secondary-button" onClick={()=>{setStockProduct(product);setStockAmount('')}}>Restock</button>}<button className="admin-secondary-button" onClick={()=>edit(product)}>Edit</button><button className="admin-danger-button" onClick={()=>archive(product)}>Archive</button></div></article>)}</div>}</div></div>
   </section>
+}
+
+function AdminSales(){
+  const {isAdmin}=useAuth();
+  const [report,setReport]=useState(null),[loading,setLoading]=useState(true),[error,setError]=useState('');
+  useEffect(()=>{if(!isAdmin){setLoading(false);return}client.get('/orders/admin/sales/').then(({data})=>setReport(unwrap(data))).catch(err=>setError(getApiError(err,'Could not load sales details.'))).finally(()=>setLoading(false))},[isAdmin]);
+  if(!isAdmin)return <div className="section-wrap empty-state"><h1>Admin access required</h1></div>;
+  const summary=report?.summary||{};
+  const products=report?.products||[];
+  const orders=report?.orders||[];
+  return <section className="admin-shell section-wrap">
+    <div className="admin-page-heading"><div><p className="eyebrow">STORE MANAGEMENT</p><h1>Sales details</h1><p>Track paid orders, units sold, and orders waiting for WhatsApp payment.</p></div><Link className="admin-view-store" to="/shop">View storefront ↗</Link></div>
+    <AdminNav active="sales"/>
+    {error&&<ErrorBox message={error}/>}
+    {loading?<Loading text="Loading sales details…"/>:<>
+      <div className="admin-metrics admin-sales-metrics">
+        <article><span>Paid sales</span><b>{money(summary.paid_revenue)}</b></article>
+        <article><span>Units sold</span><b>{summary.units_sold||0}</b></article>
+        <article><span>Paid orders</span><b>{summary.paid_orders||0}</b></article>
+        <article><span>Waiting for WhatsApp payment</span><b>{summary.pending_orders||0}</b><small>{money(summary.pending_revenue)} pending</small></article>
+      </div>
+      <div className="admin-panel admin-sales-panel">
+        <div className="admin-catalog-heading"><div><p className="eyebrow">PRODUCT PERFORMANCE</p><h2>Sold by product</h2></div><span className="admin-sales-caption">Counts confirmed, processing, shipped, and delivered orders</span></div>
+        {!products.length?<div className="admin-empty">No paid sales have been recorded yet.</div>:<div className="admin-sales-table"><div className="admin-sales-head"><span>Product</span><span>Units sold</span><span>Orders</span><span>Sales</span></div>{products.map((product,index)=><article key={`${product.product_id??'archived'}-${product.product_name}-${index}`}><strong>{product.product_name}</strong><span>{product.units_sold}</span><span>{product.order_count}</span><b>{money(product.revenue)}</b></article>)}</div>}
+      </div>
+      <div className="admin-panel admin-sales-panel">
+        <div className="admin-catalog-heading"><div><p className="eyebrow">ORDER ACTIVITY</p><h2>Recent orders</h2></div><span className="admin-sales-caption">Latest 50 orders; pending orders are not counted as sales</span></div>
+        {!orders.length?<div className="admin-empty">No orders have been placed yet.</div>:<div className="admin-sales-orders">{orders.map(order=><article key={order.id}><div><strong>Order #{order.id}</strong><small>{order.customer}</small></div><div className="admin-sales-order-items">{order.items.map((item,index)=><span key={`${item.name}-${index}`}>{item.name} × {item.quantity}</span>)}</div><time dateTime={order.created_at}>{new Date(order.created_at).toLocaleDateString()}</time><span className={`sales-status status-${order.status.toLowerCase()}`}>{order.status}</span><b>{money(order.total_amount)}</b></article>)}</div>}
+      </div>
+    </>}
+  </section>;
 }
 
 function AdminUsers(){

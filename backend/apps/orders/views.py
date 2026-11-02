@@ -2,13 +2,16 @@
 Order Views — Order creation, listing, and management.
 """
 
+from decimal import Decimal
+
+from django.db.models import Count, DecimalField, ExpressionWrapper, F, Sum
 from rest_framework import generics, status
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
 
 from apps.users.permissions import IsAdminUser, IsOwnerOrAdmin
-from .models import Order
+from .models import Order, OrderItem
 from .serializers import (
     OrderSerializer,
     OrderListSerializer,
@@ -126,6 +129,67 @@ class AdminOrderListView(generics.ListAPIView):
         if status_filter:
             queryset = queryset.filter(status=status_filter.upper())
         return queryset
+
+
+class AdminSalesView(APIView):
+    """Return paid sales, unpaid WhatsApp orders, and product-level units sold."""
+
+    permission_classes = [IsAdminUser]
+
+    def get(self, request):
+        paid_statuses = [
+            Order.Status.CONFIRMED,
+            Order.Status.PROCESSING,
+            Order.Status.SHIPPED,
+            Order.Status.DELIVERED,
+        ]
+        paid_orders = Order.objects.filter(status__in=paid_statuses)
+        pending_orders = Order.objects.filter(status=Order.Status.PENDING)
+
+        paid_revenue = paid_orders.aggregate(total=Sum('total_amount'))['total'] or Decimal('0.00')
+        pending_revenue = pending_orders.aggregate(total=Sum('total_amount'))['total'] or Decimal('0.00')
+        line_revenue = ExpressionWrapper(
+            F('quantity') * F('unit_price'),
+            output_field=DecimalField(max_digits=12, decimal_places=2),
+        )
+        products = OrderItem.objects.filter(order__status__in=paid_statuses).values(
+            'product_id', 'product_name',
+        ).annotate(
+            units_sold=Sum('quantity'),
+            order_count=Count('order_id', distinct=True),
+            revenue=Sum(line_revenue),
+        ).order_by('-units_sold', '-revenue', 'product_name')
+
+        recent_orders = []
+        for order in Order.objects.select_related('user').prefetch_related('items')[:50]:
+            recent_orders.append({
+                'id': order.id,
+                'customer': order.user.email,
+                'status': order.status,
+                'total_amount': order.total_amount,
+                'created_at': order.created_at,
+                'items': [
+                    {'name': item.product_name, 'quantity': item.quantity}
+                    for item in order.items.all()
+                ],
+            })
+
+        return Response({
+            'success': True,
+            'data': {
+                'summary': {
+                    'paid_revenue': paid_revenue,
+                    'units_sold': OrderItem.objects.filter(
+                        order__status__in=paid_statuses,
+                    ).aggregate(total=Sum('quantity'))['total'] or 0,
+                    'paid_orders': paid_orders.count(),
+                    'pending_orders': pending_orders.count(),
+                    'pending_revenue': pending_revenue,
+                },
+                'products': list(products),
+                'orders': recent_orders,
+            },
+        })
 
 
 class AdminUpdateOrderStatusView(APIView):

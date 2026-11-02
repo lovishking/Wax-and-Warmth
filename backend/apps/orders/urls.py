@@ -13,6 +13,7 @@ urlpatterns = [
     path('<int:pk>/', views.OrderDetailView.as_view(), name='detail'),
     path('<int:pk>/cancel/', views.CancelOrderView.as_view(), name='cancel'),
     # Admin
+    path('admin/sales/', views.AdminSalesView.as_view(), name='admin-sales'),
     path('admin/', views.AdminOrderListView.as_view(), name='admin-list'),
     path('admin/<int:pk>/status/', views.AdminUpdateOrderStatusView.as_view(), name='admin-update-status'),
 ]

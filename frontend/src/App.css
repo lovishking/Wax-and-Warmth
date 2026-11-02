@@ -39,3 +39,27 @@
 
 /* Match the wordmark's dark brown canvas so it blends into the brand areas */
 .site-header,.site-footer{background-color:#120500}
+
+/* Admin sales report */
+.admin-sales-metrics{grid-template-columns:repeat(4,minmax(0,1fr))}
+.admin-sales-metrics article{display:grid;gap:7px}
+.admin-sales-metrics small,.admin-sales-caption{color:#827a6f;font-size:.73rem}
+.admin-sales-panel{margin-top:20px}
+.admin-sales-panel .admin-catalog-heading{align-items:end}
+.admin-sales-table{width:100%}
+.admin-sales-head,.admin-sales-table article{display:grid;grid-template-columns:minmax(180px,1.6fr) .65fr .65fr .8fr;gap:14px;align-items:center}
+.admin-sales-head{padding:10px 0;color:#8a8174;font-size:.67rem;letter-spacing:.08em;text-transform:uppercase}
+.admin-sales-table article{padding:13px 0;border-top:1px solid #eee9e1;color:#60594f;font-size:.82rem}
+.admin-sales-table article strong{color:#342f28;font-weight:600}
+.admin-sales-table article b{color:#81642e}
+.admin-sales-orders article{display:grid;grid-template-columns:minmax(130px,1fr) minmax(170px,1.5fr) auto auto auto;gap:14px;align-items:center;padding:14px 0;border-top:1px solid #eee9e1;font-size:.78rem}
+.admin-sales-orders article>div:first-child{display:grid;gap:4px;min-width:0}
+.admin-sales-orders small,.admin-sales-order-items{color:#827a6f;font-size:.72rem;overflow-wrap:anywhere}
+.admin-sales-order-items{display:grid;gap:3px}
+.admin-sales-orders time{color:#746d62;white-space:nowrap}
+.sales-status{justify-self:start;padding:5px 8px;border-radius:20px;font-size:.65rem;white-space:nowrap;background:#f0ece4;color:#766342}
+.sales-status.status-pending{background:#fff4df;color:#89672b}
+.sales-status.status-cancelled,.sales-status.status-returned{background:#f6eee9;color:#8d6656}
+.sales-status.status-delivered{background:#eef4e9;color:#536c48}
+@media(max-width:900px){.admin-sales-metrics{grid-template-columns:repeat(2,minmax(0,1fr))}.admin-sales-orders article{grid-template-columns:minmax(130px,1fr) minmax(150px,1.3fr) auto auto}.admin-sales-orders time{grid-column:1}}
+@media(max-width:700px){.admin-sales-metrics{grid-template-columns:repeat(2,minmax(0,1fr))}.admin-sales-panel .admin-catalog-heading{align-items:flex-start;flex-direction:column}.admin-sales-head{display:none}.admin-sales-table article{grid-template-columns:minmax(0,1fr) auto auto;gap:7px}.admin-sales-table article strong{grid-column:1/-1}.admin-sales-table article b{grid-column:1/-1}.admin-sales-orders article{grid-template-columns:minmax(0,1fr) auto;gap:8px}.admin-sales-orders article>div:first-child{grid-column:1}.admin-sales-order-items{grid-column:1/-1}.admin-sales-orders time{grid-column:1}.admin-sales-orders .sales-status{grid-column:2;grid-row:1}.admin-sales-orders article>b{grid-column:2;grid-row:2}}

@@ -13,7 +13,7 @@ export default function ProductCard({ product }) {
     e.preventDefault(); // Prevent navigating to product detail
     e.stopPropagation();
     if (!isOutOfStock) {
-      addToCart(product.id, 1);
+      addToCart(product, 1);
     }
   };
 
@@ -70,3 +70,4 @@ export default function ProductCard({ product }) {
     </Link>
   );
 }
+

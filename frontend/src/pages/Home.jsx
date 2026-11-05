@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import client from '../api/client';
 import ProductCard from '../components/ProductCard';
+import { notifyProductsReady } from '../api/storefrontEvents';
 import './Home.css';
 
 export default function Home() {
@@ -13,6 +14,7 @@ export default function Home() {
       try {
         const response = await client.get('/products/featured/');
         setFeaturedProducts(response.data.data);
+        notifyProductsReady();
       } catch (error) {
         console.error('Failed to fetch featured products', error);
       } finally {

@@ -82,15 +82,60 @@ export default function WakeUpGame() {
   return <div className="wake-overlay" role="dialog" aria-modal="true" aria-labelledby="wake-title">
     <section className="wake-card">
       <div className="wake-heading"><span className="wake-mark"><Flame size={19}/></span><span className="wake-wordmark">WAX AND WARMTH</span><span className="wake-live">CANDLE CATCH</span></div>
-      <div className="wake-copy"><p className="wake-kicker">A LITTLE MOMENT OF PLAY</p><h1 id="wake-title">Catch the candlelight</h1><p>Slide your basket and catch the falling sparks. How many can you gather?</p></div>
-      <div className="wake-stats"><span><Sparkles size={16}/> Sparks caught <b>{score}</b></span><span className="wake-clock">{seconds > 0 ? `00:${String(seconds).padStart(2, '0')}` : 'One moment…'}</span></div>
+      <div className="wake-copy">
+        <p className="wake-kicker">{seconds > 0 ? 'A LITTLE MOMENT OF PLAY' : 'SERVER STARTING UP'}</p>
+        <h1 id="wake-title">{seconds > 0 ? 'Catch the candlelight' : 'Almost ready for you'}</h1>
+        <p>
+          {seconds > 0
+            ? 'Slide your basket and catch the falling sparks. How many can you gather?'
+            : 'The backend is starting up as it is now shifted to the free plan of Render. Please wait at least 45–50 seconds, then explore the store.'}
+        </p>
+      </div>
+      <div className="wake-stats">
+        <span><Sparkles size={16}/> Sparks caught <b>{score}</b></span>
+        <span className="wake-clock">{seconds > 0 ? `00:${String(seconds).padStart(2, '0')}` : 'Starting up…'}</span>
+      </div>
       <div className="wake-board" ref={board} onPointerMove={moveBasket} onPointerDown={moveBasket} aria-label="Move your basket under the falling candle sparks">
         <div className="wake-moon"/><div className="wake-horizon"/>
         {drops.map((drop) => <span key={drop.id} className={`wake-spark ${drop.tone}`} style={{ left: `${drop.x}%`, top: `${drop.y}%` }}>✦</span>)}
         <div className="wake-basket" style={{ left: `${basket}%` }}><span>✧</span></div>
-        <div className="wake-board-hint">MOVE YOUR POINTER TO CATCH THE SPARKS</div>
+        {seconds > 0 ? (
+          <div className="wake-board-hint">MOVE YOUR POINTER TO CATCH THE SPARKS</div>
+        ) : (
+          <div className="wake-complete-overlay">
+            <div className="wake-complete-badge">✦ Game Completed ✦</div>
+            <h3>You gathered {score} {score === 1 ? 'spark' : 'sparks'}!</h3>
+            <p className="wake-render-note">
+              The backend is starting up as it is now shifted to the free plan of Render.
+              Please wait at least 45–50 seconds, then explore the store.
+            </p>
+            <div className="wake-actions-row">
+              <div className="wake-loading-pill">
+                <span className="wake-spinner"/>
+                <span>Waking server…</span>
+              </div>
+              <button
+                type="button"
+                className="wake-explore-btn"
+                onClick={() => {
+                  refreshSettings();
+                  setVisible(false);
+                }}
+              >
+                Explore Store →
+              </button>
+            </div>
+          </div>
+        )}
       </div>
-      <div className="wake-footer"><span>{seconds > 0 ? 'Move your basket and collect the golden sparks.' : `Beautifully done — you caught ${score} ${score === 1 ? 'spark' : 'sparks'}!`}</span><span className="wake-dots"><i/><i/><i/></span></div>
+      <div className="wake-footer">
+        <span>
+          {seconds > 0
+            ? 'Move your basket and collect the golden sparks.'
+            : 'Backend starting on Render free plan — please wait at least 45–50 seconds, then explore the store.'}
+        </span>
+        <span className="wake-dots"><i/><i/><i/></span>
+      </div>
     </section>
   </div>;
 }

@@ -9,7 +9,7 @@ from .serializers import SiteSettingsSerializer
 
 class SiteSettingsView(APIView):
     def get_permissions(self):
-        return [AllowAny()] if self.request.method == 'GET' else [IsAdminUser()]
+        return [AllowAny()] if self.request.method in ['GET', 'HEAD', 'OPTIONS'] else [IsAdminUser()]
 
     def get(self, request):
         settings, _ = SiteSettings.objects.get_or_create(pk=1)

@@ -2,7 +2,7 @@ name: Keep Render API warm
 
 on:
   schedule:
-    # Ping before Render's free service inactivity window.
+    # Ping every 10 minutes to stay within Render's 15-minute inactivity window.
     - cron: '*/10 * * * *'
   workflow_dispatch:
 
@@ -15,4 +15,6 @@ jobs:
     timeout-minutes: 2
     steps:
       - name: Request lightweight API endpoint
-        run: curl --fail --silent --show-error --max-time 30 https://wax-and-warmth.onrender.com/api/settings/ > /dev/null
+        run: |
+          curl --fail --silent --show-error --max-time 30 https://wax-and-warmth.onrender.com/api/settings/ > /dev/null || \
+          curl --fail --silent --show-error --max-time 30 https://wax-and-warmth.onrender.com/api/health/ > /dev/null

@@ -5,9 +5,19 @@ Wax & Warmth URL Configuration
 from django.contrib import admin
 from django.urls import path, include, re_path
 from django.conf import settings
-from django.http import Http404
+from django.http import Http404, JsonResponse
 from django.views.static import serve
+from django.utils import timezone
 from pathlib import Path
+
+
+def health_check(request):
+    """Lightweight health check endpoint for uptime monitors and keep-alive pings."""
+    return JsonResponse({
+        'status': 'ok',
+        'service': 'wax-and-warmth-backend',
+        'timestamp': timezone.now().isoformat(),
+    })
 
 
 def serve_development_media(request, path):
@@ -28,6 +38,8 @@ def serve_development_media(request, path):
     raise Http404('Media file not found.')
 
 urlpatterns = [
+    path('api/health/', health_check, name='health_check'),
+    path('healthz/', health_check, name='healthz'),
     path('admin/', admin.site.urls),
     path('api/auth/', include('apps.users.urls')),
     path('api/users/', include('apps.users.admin_urls')),

@@ -1,4 +1,8 @@
 {
+  "scripts": {
+    "keep-alive": "python scripts/keep_alive.py",
+    "keep-alive:node": "node scripts/keep_alive.js"
+  },
   "dependencies": {
     "@neon/config": "^1.10.2",
     "@neon/env": "^1.6.10"

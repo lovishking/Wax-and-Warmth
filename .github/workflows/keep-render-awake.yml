@@ -2,8 +2,8 @@ name: Keep Render API warm
 
 on:
   schedule:
-    # Ping every 10 minutes to stay within Render's 15-minute inactivity window.
-    - cron: '*/10 * * * *'
+    # Ping every 5 minutes so GitHub Actions queue delays never exceed Render's 15-minute sleep window
+    - cron: '*/5 * * * *'
   workflow_dispatch:
 
 permissions:
@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 2
     steps:
-      - name: Request lightweight API endpoint
+      - name: Ping health and products endpoints
         run: |
-          curl --fail --silent --show-error --max-time 30 https://wax-and-warmth.onrender.com/api/settings/ > /dev/null || \
-          curl --fail --silent --show-error --max-time 30 https://wax-and-warmth.onrender.com/api/health/ > /dev/null
+          curl -s --max-time 30 https://wax-and-warmth.onrender.com/api/health/ > /dev/null || true
+          curl -s --max-time 30 https://wax-and-warmth.onrender.com/api/products/featured/ > /dev/null || true

@@ -33,7 +33,7 @@ DEFAULT_URL = os.environ.get(
     'BACKEND_PING_URL',
     os.environ.get('BACKEND_URL', 'https://wax-and-warmth.onrender.com/api/settings/')
 )
-DEFAULT_INTERVAL_MINUTES = 10
+DEFAULT_INTERVAL_MINUTES = 5
 DEFAULT_TIMEOUT_SECONDS = 30
 
 

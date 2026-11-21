@@ -7,7 +7,7 @@
  */
 
 const targetUrl = process.env.BACKEND_PING_URL || process.env.BACKEND_URL || 'https://wax-and-warmth.onrender.com/api/settings/';
-const intervalMinutes = parseFloat(process.env.PING_INTERVAL_MINUTES || '10');
+const intervalMinutes = parseFloat(process.env.PING_INTERVAL_MINUTES || '5');
 const intervalMs = Math.max(10, intervalMinutes * 60) * 1000;
 const runOnce = process.argv.includes('--once');
 
